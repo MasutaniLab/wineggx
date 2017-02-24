@@ -19,6 +19,7 @@ void initializeDraw(void);
 void drawGrid(int win, double xmin, double ymin, double xmax, double ymax, double grid);
 void terminateDraw(void);
 void draw();
+void gclrGrid(int win);
 
 int main()
 {
@@ -36,10 +37,11 @@ void initializeDraw(void)
 {
     win = gopen(500, 500);
     window(win, XMIN, YMIN, XMAX, YMAX);
-    drawGrid(win, XMIN, YMIN, XMAX, YMAX, 10);
+    gsetbgcolorrgb(win, 255, 255, 255);
+    gclrGrid(win);
 }
 
-//概要：座標軸と格子を描く．
+//概要：汎用の座標軸と格子を描く．
 //引数：win ウィンドウの番号，
 //      xmin xの最小値，ymin yの最小値，xman xの最大値，ymax yの最大値，
 //      grid 格子の間隔
@@ -48,7 +50,6 @@ void drawGrid(int win,
               double xmin, double ymin, double xmax, double ymax,
               double grid)
 {
-    gsetbgcolorrgb(win, 255, 255, 255);
     gclr(win);
     newrgbcolor(win, 0, 0, 0);
     newlinewidth(win, 1);
@@ -62,6 +63,14 @@ void drawGrid(int win,
     newlinestyle(win, LineSolid);
     drawline(win, 0, ymin, 0, ymax);
     drawline(win, xmin, 0, xmax, 0);
+}
+
+//概要：所定の座標軸と格子を描く．
+//引数：win ウィンドウの番号
+//戻り値：なし
+void gclrGrid(int win)
+{
+    drawGrid(win, XMIN, YMIN, XMAX, YMAX, 10);
 }
 
 //概要：EGGXの終了
