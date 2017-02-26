@@ -14,8 +14,14 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "example2", "example2\exampl
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "texample1", "texample1\texample1.vcxproj", "{0A3A4C58-E747-4EE8-B854-33EB36053DCF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{92794101-69B8-4F01-B2DA-94EB0FCFCAD3} = {92794101-69B8-4F01-B2DA-94EB0FCFCAD3}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "texample2", "texample2\texample2.vcxproj", "{73F4DD23-D81F-4F1F-8E77-5CF430A78CC8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{92794101-69B8-4F01-B2DA-94EB0FCFCAD3} = {92794101-69B8-4F01-B2DA-94EB0FCFCAD3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
