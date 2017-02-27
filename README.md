@@ -13,7 +13,8 @@ http://www.ir.isas.jaxa.jp/~cyamauch/eggx_procall/index.ja.html
 
 の仕様（の一部）と互換になるように作られています．EGGX/ProCALLの作者で
 ある山内氏（JAXA）から「Windows版EGGX」と名乗ることの許可を得ています．
-なお，
+なお，仕様は互換になるようにしていますが，オリジナルのソースコードは利用
+していません．
 
 このライブラリの特徴は，EGGX互換であることと，WinAPIを全く意識すること
 なく，main()関数で始まるCやC++のプログラムで使うことができることです．
