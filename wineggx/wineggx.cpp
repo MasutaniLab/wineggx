@@ -100,8 +100,8 @@ map<string, rgb> rgbtable;
  *  hFont   フォントオブジェクトハンドル\n
  *  writeLayer 描画先レイヤー\n
  *  showLayer  表示レイヤー\n
- *  xs,ys      ウィンドウ左上の座標
- *  xe,ye      ウィンドウ右下の座標
+ *  xs,ys      ウィンドウ左下の座標
+ *  xe,ye      ウィンドウ右上の座標
  *  r,g,b      描画色
 */
 struct EggXWindow{
@@ -1425,7 +1425,7 @@ void CEggX::fillarc( unsigned wn, double xcen, double ycen, double xrad, double 
  * @brief      長方形の描画
  * @ingroup    CEggX
  * @param[in]  wn 描画するウィンドウの番号
- * @param[in]  x,y  描画座標（長方形の左上）
+ * @param[in]  x,y  描画座標（長方形の左下）
  * @param[in]  w    長方形の横幅
  * @param[in]  h    長方形の縦幅
 */
@@ -1472,7 +1472,7 @@ void CEggX::drawrect( unsigned wn, double x, double y, double w, double h )
  * @brief      長方形の描画（塗りつぶす）
  * @ingroup    CEggX
  * @param[in]  wn 描画するウィンドウの番号
- * @param[in]  x,y  描画座標（長方形の左上）
+ * @param[in]  x,y  描画座標（長方形の左下）
  * @param[in]  w    長方形の横幅
  * @param[in]  h    長方形の縦幅
 */
@@ -1515,7 +1515,7 @@ void CEggX::fillrect( unsigned wn, double x, double y, double w, double h )
  * @brief      文字列の描画
  * @ingroup    CEggX
  * @param[in]  wn 描画するウィンドウの番号
- * @param[in]  x,y   描画先座標（文字列を描画する位置の左上の座標）
+ * @param[in]  x,y   描画先座標（文字列を描画する位置の左下の座標）
  * @param[in]  size  描画する文字の大きさ
  * @param[in]  theta 文字列の回転角度 [degree] ( * 現在は無効 )
  * @param[in]  ...   文字列
@@ -1725,10 +1725,10 @@ int winname( int wn, const char *argsformat, ... )
  * @brief      座標系の変更
  * @ingroup    wineggx
  * @param[in]  wn 変更するウィンドウの番号
- * @param[in]  xs 左上のX座標
- * @param[in]  ys 左上のY座標
- * @param[in]  xe 右下のX座標
- * @param[in]  ye 右下のY座標
+ * @param[in]  xs 左下のX座標
+ * @param[in]  ys 左下のY座標
+ * @param[in]  xe 右上のX座標
+ * @param[in]  ye 右上のY座標
 */
 void window( int wn, double xs, double ys, double xe, double ye )
 {
@@ -2056,7 +2056,7 @@ void fillarc( int wn, double xcen, double ycen, double xrad, double yrad, double
  * @brief      長方形の描画
  * @ingroup    wineggx
  * @param[in]  wn 描画するウィンドウの番号
- * @param[in]  x,y  描画座標（長方形の左上）
+ * @param[in]  x,y  描画座標（長方形の左下）
  * @param[in]  w    長方形の横幅
  * @param[in]  h    長方形の縦幅
  * @section Notes
@@ -2073,7 +2073,7 @@ void drawrect( int wn, double x, double y, double w, double h )
  * @brief      長方形の描画（塗りつぶす）
  * @ingroup    wineggx
  * @param[in]  wn 描画するウィンドウの番号
- * @param[in]  x,y  描画座標（長方形の左上）
+ * @param[in]  x,y  描画座標（長方形の左下）
  * @param[in]  w    長方形の横幅
  * @param[in]  h    長方形の縦幅
  * @section Notes
@@ -2090,7 +2090,7 @@ void fillrect( int wn, double x, double y, double w, double h )
  * @brief      文字列の描画
  * @ingroup    wineggx
  * @param[in]  wn 描画するウィンドウの番号
- * @param[in]  x,y   描画先座標（文字列を描画する位置の左上の座標）
+ * @param[in]  x,y   描画先座標（文字列を描画する位置の左下の座標）
  * @param[in]  size  描画する文字の大きさ
  * @param[in]  theta 文字列の回転角度 [degree] ( * 現在は無効 )
  * @param[in]  ...   文字列
