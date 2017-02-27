@@ -59,9 +59,9 @@ Visual Studioの場合，プロジェクトのプロパティに3ヶ所に設定
 
 ## オリジナルとの違い
 
-- 「#include <eggx.h>」とする代わりに「#include <wineggx.h>」としてください．
+- `#include <eggx.h>`とする代わりに`#include <wineggx.h>`としてください．
 
-- 「#include <eggxlib.h>」を使う「eggx_」で始まる関数には対応していません．
+- `#include <eggxlib.h>`を使う`eggx_`で始まる関数には対応していません．
 
 - 実装されているのは以下の関数だけです．
 
