@@ -65,7 +65,7 @@ Visual Studioの場合，プロジェクトのプロパティに3ヶ所に設定
 
 - 実装されているのは以下の関数だけです．
 
-  ~~~
+~~~
 int gopen(int xsize,int ysize);
 void gclose( int wn );
 void gcloseall( void );
@@ -97,7 +97,7 @@ int gsetfontset( int wn, const char *argsformat, ... );
 int ggetch();
 void gsetnonblock( int flag );
 void msleep( unsigned long msec );
-  ~~~
+~~~
 
 ## 開発の経緯
 
