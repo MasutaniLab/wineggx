@@ -1,6 +1,6 @@
 # Windows版EGGX
-Version 1.1  
-2017年2月26日  
+Version 1.1b （Visual Studio 2015化）  
+2017年12月30日  
 升谷 保博  
 （大阪電気通信大学）  
 
@@ -21,7 +21,7 @@ http://www.ir.isas.jaxa.jp/~cyamauch/eggx_procall/index.ja.html
 
 ## インストール
 
-Visual Studio 2012で動作確認しています．
+Visual Studio 2015で動作確認しています．
 
 特別なライブラリは必要ありません．ソリューションをビルドすると，`lib`ディレクトリに
 静的なライブラリファイルが作られます．また，ライブラリの動作確認用に実行ファイルが
@@ -106,5 +106,7 @@ void msleep( unsigned long msec );
 2014年度から大阪電気通信大学 総合情報学部 情報学科の「C++プログラミング実習2」の教材として採用することになり，山内氏から「Windows版EGGX」と名乗ることの許可を得ました（Version 1.0）．
 
 2017年度からは，同学科の「C++プログラミング実習1」の教材としても採用する予定で，これを機会にGitHubで公開することにしました（Version 1.1）．
+
+開発環境をVisual Studio 2012から2015へ移行しました（Version 1.1b）．
 
 以上．
