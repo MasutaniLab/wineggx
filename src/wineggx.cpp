@@ -2355,7 +2355,7 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 
       HDC hDCsrc  = ::CreateCompatibleDC(hdc);
       int index = wnd.index -1;
-      if(index<0)index = (sizeof(wnd.hBitmap)/sizeof(HBITMAP));
+      if(index<0)index = (sizeof(wnd.hBitmap)/sizeof(HBITMAP))-1;
       ::SelectObject(hDCsrc, wnd.hBitmap[index]);
 
       ::BitBlt(hdc,0,0,wnd.cx,wnd.cy,hDCsrc,0,0,SRCCOPY);
