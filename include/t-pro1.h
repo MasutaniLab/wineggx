@@ -78,6 +78,13 @@ void gclrGrid(int win)
 //ñﬂÇËílÅFÇ»Çµ
 void terminateDraw(void)
 {
+    gsetnonblock(ENABLE);
+    for (;;) {
+      if (ggetch() == -1) {
+        break;
+      }
+    }
+    gsetnonblock(DISABLE);
     ggetch();
     gclose(win);
 }
