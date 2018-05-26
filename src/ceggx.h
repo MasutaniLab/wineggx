@@ -20,42 +20,6 @@
 #include <string>
 #include <cassert>
 
-/**
- * @struct  EggXWindow
- * @brief   ウィンドウを管理するための構造体
- * @ingroup wineggx_back
- * @section Notes
- *  hWnd    ウィンドウハンドル\n
- *  hBitmap ビットマップオブジェクトハンドル\n
- *  hPen    ペンオブジェクトハンドル\n
- *  hBrush  ブラシオブジェクトハンドル\n
- *  hFont   フォントオブジェクトハンドル\n
- *  writeLayer 描画先レイヤー\n
- *  showLayer  表示レイヤー\n
- *  xs,ys      ウィンドウ左下の座標
- *  xe,ye      ウィンドウ右上の座標
- *  r,g,b      描画色
-*/
-struct EggXWindow{
-  HWND    hWnd;
-  HBITMAP hBitmap[8];//ウィンドゥ毎に8 枚のレイヤ
-  HPEN    hPen;
-  HPEN    hPenF; //塗りつぶし図形用のペン
-  HBRUSH  hBrush;
-  HBRUSH  hBrushB; //背景用のブラシ
-  HFONT  *hFont;
-  int     index;
-  int     fontsize;
-  char    fontName[32];
-  int     writeLayer;
-  int     showLayer;
-  double  xs,ys,xe,ye;
-  int     r,g,b;
-  int     rB, gB, bB;
-  int	  width, style;
-  int     cx,cy;
-  int     lx,ly;
-};
 
 /**
  * @ingroup wineggx_back
@@ -63,6 +27,44 @@ struct EggXWindow{
  * @brief Windows版EGGX
 */
 class CEggX{
+private:
+  /**
+  * @struct  EggXWindow
+  * @brief   ウィンドウを管理するための構造体
+  * @ingroup wineggx_back
+  * @section Notes
+  *  hWnd    ウィンドウハンドル\n
+  *  hBitmap ビットマップオブジェクトハンドル\n
+  *  hPen    ペンオブジェクトハンドル\n
+  *  hBrush  ブラシオブジェクトハンドル\n
+  *  hFont   フォントオブジェクトハンドル\n
+  *  writeLayer 描画先レイヤー\n
+  *  showLayer  表示レイヤー\n
+  *  xs,ys      ウィンドウ左下の座標
+  *  xe,ye      ウィンドウ右上の座標
+  *  r,g,b      描画色
+  */
+  struct EggXWindow {
+    HWND    hWnd;
+    HBITMAP hBitmap[8];//ウィンドゥ毎に8 枚のレイヤ
+    HPEN    hPen;
+    HPEN    hPenF; //塗りつぶし図形用のペン
+    HBRUSH  hBrush;
+    HBRUSH  hBrushB; //背景用のブラシ
+    HFONT  *hFont;
+    int     index;
+    int     fontsize;
+    char    fontName[32];
+    int     writeLayer;
+    int     showLayer;
+    double  xs, ys, xe, ye;
+    int     r, g, b;
+    int     rB, gB, bB;
+    int	  width, style;
+    int     cx, cy;
+    int     lx, ly;
+  };
+
 public:
   CEggX();
   virtual ~CEggX();
