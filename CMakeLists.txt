@@ -7,7 +7,14 @@ set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE INTERNAL "")
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-add_library(${PROJECT_NAME} STATIC src/wineggx.cpp)
+add_library(${PROJECT_NAME} STATIC 
+	include/wineggx.h
+	src/cselectwindow.h
+	src/ceggx.h
+	src/wineggx.cpp
+	src/cselectwindow.cpp
+	src/ceggx.cpp
+)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY DEBUG_POSTFIX d)
 
