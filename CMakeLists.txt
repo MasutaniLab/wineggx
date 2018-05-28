@@ -30,6 +30,9 @@ target_link_libraries(texample1 ${PROJECT_NAME})
 add_executable(texample2 src/texample2.cpp)
 target_link_libraries(texample2 ${PROJECT_NAME})
 
+add_executable(ggetch-test src/ggetch-test.cpp)
+target_link_libraries(ggetch-test ${PROJECT_NAME})
+
 set(INSTALL_PREFIX ${PROJECT_SOURCE_DIR}
     CACHE PATH "where to install")
 set(CMAKE_INSTALL_PREFIX ${INSTALL_PREFIX} CACHE INTERNAL "")
@@ -39,3 +42,10 @@ install(TARGETS ${PROJECT_NAME}
 
 install(FILES include/wineggx.h include/t-pro1.h
         DESTINATION include)
+
+if(MSVC)
+  install(FILES ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.dir/Debug/${PROJECT_NAME}.pdb
+    DESTINATION lib
+    CONFIGURATIONS Debug
+    )
+endif(MSVC)

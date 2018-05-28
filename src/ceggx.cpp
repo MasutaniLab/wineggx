@@ -45,7 +45,22 @@ m_Key(-1)
       EggXWindow &wnd = m_Window.at(i);
       memset(&wnd,0,sizeof(EggXWindow));
   }
+
 #include "rgbtable.h"
+
+  keytable[VK_HOME] = 0x01;
+  keytable[VK_PRIOR] = 0x02; //PageUp
+  keytable[VK_PAUSE] = 0x03;
+  keytable[VK_END] = 0x05;
+  keytable[VK_NEXT] = 0x06; //PageDown
+  keytable[VK_BACK] = 0x08; //BackSpace
+  keytable[VK_TAB] = 0x09;
+  keytable[VK_RETURN] = 0x0d; //Enter
+  keytable[VK_RIGHT] = 0x1c;//Å®
+  keytable[VK_LEFT] = 0x1d;//Å©
+  keytable[VK_UP] = 0x1e;//Å™
+  keytable[VK_DOWN] = 0x1f;//Å´
+  keytable[VK_DELETE] = 0x7f;
 }
 
 
@@ -1615,6 +1630,17 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       ::SendMessage(hWnd,WM_USER_EXIT,0,0);
       m_Close = true;
       break;
+  case WM_KEYDOWN:
+    if (keytable.find(wParam) != keytable.end()) {
+      m_Key = keytable[wParam];
+      //cout << "WM_CHAR: m_Key = " << m_Key << endl;
+      if (m_Nonblock == DISABLE) {
+        SetEvent(m_KeyEvent);
+      }
+    } else {
+      return DefWindowProc(hWnd, uMsg, wParam, lParam);
+    }
+    break;
   case WM_CHAR:
 	  m_Key = wParam;
 	  //cout << "WM_CHAR: m_Key = " << m_Key << endl;

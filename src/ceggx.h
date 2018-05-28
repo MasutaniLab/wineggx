@@ -181,6 +181,7 @@ private:
 
   const static int WINDOW_CREATE = 1;
 
+  std::map<int, int> keytable;
 };
 
 #ifdef CEGGX_MAIN
