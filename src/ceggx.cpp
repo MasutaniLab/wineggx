@@ -1,4 +1,5 @@
 #define CEGGX_MAIN
+#define _USE_MATH_DEFINES
 #include <wineggx.h>
 #include "ceggx.h"
 #include "cselectwindow.h"
@@ -465,15 +466,20 @@ void CEggX::gcloseall( void )
  * @param[in]  ... 設定するウィンドウの文字列
  * @return     設定したウィンドゥタイトルの文字列の長さ
 */
-int  CEggX::winname( unsigned wn, const char *name )
+int  CEggX::winname(unsigned wn, const char *argsformat, va_list argptr)
 {
   if(wn>=(unsigned)m_MaxWindow)return 0;
 
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return 0;
 
-  SetWindowText(wnd.hWnd,name);
-  return (int)strlen(name);
+  char str[256];
+  int len = _vsnprintf(str, sizeof(str), argsformat, argptr);
+  if (len == -1)str[sizeof(str) - 1] = '\0';
+  else str[len] = '\0';
+
+  SetWindowText(wnd.hWnd, str);
+  return (int)strlen(str);
 }
 
 
@@ -547,28 +553,33 @@ void CEggX::copylayer( unsigned wn, int lysrc, int lydest )
  * @param[in]  wn 変更するウィンドウの番号
  * @param[in]  str 色を表す文字列
 */
-void CEggX::newcolor( unsigned wn, char *str )
+void CEggX::newcolor( unsigned wn, const char *argsformat, va_list argptr)
 {
-  if(wn>=(unsigned)m_MaxWindow)return;
+  if (wn >= (unsigned)m_MaxWindow)return;
 
   EggXWindow &wnd = m_Window.at(wn);
-  if(!wnd.hWnd)return;
+  if (!wnd.hWnd)return;
+
+  char str[256];
+  int len = _vsnprintf(str, sizeof(str), argsformat, argptr);
+  if (len == -1)str[sizeof(str) - 1] = '\0';
+  else str[len] = '\0';
 
   rgb a;
-  if ( str[0] == '#' ) {
-	  if ( sscanf(str, "#%2x%2x%2x", &a.r, &a.g, &a.b) != 3 ) {
-		  cerr << str << " cannot decode" << endl;
-		  return;
-	  }
+  if (str[0] == '#') {
+    if (sscanf(str, "#%2x%2x%2x", &a.r, &a.g, &a.b) != 3) {
+      cerr << str << " cannot decode" << endl;
+      return;
+    }
   } else {
-	  map<string, rgb>::iterator itr;
-	  itr = rgbtable.find(str);
-	  if ( itr == rgbtable.end() ) {
-		  cerr << str << " not found" << endl;
-		  return;
-	  } else {
-		  a = itr->second;
-	  }
+    map<string, rgb>::iterator itr;
+    itr = rgbtable.find(str);
+    if (itr == rgbtable.end()) {
+      cerr << str << " not found" << endl;
+      return;
+    } else {
+      a = itr->second;
+    }
   }
   newrgbcolor(wn, a.r, a.g, a.b);
 }
@@ -658,28 +669,33 @@ void CEggX::newhsvcolor( unsigned wn, int h, int s, int v )
  * @param[in]  wn 変更するウィンドウの番号
  * @param[in]  str 色を表す文字列
 */
-void CEggX::gsetbgcolor( unsigned wn, char *str )
+void CEggX::gsetbgcolor(unsigned wn, const char *argsformat, va_list argptr)
 {
-  if(wn>=(unsigned)m_MaxWindow)return;
+  if (wn >= (unsigned)m_MaxWindow)return;
 
   EggXWindow &wnd = m_Window.at(wn);
-  if(!wnd.hWnd)return;
+  if (!wnd.hWnd)return;
 
-    rgb a;
-  if ( str[0] == '#' ) {
-	  if ( sscanf(str, "#%2x%2x%2x", &a.r, &a.g, &a.b) != 3 ) {
-		  cerr << str << " cannot decode" << endl;
-		  return;
-	  }
+  char str[256];
+  int len = _vsnprintf(str, sizeof(str), argsformat, argptr);
+  if (len == -1)str[sizeof(str) - 1] = '\0';
+  else str[len] = '\0';
+
+  rgb a;
+  if (str[0] == '#') {
+    if (sscanf(str, "#%2x%2x%2x", &a.r, &a.g, &a.b) != 3) {
+      cerr << str << " cannot decode" << endl;
+      return;
+    }
   } else {
-	  map<string, rgb>::iterator itr;
-	  itr = rgbtable.find(str);
-	  if ( itr == rgbtable.end() ) {
-		  cerr << str << " not found" << endl;
-		  return;
-	  } else {
-		  a = itr->second;
-	  }
+    map<string, rgb>::iterator itr;
+    itr = rgbtable.find(str);
+    if (itr == rgbtable.end()) {
+      cerr << str << " not found" << endl;
+      return;
+    } else {
+      a = itr->second;
+    }
   }
   gsetbgcolorrgb(wn, a.r, a.g, a.b);
 }
@@ -1304,15 +1320,22 @@ void CEggX::fillrect( unsigned wn, double x, double y, double w, double h )
  * @param[in]  x,y   描画先座標（文字列を描画する位置の左下の座標）
  * @param[in]  size  描画する文字の大きさ
  * @param[in]  theta 文字列の回転角度 [degree] ( * 現在は無効 )
- * @param[in]  ...   文字列
+ * @param[in]  argsformat, ...   文字列
  * @return     実際に描画した文字列の長さ
 */
-int  CEggX::drawstr( unsigned wn, double x, double y, int size, double theta,const char *str )
+int  CEggX::drawstr(unsigned wn, double x, double y, int size, double theta, const char *argsformat, va_list argptr)
 {
   if(wn>=(unsigned)m_MaxWindow)return 0;
 
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return 0;
+
+  char str[256];
+  int len0 = _vsnprintf(str, sizeof(str), argsformat, argptr);
+  if (len0 == -1)str[sizeof(str) - 1] = '\0';
+  else str[len0] = '\0';
+
+  if (size <= 0)size = 14;
 
   //フォント作成
   if(!wnd.fontsize||size!=wnd.fontsize||!wnd.hFont)
@@ -1388,28 +1411,33 @@ int  CEggX::drawstr( unsigned wn, double x, double y, int size, double theta,con
   return len;
 }
 
-
 /**
  * @brief      描画フォントの設定
  * @ingroup    CEggX
  * @param[in]  wn    変更するウィンドウの番号
- * @param[in]  ... フォントセットの名前
+ * @param[in]  argsformat, ... フォントセットの名前
  * @retval     -1 エラー
  * @retval     0  取得成功
  * @retval     1  代替フォントの取得成功
 */
-int  CEggX::gsetfontset( unsigned wn, const char *name )
+int  CEggX::gsetfontset( unsigned wn, const char *argsformat, va_list argptr)
 {
   if(wn>=(unsigned)m_MaxWindow)return -1;
 
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return -1;
 
-  strncpy(wnd.fontName,name,sizeof(wnd.fontName));
+  char str[32];
+  int len = _vsnprintf(str, sizeof(str), argsformat, argptr);
+  if (len == -1)str[sizeof(str) - 1] = '\0';
+  else str[len] = '\0';
+
+  strncpy(wnd.fontName, str, sizeof(wnd.fontName));
   wnd.fontsize = 0;
 
   return 0;
 }
+
 /**
  * @brief      キーボードから入力された文字を返す
  * @ingroup    CEggX

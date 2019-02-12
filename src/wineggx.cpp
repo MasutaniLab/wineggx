@@ -60,26 +60,37 @@ void gcloseall( void )
  * @brief      ウィンドゥのタイトルを変更する
  * @ingroup    wineggx
  * @param[in]  wn タイトルを変更するウィンドウの番号
- * @param[in]  ... 設定するウィンドウの文字列
+ * @param[in]  argsformat, ... 設定するウィンドウの文字列
  * @return     設定したウィンドゥタイトルの文字列の長さ
 */
 int winname( int wn, const char *argsformat, ... )
 {
   assert(argsformat&&"eggx set window names.");
 
-  char str[256];
-
   va_list argptr;              //可変数引数リスト
   va_start(argptr,argsformat); //initalize va_ function
-  int len = _vsnprintf(str,sizeof(str),argsformat,argptr);//
+  int len = gEggX.winname(wn, argsformat, argptr);//
   va_end(argptr);              //close     va_ function
 
-  if(len==-1)str[sizeof(str)-1]=NULL;//NULL文字付加
-  else str[len]=NULL;
-
-  return gEggX.winname(wn,str);
+  return len;
 }
 
+/**
+* @brief      ウィンドゥのタイトルを変更する（string版）
+* @ingroup    wineggx
+* @param[in]  wn タイトルを変更するウィンドウの番号
+* @param[in]  argsformat, ... 設定するウィンドウの文字列
+* @return     設定したウィンドゥタイトルの文字列の長さ
+*/
+int winname(int wn, const std::string argsformat, ...)
+{
+  va_list argptr;              //可変数引数リスト
+  va_start(argptr, argsformat); //initalize va_ function
+  int len = gEggX.winname(wn, argsformat.c_str(), argptr);//
+  va_end(argptr);              //close     va_ function
+
+  return len;
+}
 
 /**
  * @brief      座標系の変更
@@ -134,22 +145,38 @@ void copylayer( int wn, int lysrc, int lydest )
  * @brief      描画色の変更
  * @ingroup    wineggx
  * @param[in]  wn 変更するウィンドウの番号
+ * @param[in]  argsformat, ... 色を表す文字列
  *  wn で指定されたウィンドゥでの描画色を変更します．argsformat(とそれに続く引数)で指定される文字列を
  *  背景色に設定します．2つめの引数argsformat以降は，C 標準関数のprintf() 関数の場合と同様の可変引数
  *  となっています．この背景色の文字列には，Xウィンドウで定義されている色か，"#c0c0ff"のように，16進数
  *  のRed,Green,Blue を指定します．
 */
-void newcolor( int wn, const char *argsformat, ... ) {
-  char str[256];
+void newcolor( int wn, const char *argsformat, ... )
+{
+  assert(argsformat&&"eggx set new color.");
 
   va_list argptr;              //可変数引数リスト
-  va_start(argptr,argsformat); //initalize va_ function
-  int len = _vsnprintf(str,sizeof(str),argsformat,argptr);//
+  va_start(argptr, argsformat); //initalize va_ function
+  gEggX.newcolor(wn, argsformat, argptr);//
   va_end(argptr);              //close     va_ function
+}
 
-  if(len==-1)str[sizeof(str)-1]=NULL;//NULL文字付加
-  else str[len]=NULL;
-  return gEggX.newcolor(wn, str);
+/**
+* @brief      描画色の変更（string版）
+* @ingroup    wineggx
+* @param[in]  wn 変更するウィンドウの番号
+* @param[in]  argsformat, ... 色を表す文字列
+*  wn で指定されたウィンドゥでの描画色を変更します．argsformat(とそれに続く引数)で指定される文字列を
+*  背景色に設定します．2つめの引数argsformat以降は，C 標準関数のprintf() 関数の場合と同様の可変引数
+*  となっています．この背景色の文字列には，Xウィンドウで定義されている色か，"#c0c0ff"のように，16進数
+*  のRed,Green,Blue を指定します．
+*/
+void newcolor(int wn, const std::string argsformat, ...)
+{
+  va_list argptr;              //可変数引数リスト
+  va_start(argptr, argsformat); //initalize va_ function
+  gEggX.newcolor(wn, argsformat.c_str(), argptr);//
+  va_end(argptr);              //close     va_ function
 }
 
 /**
@@ -187,6 +214,7 @@ void newhsvcolor( int wn, int h, int s, int v )
  * @brief      ウィンドゥの背景色の変更
  * @ingroup    wineggx
  * @param[in]  wn 変更するウィンドウの番号
+ * @param[in]  argsformat, ... 色を表す文字列
  *  wn で指定されたウィンドゥの背景色を変更します．argsformat(とそれに続く引数)で指定される文字列を
  *  背景色に設定します．2つめの引数argsformat以降は，C 標準関数のprintf() 関数の場合と同様の可変引数
  *  となっています．この背景色の文字列には，Xウィンドウで定義されている色か，"#c0c0ff"のように，16進数
@@ -194,16 +222,30 @@ void newhsvcolor( int wn, int h, int s, int v )
 */
 void gsetbgcolor( int wn, const char *argsformat, ... )
 {
-  char str[256];
+  assert(argsformat&&"eggx set background color."); 
 
   va_list argptr;              //可変数引数リスト
-  va_start(argptr,argsformat); //initalize va_ function
-  int len = _vsnprintf(str,sizeof(str),argsformat,argptr);//
+  va_start(argptr, argsformat); //initalize va_ function
+  gEggX.gsetbgcolor(wn, argsformat, argptr);//
   va_end(argptr);              //close     va_ function
+}
 
-  if(len==-1)str[sizeof(str)-1]=NULL;//NULL文字付加
-  else str[len]=NULL;
-  return gEggX.gsetbgcolor(wn,str);
+/**
+* @brief      ウィンドゥの背景色の変更（string版）
+* @ingroup    wineggx
+* @param[in]  wn 変更するウィンドウの番号
+* @param[in]  argsformat, ... 色を表す文字列
+*  wn で指定されたウィンドゥの背景色を変更します．argsformat(とそれに続く引数)で指定される文字列を
+*  背景色に設定します．2つめの引数argsformat以降は，C 標準関数のprintf() 関数の場合と同様の可変引数
+*  となっています．この背景色の文字列には，Xウィンドウで定義されている色か，"#c0c0ff"のように，16進数
+*  のRed,Green,Blue を指定します．
+*/
+void gsetbgcolor(int wn, const std::string argsformat, ...)
+{
+  va_list argptr;              //可変数引数リスト
+  va_start(argptr, argsformat); //initalize va_ function
+  gEggX.gsetbgcolor(wn, argsformat.c_str(), argptr);//
+  va_end(argptr);              //close     va_ function
 }
 
 /**
@@ -445,7 +487,6 @@ void fillrect( int wn, double x, double y, double w, double h )
   return gEggX.fillrect(wn,x,y,w,h);
 }
 
-
 /**
  * @brief      文字列の描画
  * @ingroup    wineggx
@@ -453,7 +494,7 @@ void fillrect( int wn, double x, double y, double w, double h )
  * @param[in]  x,y   描画先座標（文字列を描画する位置の左下の座標）
  * @param[in]  size  描画する文字の大きさ
  * @param[in]  theta 文字列の回転角度 [degree] ( * 現在は無効 )
- * @param[in]  ...   文字列
+ * @param[in]  argsformat, ... 文字列
  * @return     実際に描画した文字列の長さ
  * @section Notes
  *  wn で指定したウィンドゥに，文字列を座標(x,y) から描きます．
@@ -465,53 +506,91 @@ void fillrect( int wn, double x, double y, double w, double h )
  *  size と実際のフォントとの関係は以下の表のようになっています．
  *  この場合，文字は半角英数字のみ描画できます．2 バイト文字(漢字) 
  *  を描画する場合は，size にはFONTSET を指定します．
- *  この場合のフォントの指定は，gsetfontset() 関数(x2.5.27) を利用します．
+ *  この場合のフォントの指定は，gsetfontset() 関数を利用します．
  *  gsetfontset() でのフォント指定がない場合は，デフォルトの14 ドットのフォントセットで描画されます．
 */
 int drawstr( int wn, double x, double y, int size, double theta,const char *argsformat, ... )
 {
   assert(argsformat&&"eggx draw strings.");
 
-  char str[256];
-
   va_list argptr;              //可変数引数リスト
   va_start(argptr,argsformat); //initalize va_ function
-  int len = _vsnprintf(str,sizeof(str),argsformat,argptr);//
+  int len = gEggX.drawstr(wn, x, y, size, theta, argsformat, argptr);//
   va_end(argptr);              //close     va_ function
 
-  if(len==-1)str[sizeof(str)-1]=NULL;//NULL文字付加
-  else str[len]=NULL;
-
-  if(size<=0)size = 14;
-
-  return gEggX.drawstr(wn,x,y,size,theta,str);
+  return len;
 }
 
+/**
+* @brief      文字列の描画（string版）
+* @ingroup    wineggx
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x,y   描画先座標（文字列を描画する位置の左下の座標）
+* @param[in]  size  描画する文字の大きさ
+* @param[in]  theta 文字列の回転角度 [degree] ( * 現在は無効 )
+* @param[in]  argsformat, ... 文字列
+* @return     実際に描画した文字列の長さ
+* @section Notes
+*  wn で指定したウィンドゥに，文字列を座標(x,y) から描きます．
+*  size は文字の大きさで，ドット単位で指定します．
+*  theta は文字列の回転を指定する引数ですが，現バージョンでは機能しません．
+*  文字列はargsformat に与えますが，この引数以降はprintf() 関数の引数と同様の
+*  フォーマットになっていますので，使用例のように変数の値などを描く事もできます．
+*  文字のサイズsize は1～24 の範囲で指定できます．
+*  size と実際のフォントとの関係は以下の表のようになっています．
+*  この場合，文字は半角英数字のみ描画できます．2 バイト文字(漢字)
+*  を描画する場合は，size にはFONTSET を指定します．
+*  この場合のフォントの指定は，gsetfontset() 関数を利用します．
+*  gsetfontset() でのフォント指定がない場合は，デフォルトの14 ドットのフォントセットで描画されます．
+*/
+int drawstr(int wn, double x, double y, int size, double theta, const std::string argsformat, ...)
+{
+  va_list argptr;              //可変数引数リスト
+  va_start(argptr, argsformat); //initalize va_ function
+  int len = gEggX.drawstr(wn, x, y, size, theta, argsformat.c_str(), argptr);//
+  va_end(argptr);              //close     va_ function
+
+  return len;
+}
 
 /**
  * @brief      描画フォントの設定
  * @ingroup    wineggx
  * @param[in]  wn    変更するウィンドウの番号
- * @param[in]  ... フォントセットの名前 \n null文字を含めて32Byte以下でなければならない．
+ * @param[in]  argsformat, ... フォントセットの名前 \n ヌル文字を含めて32Byte以下でなければならない．
  * @retval     -1 エラー
  * @retval     0  取得成功
  * @retval     1  代替フォントの取得成功
 */
-int gsetfontset( int wn, const char *argsformat, ... )
+int gsetfontset(int wn, const char *argsformat, ...)
 {
   assert(argsformat&&"eggx set fontset.");
 
-  char str[32];
+  va_list argptr;              //可変数引数リスト
+  va_start(argptr, argsformat); //initalize va_ function
+  int len = gEggX.gsetfontset(wn, argsformat, argptr);//
+  va_end(argptr);              //close     va_ function
 
-  va_list argptr;                    //可変数引数リスト
-  va_start(argptr,argsformat);       //initalize va_ function
-  int len = _vsnprintf(str,sizeof(str),argsformat,argptr);//
-  va_end(argptr);                    //close     va_ function
+  return len;
+}
 
-  if(len==-1)str[sizeof(str)-1]=NULL;//NULL文字付加
-  else str[len]=NULL;
+/**
+* @brief      描画フォントの設定（string版）
+* @ingroup    wineggx
+* @param[in]  wn    変更するウィンドウの番号
+* @param[in]  argsformat, ... フォントセットの名前 \n ヌル文字を含めて32Byte以下でなければならない．
+* @retval     -1 エラー
+* @retval     0  取得成功
+* @retval     1  代替フォントの取得成功
+*/
+int gsetfontset(int wn, const std::string argsformat, ...)
+{
+  va_list argptr;              //可変数引数リスト
+  va_start(argptr, argsformat); //initalize va_ function
+  int len = gEggX.gsetfontset(wn, argsformat.c_str(), argptr);//
+  va_end(argptr);              //close     va_ function
 
-  return gEggX.gsetfontset(wn,str);
+  return len;
 }
 
 /**

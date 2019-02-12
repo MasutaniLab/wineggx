@@ -33,6 +33,9 @@ target_link_libraries(texample2 ${PROJECT_NAME})
 add_executable(ggetch-test src/ggetch-test.cpp)
 target_link_libraries(ggetch-test ${PROJECT_NAME})
 
+add_executable(string-test src/string-test.cpp)
+target_link_libraries(string-test ${PROJECT_NAME})
+
 set(INSTALL_PREFIX ${PROJECT_SOURCE_DIR}
     CACHE PATH "where to install")
 set(CMAKE_INSTALL_PREFIX ${INSTALL_PREFIX} CACHE INTERNAL "")

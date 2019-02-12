@@ -101,14 +101,14 @@ public:
   int  gopen(int xsize, int ysize);
   void gclose(unsigned wn);
   void gcloseall(void);
-  int  winname(unsigned wn, const char *name);
+  int  winname(unsigned wn, const char *argsformat, va_list argptr);
   void window(unsigned wn, double xs, double ys, double xe, double ye);
   void layer(unsigned wn, int lys, int lyw);
   void copylayer(unsigned wn, int lysrc, int lydest);
-  void newcolor(unsigned wn, char *str);
+  void newcolor(unsigned wn, const char *argsformat, va_list argptr);
   void newrgbcolor(unsigned wn, int r, int g, int b);
   void newhsvcolor(unsigned wn, int h, int s, int v);
-  void gsetbgcolor(unsigned wn, char *str);
+  void gsetbgcolor(unsigned wn, const char *argsformat, va_list argptr);
   void gsetbgcolorrgb(unsigned wn, int r, int g, int b);
   void gclr(unsigned wn);
   void pset(unsigned wn, double x, double y);
@@ -122,8 +122,8 @@ public:
   void fillarc(unsigned wn, double xcen, double ycen, double xrad, double yrad, double sang, double eang, int idir);
   void drawrect(unsigned wn, double x, double y, double w, double h);
   void fillrect(unsigned wn, double x, double y, double w, double h);
-  int  drawstr(unsigned wn, double x, double y, int size, double theta, const char *str);
-  int  gsetfontset(unsigned wn, const char *name);
+  int  drawstr(unsigned wn, double x, double y, int size, double theta, const char *argsformat, va_list argptr);
+  int  gsetfontset(unsigned wn, const char *argsformat, va_list argptr);
   void newlinewidth(unsigned wn, int width);
   void newlinestyle(unsigned wn, int style);
   int ggetch();
