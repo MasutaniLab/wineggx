@@ -625,3 +625,31 @@ void gsetnonblock( int flag )
 void msleep( unsigned long msec ){
 	Sleep(msec);
 }
+
+/**
+* @brief      全てのウィンドウのマウスやキーボードの入力情報を返す．
+* @ingroup    wineggx
+* @param[out]  type イベントの種類
+* @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
+* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[out]  y マウスポインタのy座標（アプリケーション座標系）
+* @retval      入力のあったウィンドウ番号
+*/
+int ggetevent(int *type, int *button, double *x, double *y)
+{
+    return gEggX.ggetevent(type, button, x, y);
+}
+
+/**
+* @brief      全てのウィンドウのマウスやキーボードの入力情報を返す（キーとボタンのみ）．
+* @ingroup    wineggx
+* @param[out]  type イベントの種類
+* @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
+* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[out]  y マウスポインタのy座標（アプリケーション座標系）
+* @retval      入力のあったウィンドウ番号
+*/
+int ggetxpress(int *type, int *button, double *x, double *y)
+{
+    return gEggX.ggetxpress(type, button, x, y);
+}

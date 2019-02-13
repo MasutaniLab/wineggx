@@ -25,6 +25,12 @@
 #define DISABLE (0)
 #define ENABLE  (-1)
 
+#define KeyPress (2)
+#define ButtonPress (4)
+#define MotionNotify (6)
+#define EnterNotify (7)
+#define LeaveNotify (8)
+
 /**
  * @brief      任意のサイズのグラフィックス画面を開く
  * @ingroup    wineggx
@@ -463,3 +469,25 @@ void gsetnonblock( int flag );
  * @retval     なし
 */
 void msleep( unsigned long msec );
+
+/**
+* @brief      全てのウィンドウのマウスやキーボードの入力情報を返す．
+* @ingroup    wineggx
+* @param[out]  type イベントの種類
+* @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
+* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[out]  y マウスポインタのy座標（アプリケーション座標系）
+* @retval      入力のあったウィンドウ番号
+*/
+int ggetevent(int *type, int *button, double *x, double *y);
+
+/**
+* @brief      全てのウィンドウのマウスやキーボードの入力情報を返す（キーとボタンのみ）．
+* @ingroup    wineggx
+* @param[out]  type イベントの種類
+* @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
+* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[out]  y マウスポインタのy座標（アプリケーション座標系）
+* @retval      入力のあったウィンドウ番号
+*/
+int ggetxpress(int *type, int *button, double *x, double *y);

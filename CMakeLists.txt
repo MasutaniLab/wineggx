@@ -36,6 +36,12 @@ target_link_libraries(ggetch-test ${PROJECT_NAME})
 add_executable(string-test src/string-test.cpp)
 target_link_libraries(string-test ${PROJECT_NAME})
 
+add_executable(mouse-test src/mouse-test.cpp)
+target_link_libraries(mouse-test ${PROJECT_NAME})
+
+add_executable(mouse-test2 src/mouse-test2.cpp)
+target_link_libraries(mouse-test2 ${PROJECT_NAME})
+
 set(INSTALL_PREFIX ${PROJECT_SOURCE_DIR}
     CACHE PATH "where to install")
 set(CMAKE_INSTALL_PREFIX ${INSTALL_PREFIX} CACHE INTERNAL "")

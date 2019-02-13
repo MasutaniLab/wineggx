@@ -127,6 +127,8 @@ public:
   void newlinestyle(unsigned wn, int style);
   int ggetch();
   void gsetnonblock(int flag);
+  int ggetevent(int *type, int *button, double *x, double *y);
+  int ggetxpress(int *type, int *button, double *x, double *y);
 
 protected:
   HANDLE    m_Thread; // スレッドハンドル
@@ -147,8 +149,13 @@ protected:
   bool      m_Init;
   bool      m_Close;
   bool      m_Nonblock;
-  int       m_Key;
-  HANDLE    m_KeyEvent;
+  HANDLE    m_eventHandle;
+  int       m_eventWinNum;
+  int       m_eventType;
+  int       m_eventX;
+  int       m_eventY;
+  int       m_eventButton;
+  int       m_eventKey;
 
 private:
   int  CreateThread();
@@ -170,6 +177,10 @@ private:
   int scaleY(EggXWindow &wnd, double y);
   int convertX(EggXWindow &wnd, double x);
   int convertY(EggXWindow &wnd, double y);
+  double inverseScaleX(EggXWindow &wnd, int x);
+  double inverseScaleY(EggXWindow &wnd, int y);
+  double invertX(EggXWindow &wnd, int x);
+  double invertY(EggXWindow &wnd, int y);
   //四捨五入 double → int
   int roundInt(double d)
   {

@@ -32,13 +32,13 @@ m_accesstable(NULL),
 m_Init(false),
 m_Close(false),
 m_Nonblock(false),
-m_Key(-1)
+m_eventKey(-1)
 {
   m_Event = ::CreateEvent(NULL,false,false,NULL);
   m_Ack   = ::CreateEvent(NULL,false,false,NULL);
   m_Com   = ::CreateEvent(NULL,false,false,NULL);
 
-  m_KeyEvent = ::CreateEvent(NULL,false,false,NULL);
+  m_eventHandle = ::CreateEvent(NULL,false,false,NULL);
 
   m_Window.resize(m_MaxWindow);
   for(int i=0;i<m_MaxWindow;i++)
@@ -1448,14 +1448,16 @@ int  CEggX::gsetfontset( unsigned wn, const char *argsformat, va_list argptr)
 int CEggX::ggetch()
 {
 	if ( m_Nonblock == DISABLE ) {
-		ResetEvent(m_KeyEvent);
-		if( WaitForSingleObject(m_KeyEvent, INFINITE) != WAIT_OBJECT_0 ) {
-			cerr << "Error of WaitForSingleObject()" << endl;
-			return -99;
-		}
+        do {
+            ResetEvent(m_eventHandle);
+            if (WaitForSingleObject(m_eventHandle, INFINITE) != WAIT_OBJECT_0) {
+                cerr << "Error of WaitForSingleObject()" << endl;
+                return -99;
+            }
+        } while (m_eventType != KeyPress);
 	}	
 
-    return m_Key;
+    return m_eventKey;
 }
 
 /**
@@ -1472,6 +1474,84 @@ void CEggX::gsetnonblock( int flag )
   } else if ( flag == DISABLE ) {
 	  m_Nonblock = false;
   }
+}
+
+/**
+* @brief      全てのウィンドウのマウスやキーボードの入力情報を返す．
+* @ingroup    CEggX
+* @param[out]  type イベントの種類
+* @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
+* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[out]  y マウスポインタのy座標（アプリケーション座標系）
+* @retval      入力の合ったウィンドウ番号
+*/
+int CEggX::ggetevent(int *type, int *button, double *x, double *y)
+{
+    if (m_Nonblock == DISABLE) {
+        ResetEvent(m_eventHandle);
+        if (WaitForSingleObject(m_eventHandle, INFINITE) != WAIT_OBJECT_0) {
+            cerr << "Error of WaitForSingleObject()" << endl;
+            return -99;
+        }
+    }
+
+    if (type != NULL) {
+        *type = m_eventType;
+    }
+    if (button != NULL) {
+        if (m_eventType == KeyPress) {
+            *button = m_eventKey;
+        } else {
+            *button = m_eventButton;
+        }
+    }
+    if (x != NULL) {
+        *x = invertX(m_Window.at(m_eventWinNum), m_eventX);
+    }
+    if (y != NULL) {
+        *y = invertY(m_Window.at(m_eventWinNum), m_eventY);
+    }
+    return m_eventWinNum;
+}
+
+/**
+* @brief      全てのウィンドウのマウスやキーボードの入力情報を返す（キーとボタンのみ）．
+* @ingroup    CEggX
+* @param[out]  type イベントの種類
+* @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
+* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[out]  y マウスポインタのy座標（アプリケーション座標系）
+* @retval      入力の合ったウィンドウ番号
+*/
+int CEggX::ggetxpress(int *type, int *button, double *x, double *y)
+{
+    if (m_Nonblock == DISABLE) {
+        do {
+            ResetEvent(m_eventHandle);
+            if (WaitForSingleObject(m_eventHandle, INFINITE) != WAIT_OBJECT_0) {
+                cerr << "Error of WaitForSingleObject()" << endl;
+                return -99;
+            }
+        } while (m_eventType != KeyPress && m_eventType != ButtonPress);
+    }
+
+    if (type != NULL) {
+        *type = m_eventType;
+    }
+    if (button != NULL) {
+        if (m_eventType == KeyPress) {
+            *button = m_eventKey;
+        } else {
+            *button = m_eventButton;
+        }
+    }
+    if (x != NULL) {
+        *x = invertX(m_Window.at(m_eventWinNum), m_eventX);
+    }
+    if (y != NULL) {
+        *y = invertY(m_Window.at(m_eventWinNum), m_eventY);
+    }
+    return m_eventWinNum;
 }
 
 /**
@@ -1606,51 +1686,37 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
   //int wmId, wmEvent;
   if(!m_NumWind) return DefWindowProc(hWnd, uMsg, wParam, lParam);
 
-  switch (uMsg) 
+  int winNum = -1;
+  for (int i = 0; i<m_MaxWindow; i++) {
+      if (m_Window.at(i).hWnd == hWnd) {
+          winNum = i;
+          break;
+      }
+  }
+  switch (uMsg)
   {
   case WM_USER_EXIT:
-      {
-          int num = -1;
-          for(int i=0;i<m_MaxWindow;i++)
-          {
-              if(m_Window.at(i).hWnd == hWnd)
-              {
-                  num=i;
-                  break;
-              }
-          }
-          if(num!=-1)    Destoroy(num);
-          ::DestroyWindow(hWnd);
-      }
+      if (winNum != -1)    Destoroy(winNum);
+      ::DestroyWindow(hWnd);
       break;
   case WM_PAINT:
-      {
+  {
       PAINTSTRUCT ps;
       HDC hdc = BeginPaint(hWnd, &ps);
-      // TODO: 描画コードをここに追加してください...
-      int num = -1;
-      for(int i=0;i<m_MaxWindow;i++)
-      {
-          if(m_Window.at(i).hWnd == hWnd)
-          {
-              num=i;
-              break;
-          }
-      }
-      if(num==-1)return DefWindowProc(hWnd, uMsg, wParam, lParam);
-      EggXWindow &wnd = m_Window.at(num);
+      if (winNum == -1)return DefWindowProc(hWnd, uMsg, wParam, lParam);
+      EggXWindow &wnd = m_Window.at(winNum);
 
-      HDC hDCsrc  = ::CreateCompatibleDC(hdc);
-      int index = wnd.index -1;
-      if(index<0)index = (sizeof(wnd.hBitmap)/sizeof(HBITMAP))-1;
+      HDC hDCsrc = ::CreateCompatibleDC(hdc);
+      int index = wnd.index - 1;
+      if (index < 0)index = (sizeof(wnd.hBitmap) / sizeof(HBITMAP)) - 1;
       ::SelectObject(hDCsrc, wnd.hBitmap[index]);
 
-      ::BitBlt(hdc,0,0,wnd.cx,wnd.cy,hDCsrc,0,0,SRCCOPY);
+      ::BitBlt(hdc, 0, 0, wnd.cx, wnd.cy, hDCsrc, 0, 0, SRCCOPY);
 
       ::DeleteDC(hDCsrc);
       EndPaint(hWnd, &ps);
-      }
-      break;
+  }
+  break;
   case WM_DESTROY:
       PostQuitMessage(0);
       break;
@@ -1659,27 +1725,80 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_Close = true;
       break;
   case WM_KEYDOWN:
-    if (keytable.find(wParam) != keytable.end()) {
-      m_Key = keytable[wParam];
-      //cout << "WM_CHAR: m_Key = " << m_Key << endl;
+    if (keytable.find(wParam) != keytable.end()) {     
+      m_eventKey = keytable[wParam];
+      m_eventType = KeyPress;
+      m_eventWinNum = winNum;
+      //cout << "WM_CHAR: m_eventKey = " << m_eventKey << endl;
       if (m_Nonblock == DISABLE) {
-        SetEvent(m_KeyEvent);
+        SetEvent(m_eventHandle);
       }
     } else {
       return DefWindowProc(hWnd, uMsg, wParam, lParam);
     }
     break;
   case WM_CHAR:
-	  m_Key = wParam;
-	  //cout << "WM_CHAR: m_Key = " << m_Key << endl;
+      m_eventKey = wParam;
+      m_eventType = KeyPress;
+      m_eventWinNum = winNum;
+      //cout << "WM_CHAR: m_eventKey = " << m_eventKey << endl;
 	  if ( m_Nonblock == DISABLE ) {
-		  SetEvent(m_KeyEvent);
+		  SetEvent(m_eventHandle);
 	  }
 	  break;
   case WM_KEYUP:
-	  m_Key = -1;
-	  //cout << "WM_KEYUP: m_Key = " << m_Key << endl;
+	  m_eventKey = -1;
+	  //cout << "WM_KEYUP: m_eventKey = " << m_eventKey << endl;
 	  break;
+  case WM_LBUTTONDOWN:
+      m_eventType = ButtonPress;
+      m_eventButton = 1;
+      m_eventWinNum = winNum;
+      m_eventX = LOWORD(lParam);
+      m_eventY = HIWORD(lParam);
+      //cout << "WM_LBUTTONDOWN: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
+      if (m_Nonblock == DISABLE) {
+          SetEvent(m_eventHandle);
+      }
+      break;
+  case WM_MBUTTONDOWN:
+      m_eventType = ButtonPress;
+      m_eventButton = 2;
+      m_eventWinNum = winNum;
+      m_eventX = LOWORD(lParam);
+      m_eventY = HIWORD(lParam);
+      //cout << "WM_MBUTTONDOWN: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
+      if (m_Nonblock == DISABLE) {
+          SetEvent(m_eventHandle);
+      }
+      break;
+  case WM_RBUTTONDOWN:
+      m_eventType = ButtonPress;
+      m_eventButton = 3;
+      m_eventWinNum = winNum;
+      m_eventX = LOWORD(lParam);
+      m_eventY = HIWORD(lParam);
+      //cout << "WM_RBUTTONDOWN: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
+      if (m_Nonblock == DISABLE) {
+          SetEvent(m_eventHandle);
+      }
+      break;
+  case WM_LBUTTONUP:
+  case WM_MBUTTONUP:
+  case WM_RBUTTONUP:
+      m_eventButton = 0;
+      break;
+  case WM_MOUSEMOVE:
+      m_eventType = MotionNotify;
+      m_eventButton = 0;
+      m_eventWinNum = winNum;
+      m_eventX = LOWORD(lParam);
+      m_eventY = HIWORD(lParam);
+      //cout << "WM_MOUSEMOVE: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
+      if (m_Nonblock == DISABLE) {
+          SetEvent(m_eventHandle);
+      }
+      break;
   default:
       return DefWindowProc(hWnd, uMsg, wParam, lParam);
   }
@@ -1687,37 +1806,73 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 }
 
 /**
- * @brief      座標変換
- * @ingroup    CEggX
+* @brief      スケール変換
+* @ingroup    CEggX
 */
 inline int CEggX::scaleX(EggXWindow &wnd, double x)
 {
-  return roundInt(x/((wnd.xe-wnd.xs)/wnd.cx));
+    return roundInt(x / ((wnd.xe - wnd.xs) / wnd.cx));
 }
 
 /**
- * @brief      座標変換
- * @ingroup    CEggX
+* @brief      スケール変換
+* @ingroup    CEggX
 */
 inline int CEggX::scaleY(EggXWindow &wnd, double y)
 {
-  return roundInt(y/((wnd.ye-wnd.ys)/wnd.cy));
+    return roundInt(y / ((wnd.ye - wnd.ys) / wnd.cy));
 }
 
 /**
- * @brief      座標変換
- * @ingroup    CEggX
+* @brief      座標変換
+* @ingroup    CEggX
 */
 inline int CEggX::convertX(EggXWindow &wnd, double x)
 {
-  return scaleX(wnd, x-wnd.xs);
+    return scaleX(wnd, x - wnd.xs);
 }
 
 /**
- * @brief      座標変換
- * @ingroup    CEggX
+* @brief      座標変換
+* @ingroup    CEggX
 */
 inline int CEggX::convertY(EggXWindow &wnd, double y)
 {
-  return wnd.cy-scaleY(wnd, y-wnd.ys);
+    return wnd.cy - scaleY(wnd, y - wnd.ys);
+}
+
+/**
+* @brief      逆スケール変換
+* @ingroup    CEggX
+*/
+inline double CEggX::inverseScaleX(EggXWindow &wnd, int x)
+{
+    return x * ((wnd.xe - wnd.xs) / wnd.cx);
+}
+
+/**
+* @brief      逆スケール変換
+* @ingroup    CEggX
+*/
+inline double CEggX::inverseScaleY(EggXWindow &wnd, int y)
+{
+    return y * ((wnd.ye - wnd.ys) / wnd.cy);
+}
+
+/**
+* @brief      逆座標変換
+* @ingroup    CEggX
+*/
+inline double CEggX::invertX(EggXWindow &wnd, int x)
+{
+    return inverseScaleX(wnd, x) + wnd.xs;
+}
+
+/**
+* @brief      逆標変換
+* @ingroup    CEggX
+*/
+inline double CEggX::invertY(EggXWindow &wnd, int y)
+{
+    return inverseScaleX(wnd, wnd.cy - y) + wnd.ys;
 }
