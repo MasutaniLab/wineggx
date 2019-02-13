@@ -184,11 +184,9 @@ private:
   std::map<int, int> keytable;
 };
 
-#ifdef CEGGX_MAIN
-#define EXTERN
-#else
-#define EXTERN extern
-#endif
-
 // ƒOƒ[ƒoƒ‹•Ï”
-EXTERN CEggX gEggX;
+#ifdef CEGGX_MAIN
+CEggX gEggX;
+#else
+extern CEggX gEggX;
+#endif
