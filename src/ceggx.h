@@ -1,5 +1,4 @@
 #define _USE_MATH_DEFINES
-#define _CRT_SECURE_NO_WARNINGS
 
 #include <windows.h>
 #include <winbase.h>

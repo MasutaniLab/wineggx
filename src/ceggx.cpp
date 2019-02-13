@@ -293,7 +293,7 @@ int CEggX::CreateEggXWindow(int xsize,int ysize)
 
   //ÉEÉBÉìÉhÉEñº
   char windowname[64];
-  sprintf(windowname,"%s%d","eggx window",num);
+  sprintf_s(windowname, sizeof(windowname), "%s%d", "eggx window", num);
 
 
   CREATESTRUCT createstr;
@@ -329,7 +329,7 @@ int CEggX::CreateEggXWindow(int xsize,int ysize)
   HDC hDC      = ::GetDC(hWnd);
   EggXWindow &wnd = m_Window.at(num);
   wnd.hWnd     = hWnd;
-  sprintf(wnd.fontName,"ÇlÇr ÉSÉVÉbÉN");
+  sprintf_s(wnd.fontName, sizeof(wnd.fontName), "ÇlÇr ÉSÉVÉbÉN");
   wnd.cx       = xsize;
   wnd.cy       = ysize;
   wnd.xs       = 0;
@@ -474,7 +474,7 @@ int  CEggX::winname(unsigned wn, const char *argsformat, va_list argptr)
   if(!wnd.hWnd)return 0;
 
   char str[256];
-  int len = _vsnprintf(str, sizeof(str), argsformat, argptr);
+  int len = _vsnprintf_s(str, sizeof(str), _TRUNCATE, argsformat, argptr);
   if (len == -1)str[sizeof(str) - 1] = '\0';
   else str[len] = '\0';
 
@@ -561,13 +561,13 @@ void CEggX::newcolor( unsigned wn, const char *argsformat, va_list argptr)
   if (!wnd.hWnd)return;
 
   char str[256];
-  int len = _vsnprintf(str, sizeof(str), argsformat, argptr);
+  int len = _vsnprintf_s(str, sizeof(str), _TRUNCATE, argsformat, argptr);
   if (len == -1)str[sizeof(str) - 1] = '\0';
   else str[len] = '\0';
 
   rgb a;
   if (str[0] == '#') {
-    if (sscanf(str, "#%2x%2x%2x", &a.r, &a.g, &a.b) != 3) {
+    if (sscanf_s(str, "#%2x%2x%2x", &a.r, &a.g, &a.b) != 3) {
       cerr << str << " cannot decode" << endl;
       return;
     }
@@ -677,13 +677,13 @@ void CEggX::gsetbgcolor(unsigned wn, const char *argsformat, va_list argptr)
   if (!wnd.hWnd)return;
 
   char str[256];
-  int len = _vsnprintf(str, sizeof(str), argsformat, argptr);
+  int len = _vsnprintf_s(str, sizeof(str), _TRUNCATE, argsformat, argptr);
   if (len == -1)str[sizeof(str) - 1] = '\0';
   else str[len] = '\0';
 
   rgb a;
   if (str[0] == '#') {
-    if (sscanf(str, "#%2x%2x%2x", &a.r, &a.g, &a.b) != 3) {
+    if (sscanf_s(str, "#%2x%2x%2x", &a.r, &a.g, &a.b) != 3) {
       cerr << str << " cannot decode" << endl;
       return;
     }
@@ -1331,7 +1331,7 @@ int  CEggX::drawstr(unsigned wn, double x, double y, int size, double theta, con
   if(!wnd.hWnd)return 0;
 
   char str[256];
-  int len0 = _vsnprintf(str, sizeof(str), argsformat, argptr);
+  int len0 = _vsnprintf_s(str, sizeof(str), _TRUNCATE, argsformat, argptr);
   if (len0 == -1)str[sizeof(str) - 1] = '\0';
   else str[len0] = '\0';
 
@@ -1365,7 +1365,7 @@ int  CEggX::drawstr(unsigned wn, double x, double y, int size, double theta, con
           myfont.hFont = ::CreateFont(size,0,0,0,FW_NORMAL,0,0,0,DEFAULT_CHARSET,
                          OUT_DEFAULT_PRECIS,CLIP_DEFAULT_PRECIS,DEFAULT_QUALITY,
                          DEFAULT_PITCH|FF_DONTCARE,wnd.fontName);
-          strcpy(myfont.fontName,wnd.fontName);
+          strcpy_s(myfont.fontName, sizeof(myfont.fontName), wnd.fontName);
           m_Font.insert(pair<int, MyFont>(size,myfont));
           wnd.hFont = &m_Font[size].hFont;
       }
@@ -1428,11 +1428,11 @@ int  CEggX::gsetfontset( unsigned wn, const char *argsformat, va_list argptr)
   if(!wnd.hWnd)return -1;
 
   char str[32];
-  int len = _vsnprintf(str, sizeof(str), argsformat, argptr);
+  int len = _vsnprintf_s(str, sizeof(str), _TRUNCATE, argsformat, argptr);
   if (len == -1)str[sizeof(str) - 1] = '\0';
   else str[len] = '\0';
 
-  strncpy(wnd.fontName, str, sizeof(wnd.fontName));
+  strncpy_s(wnd.fontName, sizeof(wnd.fontName), str, sizeof(wnd.fontName));
   wnd.fontsize = 0;
 
   return 0;
