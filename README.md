@@ -1,6 +1,6 @@
 # Windows版EGGX
-Version 1.1c （CMake化）  
-2018年1月5日  
+Version 2.0 （マウスイベントに対応）  
+2019年2月XX日  
 升谷 保博  
 （大阪電気通信大学）  
 
@@ -75,13 +75,16 @@ int gopen(int xsize,int ysize);
 void gclose( int wn );
 void gcloseall( void );
 int winname( int wn, const char *argsformat, ... );
+int winname( int wn, const std::string argsformat, ... ); //wineggx独自
 void window( int wn, double xs, double ys, double xe, double ye );
 void layer( int wn, int lys, int lyw );
 void copylayer( int wn, int lysrc, int lydest );
 void newcolor( int wn, const char *argsformat, ... );
+void newcolor( int wn, const std::string argsformat, ... ); //wineggx独自
 void newrgbcolor( int wn, int r, int g, int b );
 void newhsvcolor( int wn, int h, int s, int v );
 void gsetbgcolor( int wn, const char *argsformat, ... );
+void gsetbgcolor( int wn, const std::string argsformat, ... ); //wineggx独自
 void gsetbgcolorrgb( int wn, int r, int g, int b );
 void gclr( int wn );
 void newlinewidth( int wn, int width );
@@ -97,16 +100,20 @@ void drawarc( int wn, double xcen, double ycen, double xrad, double yrad, double
 void fillarc( int wn, double xcen, double ycen, double xrad, double yrad, double sang, double eang, int idir );
 void drawrect( int wn, double x, double y, double w, double h );
 void fillrect( int wn, double x, double y, double w, double h );
-int drawstr( int wn, double x, double y, int size, double theta,const char *argsformat, ... );
+int drawstr( int wn, double x, double y, int size, double theta, const char *argsformat, ... );
+int drawstr( int wn, double x, double y, int size, double theta, const std::string argsformat, ... ); //wineggx独自
 int gsetfontset( int wn, const char *argsformat, ... );
+int gsetfontset( int wn, const std::string argsformat, ... ); //wineggx独自
 int ggetch();
 void gsetnonblock( int flag );
 void msleep( unsigned long msec );
+int ggetevent(int *type, int *button, double *x, double *y);
+int ggetxpress(int *type, int *button, double *x, double *y);
 ~~~
 
 ## 開発の経緯
 
-2007年ごろに大阪電気通信大学升谷研究室において，当時大学院生の片岡 賢太郎氏が，EGGXを使って書かれていたLinuxのプログラムをWindowsに移植するために作成したEGGXに似た関数群を升谷が引き継ぎ，コンソールプログラムで使えるように改良しました．
+2007年ごろに大阪電気通信大学升谷研究室において，当時大学院生の片岡 賢太郎氏が，EGGXを使って書かれていたLinuxのプログラムをWindowsに移植するために，EGGXに似た関数群を作成しました．それを升谷が引き継ぎ，コンソールプログラムで使えるように改良し，研究室の内部で利用していました．
 
 2014年度から大阪電気通信大学 総合情報学部 情報学科の「C++プログラミング実習2」の教材として採用することになり，山内氏から「Windows版EGGX」と名乗ることの許可を得ました（Version 1.0）．
 
@@ -114,6 +121,8 @@ void msleep( unsigned long msec );
 
 開発環境をVisual Studio 2012から2015へ移行しました（Version 1.1b）．
 
-CMakeに対応しました（Version 1.1c）
+CMakeに対応しました（Version 1.1c）．
+
+マウスイベントに対応しました（Version 2.0）．
 
 以上．
