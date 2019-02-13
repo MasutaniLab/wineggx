@@ -13,11 +13,12 @@
  * @brief Windowsでeggxライブラリの代わりをする
 **/
 
-
+#define WINEGGX_MAIN
 #include "wineggx.h"
 #include "ceggx.h"
 
 using namespace std;
+bool first = true;
 
 /**
  * @brief      任意のサイズのグラフィックス画面を開く
@@ -30,6 +31,10 @@ using namespace std;
 int gopen(int xsize,int ysize)
 {
   assert(xsize&&ysize&&"eggx set window size.");
+  if (first) {
+      gEggX.setmouse(&windowId, &mouseX, &mouseY, &mouseButton, &mousePressed);
+      first = false;
+  }
 
   return gEggX.gopen(xsize,ysize);
 }

@@ -129,6 +129,7 @@ public:
   void gsetnonblock(int flag);
   int ggetevent(int *type, int *button, double *x, double *y);
   int ggetxpress(int *type, int *button, double *x, double *y);
+  void setmouse(int *pwin, double *px, double *py, int *pbutton, bool *ppressed);
 
 protected:
   HANDLE    m_Thread; // スレッドハンドル
@@ -156,6 +157,11 @@ protected:
   int       m_eventY;
   int       m_eventButton;
   int       m_eventKey;
+  int *m_pWindowId;
+  double *m_pMouseX;
+  double *m_pMouseY;
+  int *m_pMouseButton;
+  bool *m_pMousePressed;
 
 private:
   int  CreateThread();

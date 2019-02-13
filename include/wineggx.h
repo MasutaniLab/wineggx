@@ -491,3 +491,13 @@ int ggetevent(int *type, int *button, double *x, double *y);
 * @retval      入力のあったウィンドウ番号
 */
 int ggetxpress(int *type, int *button, double *x, double *y);
+
+#ifdef WINEGGX_MAIN
+int windowId, mouseButton;
+double mouseX, mouseY;
+bool mousePressed;
+#else
+extern int windowId, mouseButton;
+extern double mouseX, mouseY;
+extern bool mousePressed;
+#endif

@@ -1555,6 +1555,22 @@ int CEggX::ggetxpress(int *type, int *button, double *x, double *y)
 }
 
 /**
+* @brief      
+* @ingroup    CEggX
+* @param[out]  
+* @retval      なし
+*/
+void CEggX::setmouse(int *pwin, double *px, double *py, int *pbutton, bool *ppressed)
+{
+    m_pWindowId = pwin;
+    m_pMouseX = px;
+    m_pMouseY = py;
+    m_pMouseButton = pbutton;
+    m_pMousePressed = ppressed;
+}
+
+
+/**
  * @brief      EggXのメッセージ処理
  * @ingroup    CEggX
  * @param[in]  msg メッセージ
@@ -1693,6 +1709,8 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
           break;
       }
   }
+  EggXWindow window;
+  if (winNum != -1)  window = m_Window.at(winNum);
   switch (uMsg)
   {
   case WM_USER_EXIT:
@@ -1721,41 +1739,48 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       PostQuitMessage(0);
       break;
   case WM_CLOSE:
-      ::SendMessage(hWnd,WM_USER_EXIT,0,0);
+      ::SendMessage(hWnd, WM_USER_EXIT, 0, 0);
       m_Close = true;
       break;
   case WM_KEYDOWN:
-    if (keytable.find(wParam) != keytable.end()) {     
-      m_eventKey = keytable[wParam];
-      m_eventType = KeyPress;
-      m_eventWinNum = winNum;
-      //cout << "WM_CHAR: m_eventKey = " << m_eventKey << endl;
-      if (m_Nonblock == DISABLE) {
-        SetEvent(m_eventHandle);
+      if (keytable.find(wParam) != keytable.end()) {
+          m_eventKey = keytable[wParam];
+          m_eventType = KeyPress;
+          m_eventWinNum = winNum;
+          //cout << "WM_CHAR: m_eventKey = " << m_eventKey << endl;
+          if (m_Nonblock == DISABLE) {
+              SetEvent(m_eventHandle);
+          }
+      } else {
+          return DefWindowProc(hWnd, uMsg, wParam, lParam);
       }
-    } else {
-      return DefWindowProc(hWnd, uMsg, wParam, lParam);
-    }
-    break;
+      break;
   case WM_CHAR:
       m_eventKey = wParam;
       m_eventType = KeyPress;
       m_eventWinNum = winNum;
       //cout << "WM_CHAR: m_eventKey = " << m_eventKey << endl;
-	  if ( m_Nonblock == DISABLE ) {
-		  SetEvent(m_eventHandle);
-	  }
-	  break;
+      if (m_Nonblock == DISABLE) {
+          SetEvent(m_eventHandle);
+      }
+      break;
   case WM_KEYUP:
-	  m_eventKey = -1;
-	  //cout << "WM_KEYUP: m_eventKey = " << m_eventKey << endl;
-	  break;
+      m_eventKey = -1;
+      //cout << "WM_KEYUP: m_eventKey = " << m_eventKey << endl;
+      break;
   case WM_LBUTTONDOWN:
       m_eventType = ButtonPress;
       m_eventButton = 1;
       m_eventWinNum = winNum;
       m_eventX = LOWORD(lParam);
       m_eventY = HIWORD(lParam);
+      if (winNum != -1) {
+          *m_pWindowId = winNum;
+          *m_pMouseX = invertX(window, m_eventX);
+          *m_pMouseY = invertY(window, m_eventY);
+          *m_pMouseButton = m_eventButton;
+          *m_pMousePressed = true;
+      }
       //cout << "WM_LBUTTONDOWN: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
       if (m_Nonblock == DISABLE) {
           SetEvent(m_eventHandle);
@@ -1767,6 +1792,13 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_eventWinNum = winNum;
       m_eventX = LOWORD(lParam);
       m_eventY = HIWORD(lParam);
+      if (winNum != -1) {
+          *m_pWindowId = winNum;
+          *m_pMouseX = invertX(window, m_eventX);
+          *m_pMouseY = invertY(window, m_eventY);
+          *m_pMouseButton = m_eventButton;
+          *m_pMousePressed = true;
+      }
       //cout << "WM_MBUTTONDOWN: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
       if (m_Nonblock == DISABLE) {
           SetEvent(m_eventHandle);
@@ -1778,6 +1810,13 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_eventWinNum = winNum;
       m_eventX = LOWORD(lParam);
       m_eventY = HIWORD(lParam);
+      if (winNum != -1) {
+          *m_pWindowId = winNum;
+          *m_pMouseX = invertX(window, m_eventX);
+          *m_pMouseY = invertY(window, m_eventY);
+          *m_pMouseButton = m_eventButton;
+          *m_pMousePressed = true;
+      }
       //cout << "WM_RBUTTONDOWN: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
       if (m_Nonblock == DISABLE) {
           SetEvent(m_eventHandle);
@@ -1787,6 +1826,7 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
   case WM_MBUTTONUP:
   case WM_RBUTTONUP:
       m_eventButton = 0;
+      *m_pMousePressed = false;
       break;
   case WM_MOUSEMOVE:
       m_eventType = MotionNotify;
@@ -1794,6 +1834,11 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_eventWinNum = winNum;
       m_eventX = LOWORD(lParam);
       m_eventY = HIWORD(lParam);
+      if (winNum != -1) {
+          *m_pWindowId = winNum;
+          *m_pMouseX = invertX(window, m_eventX);
+          *m_pMouseY = invertY(window, m_eventY);
+      }
       //cout << "WM_MOUSEMOVE: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
       if (m_Nonblock == DISABLE) {
           SetEvent(m_eventHandle);

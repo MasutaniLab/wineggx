@@ -42,6 +42,9 @@ target_link_libraries(mouse-test ${PROJECT_NAME})
 add_executable(mouse-test2 src/mouse-test2.cpp)
 target_link_libraries(mouse-test2 ${PROJECT_NAME})
 
+add_executable(mouse-test3 src/mouse-test3.cpp)
+target_link_libraries(mouse-test3 ${PROJECT_NAME})
+
 set(INSTALL_PREFIX ${PROJECT_SOURCE_DIR}
     CACHE PATH "where to install")
 set(CMAKE_INSTALL_PREFIX ${INSTALL_PREFIX} CACHE INTERNAL "")
