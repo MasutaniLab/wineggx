@@ -1312,7 +1312,6 @@ void CEggX::fillrect( unsigned wn, double x, double y, double w, double h )
   ::ReleaseDC(wnd.hWnd,hWDC);
 }
 
-
 /**
  * @brief      文字列の描画
  * @ingroup    CEggX
@@ -1439,9 +1438,157 @@ int  CEggX::gsetfontset( unsigned wn, const char *argsformat, va_list argptr)
 }
 
 /**
+* @brief 折れ線を描く
+* @ingroup    CEggX
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 折れ線の各点のx座標
+* @param[in]  y[] 折れ線の各点のy座標
+* @param[in]  n 点の数
+* @retval      なし
+*/
+void CEggX::drawlines(unsigned wn, const double x[], const double y[], int n)
+{
+  if (wn >= (unsigned)m_MaxWindow)return;
+
+  EggXWindow &wnd = m_Window.at(wn);
+  if (!wnd.hWnd)return;
+
+  POINT *p = new POINT[n];
+  for (int i = 0; i < n; i++) {
+    p[i].x = convertX(wnd, x[i]);
+    p[i].y = convertY(wnd, y[i]);
+  }
+
+  HBRUSH hBrushNull = (HBRUSH)::GetStockObject(NULL_BRUSH);
+
+  HDC hWDC = ::GetDC(wnd.hWnd);
+  if (wnd.showLayer == wnd.writeLayer)
+  {
+    ::SelectObject(hWDC, hBrushNull);
+    ::SelectObject(hWDC, wnd.hPen);
+    ::SetBkMode(hWDC, TRANSPARENT);
+
+    ::Polyline(hWDC, p, n);
+  } else
+  {
+    HDC hDC = ::CreateCompatibleDC(hWDC);
+    ::SelectObject(hDC, wnd.hBitmap[wnd.index]);
+    ::SelectObject(hDC, hBrushNull);
+    ::SelectObject(hDC, wnd.hPen);
+    ::SetBkMode(hDC, TRANSPARENT);
+
+    ::Polyline(hDC, p, n);
+    ::DeleteDC(hDC);
+  }
+  ::ReleaseDC(wnd.hWnd, hWDC);
+  delete p;
+}
+
+/**
+* @brief 多角形を描く
+* @ingroup    CEggX
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 多角形の各点のx座標
+* @param[in]  y[] 多角形の各点のy座標
+* @param[in]  n 点の数
+* @retval      なし
+*/
+void CEggX::drawpoly(unsigned wn, const double x[], const double y[], int n)
+{
+  if (wn >= (unsigned)m_MaxWindow)return;
+
+  EggXWindow &wnd = m_Window.at(wn);
+  if (!wnd.hWnd)return;
+
+  POINT *p = new POINT[n];
+  for (int i = 0; i < n; i++) {
+    p[i].x = convertX(wnd, x[i]);
+    p[i].y = convertY(wnd, y[i]);
+  }
+
+  HBRUSH hBrushNull = (HBRUSH)::GetStockObject(NULL_BRUSH);
+
+  HDC hWDC = ::GetDC(wnd.hWnd);
+  if (wnd.showLayer == wnd.writeLayer)
+  {
+    ::SelectObject(hWDC, hBrushNull);
+    ::SelectObject(hWDC, wnd.hPen);
+    ::SetBkMode(hWDC, TRANSPARENT);
+
+    ::Polygon(hWDC, p, n);
+  } else
+  {
+    HDC hDC = ::CreateCompatibleDC(hWDC);
+    ::SelectObject(hDC, wnd.hBitmap[wnd.index]);
+    ::SelectObject(hDC, hBrushNull);
+    ::SelectObject(hDC, wnd.hPen);
+    ::SetBkMode(hDC, TRANSPARENT);
+
+    ::Polygon(hDC, p, n);
+    ::DeleteDC(hDC);
+  }
+  ::ReleaseDC(wnd.hWnd, hWDC);
+  delete p;
+}
+
+/**
+* @brief 多角形を塗り潰す
+* @ingroup    CEggX
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 多角形の各点のx座標
+* @param[in]  y[] 多角形の各点のy座標
+* @param[in]  n 点の数
+* @param[in]  i 塗り潰す時の形状
+* @retval      なし
+*/
+void CEggX::fillpoly(unsigned wn, const double x[], const double y[], int n, int i)
+{
+  if (wn >= (unsigned)m_MaxWindow)return;
+
+  EggXWindow &wnd = m_Window.at(wn);
+  if (!wnd.hWnd)return;
+
+  POINT *p = new POINT[n];
+  for (int i = 0; i < n; i++) {
+    p[i].x = convertX(wnd, x[i]);
+    p[i].y = convertY(wnd, y[i]);
+  }
+
+  HBRUSH hBrushNull = (HBRUSH)::GetStockObject(NULL_BRUSH);
+
+  int mode;
+  if (i == 0) {
+    mode = ALTERNATE;
+  } else {
+    mode = WINDING;
+  }
+
+  HDC hWDC = ::GetDC(wnd.hWnd);
+  if (wnd.showLayer == wnd.writeLayer)
+  {
+    ::SelectObject(hWDC, wnd.hPenF);
+    ::SelectObject(hWDC, wnd.hBrush);
+    ::SetPolyFillMode(hWDC, mode);
+
+    ::Polygon(hWDC, p, n);
+  } else
+  {
+    HDC hDC = ::CreateCompatibleDC(hWDC);
+    ::SelectObject(hDC, wnd.hBitmap[wnd.index]);
+    ::SelectObject(hDC, wnd.hPenF);
+    ::SelectObject(hDC, wnd.hBrush);
+    ::SetPolyFillMode(hDC, mode);
+
+    ::Polygon(hDC, p, n);
+    ::DeleteDC(hDC);
+  }
+  ::ReleaseDC(wnd.hWnd, hWDC);
+  delete p;
+}
+
+/**
  * @brief      キーボードから入力された文字を返す
  * @ingroup    CEggX
- * @param[in]  なし
  * @retval     <0 入力なし（ノンブロッキングモードの場合）
  * @retval     押されたキーの文字コード
 */
@@ -1461,10 +1608,9 @@ int CEggX::ggetch()
 }
 
 /**
- * @brief      ggetch()の動作モードを設定する
+ * @brief      イベント取得の動作モードを設定する
  * @ingroup    CEggX
- * @param[in]  ENABLE ノンブロッキングモードにする
- * @param[in]  DISABLE ブロッキングモードにする
+ * @param[in]  flag ENABLE ノンブロッキングモード，DISABLE ブロッキングモード
  * @retval     なし
 */
 void CEggX::gsetnonblock( int flag )
@@ -1554,10 +1700,15 @@ int CEggX::ggetxpress(int *type, int *button, double *x, double *y)
     return m_eventWinNum;
 }
 
+
 /**
-* @brief      
+* @brief      イベントの結果を書き込む先のポインタを設定する．
 * @ingroup    CEggX
-* @param[out]  
+* @param[in]  pwin WindowIdを書き込む先のポインタ
+* @param[in]  px MouseXを書き込む先のポインタ
+* @param[in]  py MouseYを書き込む先のポインタ
+* @param[in]  pbutton MouseButtonを書き込む先のポインタ
+* @param[in]  ppressed MousePressedを書き込む先のポインタ
 * @retval      なし
 */
 void CEggX::setmouse(int *pwin, double *px, double *py, int *pbutton, bool *ppressed)

@@ -384,9 +384,8 @@ void line( int wn,double x,double y,int mode )
   return gEggX.line(wn,x,y,mode);
 }
 
-
 /**
- * @brief      円の描画
+ * @brief      円の描画（drawcirc()と全く同じ）
  * @ingroup    wineggx
  * @param[in]  wn 描画するウィンドウの番号
  * @param[in]  xcen,ycen 円の中心座標
@@ -399,6 +398,22 @@ void line( int wn,double x,double y,int mode )
 void circle( int wn, double xcen, double ycen, double xrad, double yrad )
 {
   return gEggX.circle(wn,xcen,ycen,xrad,yrad);
+}
+
+/**
+* @brief      円の描画（circle()と全く同じ）
+* @ingroup    wineggx
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  xcen,ycen 円の中心座標
+* @param[in]  xrad X軸方向の半径
+* @param[in]  yrad Y軸方向の半径
+* @section Notes
+*  wn で指定したウィンドウに，(xcen,ycen) を中心に
+*  横方向の半径xrad，縦方向の半径yrad の円を描きます．
+*/
+void drawcirc(int wn, double xcen, double ycen, double xrad, double yrad)
+{
+  return gEggX.circle(wn, xcen, ycen, xrad, yrad);
 }
 
 /**
@@ -632,7 +647,7 @@ void msleep( unsigned long msec ){
 }
 
 /**
-* @brief      全てのウィンドウのマウスやキーボードの入力情報を返す．
+* @brief      全てのウィンドウのマウスやキーボードの入力情報を返す（double版）．
 * @ingroup    wineggx
 * @param[out]  type イベントの種類
 * @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
@@ -646,7 +661,25 @@ int ggetevent(int *type, int *button, double *x, double *y)
 }
 
 /**
-* @brief      全てのウィンドウのマウスやキーボードの入力情報を返す（キーとボタンのみ）．
+* @brief      全てのウィンドウのマウスやキーボードの入力情報を返す（float版）．
+* @ingroup    wineggx
+* @param[out]  type イベントの種類
+* @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
+* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[out]  y マウスポインタのy座標（アプリケーション座標系）
+* @retval      入力のあったウィンドウ番号
+*/
+int ggetevent(int *type, int *button, float *x, float *y)
+{
+  double xd, yd;
+  int ret = gEggX.ggetevent(type, button, &xd, &yd);
+  *x = float(xd);
+  *y = float(yd);
+  return ret;
+}
+
+/**
+* @brief      全てのウィンドウのマウスやキーボードの入力情報を返す（キーとボタンのみ）（double版）．
 * @ingroup    wineggx
 * @param[out]  type イベントの種類
 * @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
@@ -657,4 +690,152 @@ int ggetevent(int *type, int *button, double *x, double *y)
 int ggetxpress(int *type, int *button, double *x, double *y)
 {
     return gEggX.ggetxpress(type, button, x, y);
+}
+
+/**
+* @brief      全てのウィンドウのマウスやキーボードの入力情報を返す（キーとボタンのみ）（float版）．
+* @ingroup    wineggx
+* @param[out]  type イベントの種類
+* @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
+* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[out]  y マウスポインタのy座標（アプリケーション座標系）
+* @retval      入力のあったウィンドウ番号
+*/
+int ggetxpress(int *type, int *button, float *x, float *y)
+{
+  double xd, yd;
+  int ret = gEggX.ggetxpress(type, button, &xd, &yd);
+  *x = float(xd);
+  *y = float(yd);
+  return ret;
+}
+
+/**
+* @brief      折れ線を描く（double版）
+* @ingroup    wineggx
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 折れ線の各点のx座標
+* @param[in]  y[] 折れ線の各点のy座標
+* @param[in]  n 点の数
+* @section Notes
+*  wnで指定したウィンドゥで，折れ線を描く．
+*  x，yはn個の実数の一次元配列で，x[0]～x[n-1]，y[0]～y[n-1]に折れ線の
+*  各点の座標を入れておく．
+*/
+void drawlines(int wn, const double x[], const double y[], int n)
+{
+  gEggX.drawlines(wn, x, y, n);
+}
+
+/**
+* @brief      折れ線を描く（float版）
+* @ingroup    wineggx
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 折れ線の各点のx座標
+* @param[in]  y[] 折れ線の各点のy座標
+* @param[in]  n 点の数
+* @section Notes
+*  wnで指定したウィンドゥで，折れ線を描く．
+*  x，yはn個の実数の一次元配列で，x[0]～x[n-1]，y[0]～y[n-1]に折れ線の
+*  各点の座標を入れておく．
+*/
+void drawlines(int wn, const float x[], const float y[], int n)
+{
+  double *xd = new double[n];
+  double *yd = new double[n];
+  for (int i = 0; i < n; i++) {
+    xd[i] = x[i];
+    yd[i] = y[i];
+  }
+  gEggX.drawlines(wn, xd, yd, n);
+  delete xd;
+  delete yd;
+}
+
+/**
+* @brief      多角形を描く（double版）
+* @ingroup    wineggx
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 多角形の各点のx座標
+* @param[in]  y[] 多角形の各点のy座標
+* @param[in]  n 点の数
+* @section Notes
+*  wnで指定したウィンドゥで，多角形を描く．
+*  x，yはn個の実数の一次元配列で，x[0]～x[n-1]，y[0]～y[n-1]に折れ線の
+*  各点の座標を入れておく．
+*/
+void drawpoly(int wn, const double x[], const double y[], int n)
+{
+  gEggX.drawpoly(wn, x, y, n);
+}
+
+/**
+* @brief      多角形を描く（float版）
+* @ingroup    wineggx
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 多角形の各点のx座標
+* @param[in]  y[] 多角形の各点のy座標
+* @param[in]  n 点の数
+* @section Notes
+*  wnで指定したウィンドゥで，多角形を描く．
+*  x，yはn個の実数の一次元配列で，x[0]～x[n-1]，y[0]～y[n-1]に折れ線の
+*  各点の座標を入れておく．
+*/
+void drawpoly(int wn, const float x[], const float y[], int n)
+{
+  double *xd = new double[n];
+  double *yd = new double[n];
+  for (int i = 0; i < n; i++) {
+    xd[i] = x[i];
+    yd[i] = y[i];
+  }
+  gEggX.drawpoly(wn, xd, yd, n);
+  delete xd;
+  delete yd;
+}
+
+/**
+* @brief      多角形を塗り潰す（double版）
+* @ingroup    wineggx
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 多角形の各点のx座標
+* @param[in]  y[] 多角形の各点のy座標
+* @param[in]  n 点の数
+* @param[in]  i 塗り潰す時の形状
+* @section Notes
+*  wnで指定したウィンドゥで，多角形の領域を塗り潰す．
+*  x，yはn個の実数の一次元配列で，x[0]～x[n-1]，y[0]～y[n-1]に折れ線の
+*  各点の座標を入れておく．
+*  iは塗り潰す時の形状で通常は0を，凸多角形の時は1を指定する．
+*/
+void fillpoly(int wn, const double x[], const double y[], int n, int i)
+{
+  gEggX.fillpoly(wn, x, y, n, i);
+}
+
+/**
+* @brief      多角形を塗り潰す（float版）
+* @ingroup    wineggx
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 多角形の各点のx座標
+* @param[in]  y[] 多角形の各点のy座標
+* @param[in]  n 点の数
+* @param[in]  i 塗り潰す時の形状
+* @section Notes
+*  wnで指定したウィンドゥで，多角形の領域を塗り潰す．
+*  x，yはn個の実数の一次元配列で，x[0]～x[n-1]，y[0]～y[n-1]に折れ線の
+*  各点の座標を入れておく．
+*  iは塗り潰す時の形状で通常は0を，凸多角形の時は1を指定する．
+*/
+void fillpoly(int wn, const float x[], const float y[], int n, int i)
+{
+  double *xd = new double[n];
+  double *yd = new double[n];
+  for (int i = 0; i < n; i++) {
+    xd[i] = x[i];
+    yd[i] = y[i];
+  }
+  gEggX.fillpoly(wn, xd, yd, n, i);
+  delete xd;
+  delete yd;
 }

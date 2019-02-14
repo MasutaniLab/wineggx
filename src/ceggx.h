@@ -125,6 +125,10 @@ public:
   int  gsetfontset(unsigned wn, const char *argsformat, va_list argptr);
   void newlinewidth(unsigned wn, int width);
   void newlinestyle(unsigned wn, int style);
+  void drawlines(unsigned wn, const double x[], const double y[], int n);
+  void drawpoly(unsigned wn, const double x[], const double y[], int n);
+  void fillpoly(unsigned wn, const double x[], const double y[], int n, int i);
+
   int ggetch();
   void gsetnonblock(int flag);
   int ggetevent(int *type, int *button, double *x, double *y);
