@@ -1,4 +1,4 @@
-#define _USE_MATH_DEFINES
+ï»¿#define _USE_MATH_DEFINES
 
 #include <windows.h>
 #include <winbase.h>
@@ -23,32 +23,32 @@
 /**
  * @ingroup wineggx_back
  * @class CEggX
- * @brief Windows”ÅEGGX
+ * @brief Windowsç‰ˆEGGX
 */
 class CEggX{
   /**
   * @struct  EggXWindow
-  * @brief   ƒEƒBƒ“ƒhƒE‚ğŠÇ—‚·‚é‚½‚ß‚Ì\‘¢‘Ì
+  * @brief   ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç®¡ç†ã™ã‚‹ãŸã‚ã®æ§‹é€ ä½“
   * @ingroup wineggx_back
   * @section Notes
-  *  hWnd    ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‹\n
-  *  hBitmap ƒrƒbƒgƒ}ƒbƒvƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹\n
-  *  hPen    ƒyƒ“ƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹\n
-  *  hBrush  ƒuƒ‰ƒVƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹\n
-  *  hFont   ƒtƒHƒ“ƒgƒIƒuƒWƒFƒNƒgƒnƒ“ƒhƒ‹\n
-  *  writeLayer •`‰ææƒŒƒCƒ„[\n
-  *  showLayer  •\¦ƒŒƒCƒ„[\n
-  *  xs,ys      ƒEƒBƒ“ƒhƒE¶‰º‚ÌÀ•W
-  *  xe,ye      ƒEƒBƒ“ƒhƒE‰Eã‚ÌÀ•W
-  *  r,g,b      •`‰æF
+  *  hWnd    ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ«\n
+  *  hBitmap ãƒ“ãƒƒãƒˆãƒãƒƒãƒ—ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«\n
+  *  hPen    ãƒšãƒ³ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«\n
+  *  hBrush  ãƒ–ãƒ©ã‚·ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«\n
+  *  hFont   ãƒ•ã‚©ãƒ³ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆãƒãƒ³ãƒ‰ãƒ«\n
+  *  writeLayer æç”»å…ˆãƒ¬ã‚¤ãƒ¤ãƒ¼\n
+  *  showLayer  è¡¨ç¤ºãƒ¬ã‚¤ãƒ¤ãƒ¼\n
+  *  xs,ys      ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å·¦ä¸‹ã®åº§æ¨™
+  *  xe,ye      ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å³ä¸Šã®åº§æ¨™
+  *  r,g,b      æç”»è‰²
   */
   struct EggXWindow {
     HWND    hWnd;
-    HBITMAP hBitmap[8];//ƒEƒBƒ“ƒhƒD–ˆ‚É8 –‡‚ÌƒŒƒCƒ„
+    HBITMAP hBitmap[8];//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥æ¯ã«8 æšã®ãƒ¬ã‚¤ãƒ¤
     HPEN    hPen;
-    HPEN    hPenF; //“h‚è‚Â‚Ô‚µ}Œ`—p‚Ìƒyƒ“
+    HPEN    hPenF; //å¡—ã‚Šã¤ã¶ã—å›³å½¢ç”¨ã®ãƒšãƒ³
     HBRUSH  hBrush;
-    HBRUSH  hBrushB; //”wŒi—p‚Ìƒuƒ‰ƒV
+    HBRUSH  hBrushB; //èƒŒæ™¯ç”¨ã®ãƒ–ãƒ©ã‚·
     HFONT  *hFont;
     int     index;
     int     fontsize;
@@ -65,11 +65,11 @@ class CEggX{
 
   /**
   * @struct  MyFont
-  * @brief   ƒtƒHƒ“ƒgŠÇ—‚Ì‚½‚ß‚Ì\‘¢‘Ì
+  * @brief   ãƒ•ã‚©ãƒ³ãƒˆç®¡ç†ã®ãŸã‚ã®æ§‹é€ ä½“
   * @ingroup wineggx_back
   * @section Notes
-  *  hFont    ƒtƒHƒ“ƒgƒIƒuƒWƒFƒNƒg
-  *  fontName ƒtƒHƒ“ƒg–¼
+  *  hFont    ãƒ•ã‚©ãƒ³ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+  *  fontName ãƒ•ã‚©ãƒ³ãƒˆå
   */
   struct MyFont {
     HFONT   hFont;
@@ -102,6 +102,7 @@ public:
   void gcloseall(void);
   void gresize(unsigned wn, int xsize, int ysize);
   int  winname(unsigned wn, const char *argsformat, va_list argptr);
+  void coordinate(unsigned wn, int xw, int yw, double xa, double ya, double xscale, double yscale);
   void window(unsigned wn, double xs, double ys, double xe, double ye);
   void layer(unsigned wn, int lys, int lyw);
   void copylayer(unsigned wn, int lysrc, int lydest);
@@ -138,8 +139,8 @@ public:
   void setmouse(int *pwin, double *px, double *py, int *pbutton, bool *ppressed);
 
 protected:
-  HANDLE    m_Thread; // ƒXƒŒƒbƒhƒnƒ“ƒhƒ‹
-  HANDLE    m_Event;  // ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‹
+  HANDLE    m_Thread; // ã‚¹ãƒ¬ãƒƒãƒ‰ãƒãƒ³ãƒ‰ãƒ«
+  HANDLE    m_Event;  // ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ«
   HANDLE    m_Ack;
   HANDLE    m_Com;
   HINSTANCE m_hInst;
@@ -150,7 +151,7 @@ protected:
   std::list<LONGLONG>     m_MSG;
   int       m_createWindowNum;
 
-  bool      m_run;//ƒXƒŒƒbƒh“®ìƒtƒ‰ƒO
+  bool      m_run;//ã‚¹ãƒ¬ãƒƒãƒ‰å‹•ä½œãƒ•ãƒ©ã‚°
   DWORD     m_SleepTime;
   LONGLONG  m_accesstable;
   bool      m_Init;
@@ -173,18 +174,18 @@ private:
   int  CreateThread();
   void Release();
 
-  // EGGXƒƒbƒZ[ƒWˆ—
+  // EGGXãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
   void EggMessage(LONGLONG msg);
 
-  // ƒXƒŒƒbƒhƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
+  // ã‚¹ãƒ¬ãƒƒãƒ‰ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
   static DWORD WINAPI ThreadEntry(void *param);
   DWORD ThreadProc();
 
-  // ƒEƒBƒ“ƒhƒEƒƒbƒZ[ƒWˆ—
+  // ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
   static  INT_PTR CALLBACK WindowProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam);
   virtual INT_PTR MsgProc(HWND hwndDlg,UINT uMsg,WPARAM wParam,LPARAM lParam);
 
-  //À•W•ÏŠ·
+  //åº§æ¨™å¤‰æ›
   int scaleX(EggXWindow &wnd, double x);
   int scaleY(EggXWindow &wnd, double y);
   int convertX(EggXWindow &wnd, double x);
@@ -193,7 +194,7 @@ private:
   double inverseScaleY(EggXWindow &wnd, int y);
   double invertX(EggXWindow &wnd, int x);
   double invertY(EggXWindow &wnd, int y);
-  //lÌŒÜ“ü double ¨ int
+  //å››æ¨äº”å…¥ double â†’ int
   int roundInt(double d)
   {
     return int(d+0.5-(d<0));
@@ -206,7 +207,7 @@ private:
   std::map<int, int> keytable;
 };
 
-// ƒOƒ[ƒoƒ‹•Ï”
+// ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°
 #ifdef CEGGX_MAIN
 CEggX gEggX;
 #else

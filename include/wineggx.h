@@ -1,24 +1,24 @@
-/**
+ï»¿/**
 * @file wineggx.h
-* @brief Windows”ÅEGGX
+* @brief Windowsç‰ˆEGGX
 * @section Notes
 *  Copyright (C) 2007-2014 Team ODENS \n\n
-* @date XV“ú XVÒ\n
-* 2019/02/XX ¡’J •Û” Version 2.0\n
-* 2014/10/16 ¡’J •Û”uWindows”ÅEGGX Version 1.0v‚ğ–¼æ‚é\n
-* 2014/03/12 ¡’J •Û”\n
+* @date æ›´æ–°æ—¥æ™‚ æ›´æ–°è€…\n
+* 2019/02/XX å‡è°· ä¿åš Version 2.0\n
+* 2014/10/16 å‡è°· ä¿åšã€ŒWindowsç‰ˆEGGX Version 1.0ã€ã‚’åä¹—ã‚‹\n
+* 2014/03/12 å‡è°· ä¿åš\n
 **/
 
 /**
 * @addtogroup wineggx wineggx-WinEggX
-* @brief Windows‚Åeggxƒ‰ƒCƒuƒ‰ƒŠ‚Ì‘ã‚í‚è‚ğ‚·‚é
+* @brief Windowsã§eggxãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®ä»£ã‚ã‚Šã‚’ã™ã‚‹
 **/
 
 #include <string>
 
-#define PENDOWN (0) ///< ƒyƒ“‚ğ‰º‚ë‚·
-#define PENUP   (1) ///< ƒyƒ“‚ğã‚°‚é
-#define PSET    (2) ///< ‚»‚Ìê‚É“_‚ğ‘Å‚Â
+#define PENDOWN (0) ///< ãƒšãƒ³ã‚’ä¸‹ã‚ã™
+#define PENUP   (1) ///< ãƒšãƒ³ã‚’ä¸Šã’ã‚‹
+#define PSET    (2) ///< ãã®å ´ã«ç‚¹ã‚’æ‰“ã¤
 
 #define LineSolid (0)
 #define LineOnOffDash (1)
@@ -26,14 +26,14 @@
 #define DISABLE (0)
 #define ENABLE  (-1)
 
-//ƒCƒxƒ“ƒg‚Ìí—Ş‚ğ•\‚·’è”iXlib‚É‡‚í‚¹‚Ä‚¢‚éj
+//ã‚¤ãƒ™ãƒ³ãƒˆã®ç¨®é¡ã‚’è¡¨ã™å®šæ•°ï¼ˆXlibã«åˆã‚ã›ã¦ã„ã‚‹ï¼‰
 #define KeyPress (2)
 #define ButtonPress (4)
 #define MotionNotify (6)
 #define EnterNotify (7)
 #define LeaveNotify (8)
 
-//ƒ}ƒEƒXŠÖŒW‚Ì’l‚ğ“¾‚é‘åˆæ•Ï”
+//ãƒã‚¦ã‚¹é–¢ä¿‚ã®å€¤ã‚’å¾—ã‚‹å¤§åŸŸå¤‰æ•°
 #ifdef WINEGGX_MAIN
 int windowId, mouseButton;
 double mouseX, mouseY;
@@ -45,691 +45,710 @@ extern bool mousePressed;
 #endif
 
 /**
-* @brief      ”CˆÓ‚ÌƒTƒCƒY‚ÌƒOƒ‰ƒtƒBƒbƒNƒX‰æ–Ê‚ğŠJ‚­
+* @brief      ä»»æ„ã®ã‚µã‚¤ã‚ºã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ç”»é¢ã‚’é–‹ã
 * @ingroup    wineggx
-* @param[in]  xsize ƒEƒBƒ“ƒhƒE‚Ì‰¡•
-* @param[in]  ysize ƒEƒBƒ“ƒhƒE‚Ìc•
-* @return     •Ô‚è’l‚É‚ÍEGGX‚Åg—p‚·‚éCƒEƒBƒ“ƒhƒE”Ô†‚ª•Ô‚Á‚Ä‚«‚Ü‚·D
-* @retval     -1 ƒGƒ‰[
+* @param[in]  xsize ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
+* @param[in]  ysize ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
+* @return     è¿”ã‚Šå€¤ã«ã¯EGGXã§ä½¿ç”¨ã™ã‚‹ï¼Œã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·ãŒè¿”ã£ã¦ãã¾ã™ï¼
+* @retval     -1 ã‚¨ãƒ©ãƒ¼
 */
 int gopen(int xsize,int ysize);
 
 /**
-* @brief      ƒOƒ‰ƒtƒBƒbƒNƒXƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚é
+* @brief      ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹
 * @ingroup    wineggx
-* @param[in]  wn ƒEƒBƒ“ƒhƒE”Ô†
+* @param[in]  wn ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
 */
 void gclose(int wn);
 
 /**
-* @brief      ‚·‚×‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒNƒX—pƒEƒBƒ“ƒhƒD‚ğ•Â‚¶‚é
+* @brief      ã™ã¹ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã‚’é–‰ã˜ã‚‹
 * @ingroup    wineggx
 */
 void gcloseall(void);
 
 /**
-* @brief      ƒOƒ‰ƒtƒBƒbƒNƒX•`‰æ—Ìˆæ‚ÌƒTƒCƒY•ÏX‚ğs‚È‚¤
+* @brief      ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹æç”»é ˜åŸŸã®ã‚µã‚¤ã‚ºå¤‰æ›´ã‚’è¡Œãªã†
 * @ingroup    wineggx
-* @param[in]  wn ƒEƒBƒ“ƒhƒE”Ô†
-* @param[in]  xsize ƒEƒBƒ“ƒhƒE‚Ì‰¡•
-* @param[in]  ysize ƒEƒBƒ“ƒhƒE‚Ìc•
+* @param[in]  wn ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
+* @param[in]  xsize ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
+* @param[in]  ysize ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
 */
 void gresize(int wn, int xsize, int ysize);
 
 /**
-* @brief      ƒEƒBƒ“ƒhƒD‚Ìƒ^ƒCƒgƒ‹‚ğ•ÏX‚·‚é
+* @brief      ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®ã‚¿ã‚¤ãƒˆãƒ«ã‚’å¤‰æ›´ã™ã‚‹
 * @ingroup    wineggx
-* @param[in]  wn ƒ^ƒCƒgƒ‹‚ğ•ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  ... İ’è‚·‚éƒEƒBƒ“ƒhƒE‚Ì•¶š—ñ
-* @return     İ’è‚µ‚½ƒEƒBƒ“ƒhƒDƒ^ƒCƒgƒ‹‚Ì•¶š—ñ‚Ì’·‚³
+* @param[in]  wn ã‚¿ã‚¤ãƒˆãƒ«ã‚’å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  ... è¨­å®šã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ–‡å­—åˆ—
+* @return     è¨­å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã‚¿ã‚¤ãƒˆãƒ«ã®æ–‡å­—åˆ—ã®é•·ã•
 */
 int winname(int wn, const char *argsformat, ...);
 
 /**
-* @brief      ywineggx“Æ©zƒEƒBƒ“ƒhƒD‚Ìƒ^ƒCƒgƒ‹‚ğ•ÏX‚·‚éistring”Åj
+* @brief      ã€wineggxç‹¬è‡ªã€‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®ã‚¿ã‚¤ãƒˆãƒ«ã‚’å¤‰æ›´ã™ã‚‹ï¼ˆstringç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn ƒ^ƒCƒgƒ‹‚ğ•ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  ... İ’è‚·‚éƒEƒBƒ“ƒhƒE‚Ì•¶š—ñ
-* @return     İ’è‚µ‚½ƒEƒBƒ“ƒhƒDƒ^ƒCƒgƒ‹‚Ì•¶š—ñ‚Ì’·‚³
+* @param[in]  wn ã‚¿ã‚¤ãƒˆãƒ«ã‚’å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  ... è¨­å®šã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ–‡å­—åˆ—
+* @return     è¨­å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã‚¿ã‚¤ãƒˆãƒ«ã®æ–‡å­—åˆ—ã®é•·ã•
 */
 int winname(int wn, const std::string argsformat, ...);
 
-//–¢À‘•
-//void coordinate(int wn, int xw, int yw, double xa, double ya, double xscale, double yscale);
+/**
+* @brief      ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ã®å¤‰æ›´ï¼ˆå‚ç…§ç‚¹ã®åº§æ¨™ã¨ã‚¹ã‚±ãƒ¼ãƒ«ã‚’ä¸ãˆã‚‹ï¼‰
+* @ingroup    wineggx
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  xw ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥åº§æ¨™ç³»ã«ãŠã‘ã‚‹å‚ç…§ç‚¹ã®xåº§æ¨™
+* @param[in]  yw ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥åº§æ¨™ç³»ã«ãŠã‘ã‚‹å‚ç…§ç‚¹ã®yåº§æ¨™
+* @param[in]  xa ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ã«ãŠã‘ã‚‹å‚ç…§ç‚¹ã®xåº§æ¨™
+* @param[in]  ya ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ã«ãŠã‘ã‚‹å‚ç…§ç‚¹ã®yåº§æ¨™
+* @param[in]  xscale xåº§æ¨™ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãƒ•ã‚¡ã‚¯ã‚¿ãƒ¼
+* @param[in]  yscale yåº§æ¨™ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãƒ•ã‚¡ã‚¯ã‚¿ãƒ¼
+* @section Notes
+*  wnã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ã‚’å¤‰æ›´ã™ã‚‹ï¼
+*  ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ä¸Šã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥åº§æ¨™ç³»(åº§æ¨™å€¤ã¯æ•´æ•°)ã¯ï¼Œå·¦ä¸‹ãŒ(0,0)ã§ï¼Œå³ä¸ŠãŒ(xsize-1,ysize-1)ã§ã‚ã‚Šï¼Œ
+*  ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»(åº§æ¨™å€¤ã¯å®Ÿæ•°)ã®åº§æ¨™å€¤ã¯ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥åº§æ¨™ç³»ã®ãã‚Œã«ä¸€è‡´ã—ã¦ã„ã‚‹ï¼
+*  coordinate()é–¢æ•°ã‚’ä½¿ã†äº‹ã«ã‚ˆã‚Šï¼Œã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ã®(xa,ya)ã‚’ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥åº§æ¨™ç³»ã®(xw,yw)ã«å¯¾å¿œã•ã›ï¼Œ
+*  ãã‚Œãã‚Œã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãƒ•ã‚¡ã‚¯ã‚¿ãƒ¼ã‚’xscaleï¼Œyscaleã§æŒ‡å®šã™ã‚‹ï¼ã™ãªã‚ã¡ï¼Œæç”»é–¢æ•°ç­‰ã«ãŠã‘ã‚‹
+*  ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™(x, y)ã‹ã‚‰ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥åº§æ¨™(x', y')ã¸ã®å¤‰æ›ã¯ï¼Œæ¬¡ã®å¼ã«ã‚ˆã‚Šè¡Œãªã‚ã‚Œã‚‹ã“ã¨ã‚’æ„å‘³ã™ã‚‹ï¼
+*    x' = xw + (xâˆ’xa)*xscale
+*    y' = yw + (yâˆ’ya)*yscale
+*/
+void coordinate(int wn, int xw, int yw, double xa, double ya, double xscale, double yscale);
 
 /**
-* @brief      À•WŒn‚Ì•ÏX
+* @brief      åº§æ¨™ç³»ã®å¤‰æ›´
 * @ingroup    wineggx
-* @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  xs ¶‰º‚ÌXÀ•W
-* @param[in]  ys ¶‰º‚ÌYÀ•W
-* @param[in]  xe ‰Eã‚ÌXÀ•W
-* @param[in]  ye ‰Eã‚ÌYÀ•W
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  xs å·¦ä¸‹ã®Xåº§æ¨™
+* @param[in]  ys å·¦ä¸‹ã®Yåº§æ¨™
+* @param[in]  xe å³ä¸Šã®Xåº§æ¨™
+* @param[in]  ye å³ä¸Šã®Yåº§æ¨™
 */
 void window(int wn, double xs, double ys, double xe, double ye);
 
 /**
-* @brief      ƒŒƒCƒ„‚Ìİ’è‚ğ‚·‚é
+* @brief      ãƒ¬ã‚¤ãƒ¤ã®è¨­å®šã‚’ã™ã‚‹
 * @ingroup    wineggx
-* @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  lys •\¦ƒŒƒCƒ„[( 0 or 1 )
-* @param[in]  lyw ‘‚«‚İæƒŒƒCƒ„[( 0 or 1 )
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  lys è¡¨ç¤ºãƒ¬ã‚¤ãƒ¤ãƒ¼( 0 or 1 )
+* @param[in]  lyw æ›¸ãè¾¼ã¿å…ˆãƒ¬ã‚¤ãƒ¤ãƒ¼( 0 or 1 )
 * @section Notes
-*  Œ»İ•\¦‚µ‚Ä‚¢‚éƒŒƒCƒ„‚É‘Î‚µ‚Ä(lys == lyw ‚Ìê‡‚É) ˜A‘±‚µ‚Ä•`‰æŠÖ”‚ğÀs‚·‚é‚ÆC—Ç‚¢•`‰æƒp
-*  ƒtƒH[ƒ}ƒ“ƒX‚ª“¾‚ç‚ê‚Ü‚¹‚ñD‚‘¬‚È•`‰æ‚ª•K—v‚Èê‡‚É‚ÍCŒ»İ•\¦‚µ‚Ä‚¢‚È‚¢ƒŒƒCƒ„‚É‘Î‚µ‚Ä•`‰æ‚µC
-*  ÅŒã‚É•\¦ƒŒƒCƒ„‚ğlayer() ŠÖ”‚ÅØ‚è‘Ö‚¦‚é‚©Ccopylayer() ŠÖ”(x2.5.10) ‚Å•`‰æƒŒƒCƒ„‚Ì‰æ‘œ‚ğ•\
-*  ¦ƒŒƒCƒ„‚ÉƒRƒs[‚·‚é‚æ‚¤‚É‚µ‚Ü‚·D\n
-*  ƒfƒtƒHƒ‹ƒg‚Å‚Ílayer(wn,0,0) ‚Ìó‘Ô‚Æ‚È‚Á‚Ä‚¢‚Ü‚·D
+*  ç¾åœ¨è¡¨ç¤ºã—ã¦ã„ã‚‹ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦(lys == lyw ã®å ´åˆã«) é€£ç¶šã—ã¦æç”»é–¢æ•°ã‚’å®Ÿè¡Œã™ã‚‹ã¨ï¼Œè‰¯ã„æç”»ãƒ‘
+*  ãƒ•ã‚©ãƒ¼ãƒãƒ³ã‚¹ãŒå¾—ã‚‰ã‚Œã¾ã›ã‚“ï¼é«˜é€Ÿãªæç”»ãŒå¿…è¦ãªå ´åˆã«ã¯ï¼Œç¾åœ¨è¡¨ç¤ºã—ã¦ã„ãªã„ãƒ¬ã‚¤ãƒ¤ã«å¯¾ã—ã¦æç”»ã—ï¼Œ
+*  æœ€å¾Œã«è¡¨ç¤ºãƒ¬ã‚¤ãƒ¤ã‚’layer() é–¢æ•°ã§åˆ‡ã‚Šæ›¿ãˆã‚‹ã‹ï¼Œcopylayer() é–¢æ•°(x2.5.10) ã§æç”»ãƒ¬ã‚¤ãƒ¤ã®ç”»åƒã‚’è¡¨
+*  ç¤ºãƒ¬ã‚¤ãƒ¤ã«ã‚³ãƒ”ãƒ¼ã™ã‚‹ã‚ˆã†ã«ã—ã¾ã™ï¼\n
+*  ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯layer(wn,0,0) ã®çŠ¶æ…‹ã¨ãªã£ã¦ã„ã¾ã™ï¼
 */
 void layer(int wn, int lys, int lyw);
 
 /**
-* @brief      ƒŒƒCƒ„‚ÌƒRƒs[‚ğ‚·‚é
+* @brief      ãƒ¬ã‚¤ãƒ¤ã®ã‚³ãƒ”ãƒ¼ã‚’ã™ã‚‹
 * @ingroup    wineggx
-* @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  lysrc  ƒRƒs[Œ³ƒŒƒCƒ„[”Ô†
-* @param[in]  lydest ƒRƒs[æƒŒƒCƒ„[”Ô†
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  lysrc  ã‚³ãƒ”ãƒ¼å…ƒãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+* @param[in]  lydest ã‚³ãƒ”ãƒ¼å…ˆãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
 * @section Notes
-*  wn ‚ÌƒEƒBƒ“ƒhƒE”Ô†‚ÌCƒŒƒCƒ„lysrc ‚Ì‰æ‘œ‚ğƒŒƒCƒ„lydest ‚É‚»‚Ì‚Ü‚ÜƒRƒs[‚µ‚Ü‚·D
-*  ‚±‚ÌƒRƒs[‚Íu‚És‚í‚ê‚é‚½‚ßCƒAƒjƒ[ƒVƒ‡ƒ“‚ÌÄ¶‚Ég‚¤‚±‚Æ‚ª‚Å‚«‚Ü‚·D
+*  wn ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·ã®ï¼Œãƒ¬ã‚¤ãƒ¤lysrc ã®ç”»åƒã‚’ãƒ¬ã‚¤ãƒ¤lydest ã«ãã®ã¾ã¾ã‚³ãƒ”ãƒ¼ã—ã¾ã™ï¼
+*  ã“ã®ã‚³ãƒ”ãƒ¼ã¯ç¬æ™‚ã«è¡Œã‚ã‚Œã‚‹ãŸã‚ï¼Œã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®å†ç”Ÿã«ä½¿ã†ã“ã¨ãŒã§ãã¾ã™ï¼
 */
 void copylayer(int wn, int lysrc, int lydest);
 
 /**
-* @brief      ƒEƒBƒ“ƒhƒD‚Ì”wŒiF‚Ì•ÏX
+* @brief      ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®èƒŒæ™¯è‰²ã®å¤‰æ›´
 * @ingroup    wineggx
-* @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  argsformat, ... F‚ğ•\‚·•¶š—ñ
-*  wn ‚Åw’è‚³‚ê‚½ƒEƒBƒ“ƒhƒD‚Ì”wŒiF‚ğ•ÏX‚µ‚Ü‚·Dargsformat(‚Æ‚»‚ê‚É‘±‚­ˆø”)‚Åw’è‚³‚ê‚é•¶š—ñ‚ğ
-*  ”wŒiF‚Éİ’è‚µ‚Ü‚·D2‚Â‚ß‚Ìˆø”argsformatˆÈ~‚ÍCC •W€ŠÖ”‚Ìprintf() ŠÖ”‚Ìê‡‚Æ“¯—l‚Ì‰Â•Ïˆø”
-*  ‚Æ‚È‚Á‚Ä‚¢‚Ü‚·D‚±‚Ì”wŒiF‚Ì•¶š—ñ‚É‚ÍCXƒEƒBƒ“ƒhƒE‚Å’è‹`‚³‚ê‚Ä‚¢‚éF‚©C"#c0c0ff"‚Ì‚æ‚¤‚ÉC16i”
-*  ‚ÌRed,Green,Blue ‚ğw’è‚µ‚Ü‚·D
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  argsformat, ... è‰²ã‚’è¡¨ã™æ–‡å­—åˆ—
+*  wn ã§æŒ‡å®šã•ã‚ŒãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®èƒŒæ™¯è‰²ã‚’å¤‰æ›´ã—ã¾ã™ï¼argsformat(ã¨ãã‚Œã«ç¶šãå¼•æ•°)ã§æŒ‡å®šã•ã‚Œã‚‹æ–‡å­—åˆ—ã‚’
+*  èƒŒæ™¯è‰²ã«è¨­å®šã—ã¾ã™ï¼2ã¤ã‚ã®å¼•æ•°argsformatä»¥é™ã¯ï¼ŒC æ¨™æº–é–¢æ•°ã®printf() é–¢æ•°ã®å ´åˆã¨åŒæ§˜ã®å¯å¤‰å¼•æ•°
+*  ã¨ãªã£ã¦ã„ã¾ã™ï¼ã“ã®èƒŒæ™¯è‰²ã®æ–‡å­—åˆ—ã«ã¯ï¼ŒXã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§å®šç¾©ã•ã‚Œã¦ã„ã‚‹è‰²ã‹ï¼Œ"#c0c0ff"ã®ã‚ˆã†ã«ï¼Œ16é€²æ•°
+*  ã®Red,Green,Blue ã‚’æŒ‡å®šã—ã¾ã™ï¼
 */
 void gsetbgcolor(int wn, const char *argsformat, ...);
 
 /**
-* @brief      ywineggx“Æ©zƒEƒBƒ“ƒhƒD‚Ì”wŒiF‚Ì•ÏXistring”Åj
+* @brief      ã€wineggxç‹¬è‡ªã€‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®èƒŒæ™¯è‰²ã®å¤‰æ›´ï¼ˆstringç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  argsformat, ... F‚ğ•\‚·•¶š—ñ
-*  wn ‚Åw’è‚³‚ê‚½ƒEƒBƒ“ƒhƒD‚Ì”wŒiF‚ğ•ÏX‚µ‚Ü‚·Dargsformat(‚Æ‚»‚ê‚É‘±‚­ˆø”)‚Åw’è‚³‚ê‚é•¶š—ñ‚ğ
-*  ”wŒiF‚Éİ’è‚µ‚Ü‚·D2‚Â‚ß‚Ìˆø”argsformatˆÈ~‚ÍCC •W€ŠÖ”‚Ìprintf() ŠÖ”‚Ìê‡‚Æ“¯—l‚Ì‰Â•Ïˆø”
-*  ‚Æ‚È‚Á‚Ä‚¢‚Ü‚·D‚±‚Ì”wŒiF‚Ì•¶š—ñ‚É‚ÍCXƒEƒBƒ“ƒhƒE‚Å’è‹`‚³‚ê‚Ä‚¢‚éF‚©C"#c0c0ff"‚Ì‚æ‚¤‚ÉC16i”
-*  ‚ÌRed,Green,Blue ‚ğw’è‚µ‚Ü‚·D
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  argsformat, ... è‰²ã‚’è¡¨ã™æ–‡å­—åˆ—
+*  wn ã§æŒ‡å®šã•ã‚ŒãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®èƒŒæ™¯è‰²ã‚’å¤‰æ›´ã—ã¾ã™ï¼argsformat(ã¨ãã‚Œã«ç¶šãå¼•æ•°)ã§æŒ‡å®šã•ã‚Œã‚‹æ–‡å­—åˆ—ã‚’
+*  èƒŒæ™¯è‰²ã«è¨­å®šã—ã¾ã™ï¼2ã¤ã‚ã®å¼•æ•°argsformatä»¥é™ã¯ï¼ŒC æ¨™æº–é–¢æ•°ã®printf() é–¢æ•°ã®å ´åˆã¨åŒæ§˜ã®å¯å¤‰å¼•æ•°
+*  ã¨ãªã£ã¦ã„ã¾ã™ï¼ã“ã®èƒŒæ™¯è‰²ã®æ–‡å­—åˆ—ã«ã¯ï¼ŒXã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§å®šç¾©ã•ã‚Œã¦ã„ã‚‹è‰²ã‹ï¼Œ"#c0c0ff"ã®ã‚ˆã†ã«ï¼Œ16é€²æ•°
+*  ã®Red,Green,Blue ã‚’æŒ‡å®šã—ã¾ã™ï¼
 */
 void gsetbgcolor(int wn, const std::string argsformat, ...);
 
 /**
-* @brief      ywineggx“Æ©zƒEƒBƒ“ƒhƒD‚Ì”wŒiF‚Ì•ÏX
+* @brief      ã€wineggxç‹¬è‡ªã€‘ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®èƒŒæ™¯è‰²ã®å¤‰æ›´
 * @ingroup    wineggx
-* @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  r  ÔF ( 0 to 255 )
-* @param[in]  g  —ÎF ( 0 to 255 )
-* @param[in]  b  ÂF ( 0 to 255 )
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  r  èµ¤è‰² ( 0 to 255 )
+* @param[in]  g  ç·‘è‰² ( 0 to 255 )
+* @param[in]  b  é’è‰² ( 0 to 255 )
 * @section Notes
-*  wn ‚Åw’è‚³‚ê‚½ƒEƒBƒ“ƒhƒD‚Ì”wŒiF‚ğ•ÏX‚µ‚Ü‚·Dr,g,b ‚É‚Í‚»‚ê‚¼‚êRed,Green,Blue ‚Ì‹P“x‚ğ
-*  256 ’iŠK‚Ì®”(0`255) ‚Åw’è‚µ‚Ü‚·D
+*  wn ã§æŒ‡å®šã•ã‚ŒãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®èƒŒæ™¯è‰²ã‚’å¤‰æ›´ã—ã¾ã™ï¼r,g,b ã«ã¯ãã‚Œãã‚ŒRed,Green,Blue ã®è¼åº¦ã‚’
+*  256 æ®µéšã®æ•´æ•°(0ï½255) ã§æŒ‡å®šã—ã¾ã™ï¼
 */
 void gsetbgcolorrgb(int wn, int r, int g, int b);
 
 /**
-* @brief      •`‰æƒŒƒCƒ„‚Ì‘SÁ‹
+* @brief      æç”»ãƒ¬ã‚¤ãƒ¤ã®å…¨æ¶ˆå»
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚Ì•`‰æƒŒƒCƒ„‚ğ”wŒiF‚Éw’è‚³‚ê‚½F‚Å‰Šú‰»‚µ‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®æç”»ãƒ¬ã‚¤ãƒ¤ã‚’èƒŒæ™¯è‰²ã«æŒ‡å®šã•ã‚ŒãŸè‰²ã§åˆæœŸåŒ–ã—ã¾ã™ï¼
 */
 void gclr(int wn);
 
 /**
-* @brief      ’[––‚ÌƒNƒŠƒA
+* @brief      ç«¯æœ«ã®ã‚¯ãƒªã‚¢
 * @ingroup    wineggx
 * @section Notes
-*  ’[––‚ğƒNƒŠƒA‚µCƒJ[ƒ\ƒ‹‚ÌˆÊ’u‚ğƒz[ƒ€ƒ|ƒWƒVƒ‡ƒ“‚É–ß‚·D
+*  ç«¯æœ«ã‚’ã‚¯ãƒªã‚¢ã—ï¼Œã‚«ãƒ¼ã‚½ãƒ«ã®ä½ç½®ã‚’ãƒ›ãƒ¼ãƒ ãƒã‚¸ã‚·ãƒ§ãƒ³ã«æˆ»ã™ï¼
 */
 void tclr(void);
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //void newpen(int wn, int cn);
 
 /**
-* @brief      •`‰æF‚Ì•ÏX
+* @brief      æç”»è‰²ã®å¤‰æ›´
 * @ingroup    wineggx
-* @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  argsformat, ... F‚ğ•\‚·•¶š—ñ
-*  wn ‚Åw’è‚³‚ê‚½ƒEƒBƒ“ƒhƒD‚Å‚Ì•`‰æF‚ğ•ÏX‚µ‚Ü‚·Dargsformat(‚Æ‚»‚ê‚É‘±‚­ˆø”)‚Åw’è‚³‚ê‚é•¶š—ñ‚ğ
-*  ”wŒiF‚Éİ’è‚µ‚Ü‚·D2‚Â‚ß‚Ìˆø”argsformatˆÈ~‚ÍCC •W€ŠÖ”‚Ìprintf() ŠÖ”‚Ìê‡‚Æ“¯—l‚Ì‰Â•Ïˆø”
-*  ‚Æ‚È‚Á‚Ä‚¢‚Ü‚·D‚±‚Ì”wŒiF‚Ì•¶š—ñ‚É‚ÍCXƒEƒBƒ“ƒhƒE‚Å’è‹`‚³‚ê‚Ä‚¢‚éF‚©C"#c0c0ff"‚Ì‚æ‚¤‚ÉC16i”
-*  ‚ÌRed,Green,Blue ‚ğw’è‚µ‚Ü‚·D
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  argsformat, ... è‰²ã‚’è¡¨ã™æ–‡å­—åˆ—
+*  wn ã§æŒ‡å®šã•ã‚ŒãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ã®æç”»è‰²ã‚’å¤‰æ›´ã—ã¾ã™ï¼argsformat(ã¨ãã‚Œã«ç¶šãå¼•æ•°)ã§æŒ‡å®šã•ã‚Œã‚‹æ–‡å­—åˆ—ã‚’
+*  èƒŒæ™¯è‰²ã«è¨­å®šã—ã¾ã™ï¼2ã¤ã‚ã®å¼•æ•°argsformatä»¥é™ã¯ï¼ŒC æ¨™æº–é–¢æ•°ã®printf() é–¢æ•°ã®å ´åˆã¨åŒæ§˜ã®å¯å¤‰å¼•æ•°
+*  ã¨ãªã£ã¦ã„ã¾ã™ï¼ã“ã®èƒŒæ™¯è‰²ã®æ–‡å­—åˆ—ã«ã¯ï¼ŒXã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§å®šç¾©ã•ã‚Œã¦ã„ã‚‹è‰²ã‹ï¼Œ"#c0c0ff"ã®ã‚ˆã†ã«ï¼Œ16é€²æ•°
+*  ã®Red,Green,Blue ã‚’æŒ‡å®šã—ã¾ã™ï¼
 */
 void newcolor(int wn, const char *argsformat, ...);
 
 /**
-* @brief      ywineggx“Æ©z•`‰æF‚Ì•ÏXistring”Åj
+* @brief      ã€wineggxç‹¬è‡ªã€‘æç”»è‰²ã®å¤‰æ›´ï¼ˆstringç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  argsformat, ... F‚ğ•\‚·•¶š—ñ
-*  wn ‚Åw’è‚³‚ê‚½ƒEƒBƒ“ƒhƒD‚Å‚Ì•`‰æF‚ğ•ÏX‚µ‚Ü‚·Dargsformat(‚Æ‚»‚ê‚É‘±‚­ˆø”)‚Åw’è‚³‚ê‚é•¶š—ñ‚ğ
-*  ”wŒiF‚Éİ’è‚µ‚Ü‚·D2‚Â‚ß‚Ìˆø”argsformatˆÈ~‚ÍCC •W€ŠÖ”‚Ìprintf() ŠÖ”‚Ìê‡‚Æ“¯—l‚Ì‰Â•Ïˆø”
-*  ‚Æ‚È‚Á‚Ä‚¢‚Ü‚·D‚±‚Ì”wŒiF‚Ì•¶š—ñ‚É‚ÍCXƒEƒBƒ“ƒhƒE‚Å’è‹`‚³‚ê‚Ä‚¢‚éF‚©C"#c0c0ff"‚Ì‚æ‚¤‚ÉC16i”
-*  ‚ÌRed,Green,Blue ‚ğw’è‚µ‚Ü‚·D
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  argsformat, ... è‰²ã‚’è¡¨ã™æ–‡å­—åˆ—
+*  wn ã§æŒ‡å®šã•ã‚ŒãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ã®æç”»è‰²ã‚’å¤‰æ›´ã—ã¾ã™ï¼argsformat(ã¨ãã‚Œã«ç¶šãå¼•æ•°)ã§æŒ‡å®šã•ã‚Œã‚‹æ–‡å­—åˆ—ã‚’
+*  èƒŒæ™¯è‰²ã«è¨­å®šã—ã¾ã™ï¼2ã¤ã‚ã®å¼•æ•°argsformatä»¥é™ã¯ï¼ŒC æ¨™æº–é–¢æ•°ã®printf() é–¢æ•°ã®å ´åˆã¨åŒæ§˜ã®å¯å¤‰å¼•æ•°
+*  ã¨ãªã£ã¦ã„ã¾ã™ï¼ã“ã®èƒŒæ™¯è‰²ã®æ–‡å­—åˆ—ã«ã¯ï¼ŒXã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã§å®šç¾©ã•ã‚Œã¦ã„ã‚‹è‰²ã‹ï¼Œ"#c0c0ff"ã®ã‚ˆã†ã«ï¼Œ16é€²æ•°
+*  ã®Red,Green,Blue ã‚’æŒ‡å®šã—ã¾ã™ï¼
 */
 void newcolor(int wn, const std::string argsformat, ...);
 
 /**
-* @brief      •`‰æF‚Ì•ÏX
+* @brief      æç”»è‰²ã®å¤‰æ›´
 * @ingroup    wineggx
-* @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  r  ÔF ( 0 to 255 )
-* @param[in]  g  —ÎF ( 0 to 255 )
-* @param[in]  b  ÂF ( 0 to 255 )
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  r  èµ¤è‰² ( 0 to 255 )
+* @param[in]  g  ç·‘è‰² ( 0 to 255 )
+* @param[in]  b  é’è‰² ( 0 to 255 )
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚Å‚Ì•`‰æF‚ğ•ÏX‚µ‚Ü‚·Dr,g,b ‚É‚Í‚»‚ê‚¼‚êRed,Green,Blue ‚Ì‹P“x‚ğ
-*  256 ’iŠK‚Ì®”(0`255) ‚Åw’è‚µ‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ã®æç”»è‰²ã‚’å¤‰æ›´ã—ã¾ã™ï¼r,g,b ã«ã¯ãã‚Œãã‚ŒRed,Green,Blue ã®è¼åº¦ã‚’
+*  256 æ®µéšã®æ•´æ•°(0ï½255) ã§æŒ‡å®šã—ã¾ã™ï¼
 */
 void newrgbcolor(int wn, int r, int g, int b);
 
 /**
-* @brief      •`‰æF‚Ì•ÏX
+* @brief      æç”»è‰²ã®å¤‰æ›´
 * @ingroup    wineggx
-* @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  h  F‘Š ( 0 to 359 )
-* @param[in]  s  Ê“x ( 0 to 255 )
-* @param[in]  v  –¾“x ( 0 to 255 )
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  h  è‰²ç›¸ ( 0 to 359 )
+* @param[in]  s  å½©åº¦ ( 0 to 255 )
+* @param[in]  v  æ˜åº¦ ( 0 to 255 )
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚Å‚Ì•`‰æF‚ğ•ÏX‚µ‚Ü‚·Dh,s,v ‚É‚Í‚»‚ê‚¼‚êCHue,Satulation,Value‚ğ
-*  w’è‚µ‚Ü‚·)Ds‚Æv‚Í256’iŠK‚Ì®”(0`255)‚ğCh‚Í0`359‚Ü‚Å‚Ì®”(Šp“x)‚ğw’è‚µ‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ã®æç”»è‰²ã‚’å¤‰æ›´ã—ã¾ã™ï¼h,s,v ã«ã¯ãã‚Œãã‚Œï¼ŒHue,Satulation,Valueã‚’
+*  æŒ‡å®šã—ã¾ã™)ï¼sã¨vã¯256æ®µéšã®æ•´æ•°(0ï½255)ã‚’ï¼Œhã¯0ï½359ã¾ã§ã®æ•´æ•°(è§’åº¦)ã‚’æŒ‡å®šã—ã¾ã™ï¼
 */
 void newhsvcolor(int wn, int h, int s, int v);
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //int makecolor(int cmode, double dmin, double dmax, double data, int *r, int *g, int *b);
 
 /**
-* @brief      ü•‚Ì•ÏX
+* @brief      ç·šå¹…ã®å¤‰æ›´
 * @ingroup    wineggx
-* @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  width ü•
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  width ç·šå¹…
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚Åü‚ğ•`‚­‚Ìü•‚ğ•ÏX‚µ‚Ü‚·D
-*  ƒfƒtƒHƒ‹ƒg‚Å‚Í•1 ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ç·šã‚’æãæ™‚ã®ç·šå¹…ã‚’å¤‰æ›´ã—ã¾ã™ï¼
+*  ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯å¹…1 ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã™ï¼
 */
 void newlinewidth( int wn, int width );
 
 /**
-* @brief      ü‚ÌƒXƒ^ƒCƒ‹‚Ì•ÏX
+* @brief      ç·šã®ã‚¹ã‚¿ã‚¤ãƒ«ã®å¤‰æ›´
 * @ingroup    wineggx
-* @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  style ü‚ÌƒXƒ^ƒCƒ‹
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  style ç·šã®ã‚¹ã‚¿ã‚¤ãƒ«
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚Åü‚ğ•`‚­‚ÌƒXƒ^ƒCƒ‹‚ğ•ÏX‚µ‚Ü‚·D
-*  ˆø”style ‚É—^‚¦‚é–‚ª‚Å‚«‚é’l‚ÍCLineSolid(Àü) ‚ÆLineOnOffDash(“_ü) ‚Å‚·D
-*  ƒfƒtƒHƒ‹ƒg‚Å‚ÍÀü(LineSolid) ‚ªİ’è‚³‚ê‚Ä‚¢‚Ü‚·D
-*  Windows API‚Ìd—lãCLineSolid‚Íü•1ˆÈ‰º‚Å‚È‚¢‚Æ—LŒø‚Å‚È‚¢D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ç·šã‚’æãæ™‚ã®ã‚¹ã‚¿ã‚¤ãƒ«ã‚’å¤‰æ›´ã—ã¾ã™ï¼
+*  å¼•æ•°style ã«ä¸ãˆã‚‹äº‹ãŒã§ãã‚‹å€¤ã¯ï¼ŒLineSolid(å®Ÿç·š) ã¨LineOnOffDash(ç‚¹ç·š) ã§ã™ï¼
+*  ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã¯å®Ÿç·š(LineSolid) ãŒè¨­å®šã•ã‚Œã¦ã„ã¾ã™ï¼
+*  Windows APIã®ä»•æ§˜ä¸Šï¼ŒLineSolidã¯ç·šå¹…1ä»¥ä¸‹ã§ãªã„ã¨æœ‰åŠ¹ã§ãªã„ï¼
 */
 void newlinestyle( int wn, int style );
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //void newgcfunction(int wn, int fnc);
 
 /**
-* @brief      “_‚Ì•`‰æ
+* @brief      ç‚¹ã®æç”»
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x,y À•W
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x,y åº§æ¨™
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚É“_‚ğ•`‰æ‚µ‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã«ç‚¹ã‚’æç”»ã—ã¾ã™ï¼
 */
 void pset(int wn, double x, double y);
 
 /**
-* @brief      ’¼ü‚Ì•`‰æ
+* @brief      ç›´ç·šã®æç”»
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x0,y0 ’[“_‚ÌÀ•W
-* @param[in]  x1,y1 ’[“_‚ÌÀ•W
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x0,y0 ç«¯ç‚¹ã®åº§æ¨™
+* @param[in]  x1,y1 ç«¯ç‚¹ã®åº§æ¨™
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚Ì(x0, y0) ‚©‚ç(x1, y1) ‚É’¼ü‚ğ•`‰æ‚µ‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®(x0, y0) ã‹ã‚‰(x1, y1) ã«ç›´ç·šã‚’æç”»ã—ã¾ã™ï¼
 */
 void drawline(int wn, double x0, double y0, double x1, double y1);
 
 /**
-* @brief      ’¼ü‚ğ•`‚­‚½‚ß‚Ì‰ŠúˆÊ’u‚Ìİ’è
+* @brief      ç›´ç·šã‚’æããŸã‚ã®åˆæœŸä½ç½®ã®è¨­å®š
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x,y •`‰ææÀ•W
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x,y æç”»å…ˆåº§æ¨™
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÉClineto() ŠÖ”‚Ì‚½‚ß‚Ì‰ŠúˆÊ’u‚ğ(x, y) ‚Éİ’è‚µ‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã«ï¼Œlineto() é–¢æ•°ã®ãŸã‚ã®åˆæœŸä½ç½®ã‚’(x, y) ã«è¨­å®šã—ã¾ã™ï¼
 */
 void moveto(int wn, double x, double y);
 
 /**
-* @brief      ˜A‘±“I‚É’¼ü‚ğ•`‚­
+* @brief      é€£ç¶šçš„ã«ç›´ç·šã‚’æã
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x,y À•W
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x,y åº§æ¨™
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÉCˆÈ‘Omoveto()‚Ü‚½‚Ílineto() ‚ªŒÄ‚Î‚ê‚½‚Éw’è‚³‚ê‚½À•W‚©‚ç
-*  (x, y) ‚Ö’¼ü‚ğˆø‚«‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã«ï¼Œä»¥å‰moveto()ã¾ãŸã¯lineto() ãŒå‘¼ã°ã‚ŒãŸæ™‚ã«æŒ‡å®šã•ã‚ŒãŸåº§æ¨™ã‹ã‚‰
+*  (x, y) ã¸ç›´ç·šã‚’å¼•ãã¾ã™ï¼
 */
 void lineto(int wn, double x, double y);
 
 /**
-* @brief      ’¼ü‚Ì•`‰æ
+* @brief      ç›´ç·šã®æç”»
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x,y •`‰ææÀ•W
-* @param[in]  mode •`‰æƒ‚[ƒh
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x,y æç”»å…ˆåº§æ¨™
+* @param[in]  mode æç”»ãƒ¢ãƒ¼ãƒ‰
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚É’¼ü‚ğ•`‰æ‚µ‚Ü‚·D
-*  mode ‚É @ref PENDOWN ‚ğw’è‚·‚é‚ÆˆÈ‘Oline() ŠÖ”‚ªŒÄ‚Î‚ê‚½“_‚©‚çC
-*  (x,y) ‚Ö’¼ü‚ğˆø‚«‚Ü‚·Dmode ‚ÉPENUP ‚ğw’è‚·‚é‚Æ(x,y) ‚ğ
-*  line() ŠÖ”‚Ì‰ŠúˆÊ’u‚Éİ’è‚µ‚Ü‚·Dmode=PENDOWN ‚Åƒyƒ“‚ğ‰º‚ë‚µ‚Ä
-*  •`‰æCmode=PENUP ‚Åƒyƒ“‚ğã‚°‚ÄˆÚ“®‚Æl‚¦‚é‚Æ‚í‚©‚è‚â‚·‚¢‚Å‚µ‚å‚¤D
-*   ‚Ü‚½Cmode=PSET ‚Ìê‡‚Í(x,y) ‚É“_‚ğ•`‚«Cƒyƒ“‚ÌˆÊ’u‚ªXV‚³‚ê‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã«ç›´ç·šã‚’æç”»ã—ã¾ã™ï¼
+*  mode ã« @ref PENDOWN ã‚’æŒ‡å®šã™ã‚‹ã¨ä»¥å‰line() é–¢æ•°ãŒå‘¼ã°ã‚ŒãŸç‚¹ã‹ã‚‰ï¼Œ
+*  (x,y) ã¸ç›´ç·šã‚’å¼•ãã¾ã™ï¼mode ã«PENUP ã‚’æŒ‡å®šã™ã‚‹ã¨(x,y) ã‚’
+*  line() é–¢æ•°ã®åˆæœŸä½ç½®ã«è¨­å®šã—ã¾ã™ï¼mode=PENDOWN ã§ãƒšãƒ³ã‚’ä¸‹ã‚ã—ã¦
+*  æç”»ï¼Œmode=PENUP ã§ãƒšãƒ³ã‚’ä¸Šã’ã¦ç§»å‹•ã¨è€ƒãˆã‚‹ã¨ã‚ã‹ã‚Šã‚„ã™ã„ã§ã—ã‚‡ã†ï¼
+*   ã¾ãŸï¼Œmode=PSET ã®å ´åˆã¯(x,y) ã«ç‚¹ã‚’æãï¼Œãƒšãƒ³ã®ä½ç½®ãŒæ›´æ–°ã•ã‚Œã¾ã™ï¼
 */
 void line(int wn, double x, double y, int mode);
 
 /**
-* @brief      •¡”‚Ì“_‚ğ•`‚­idouble”Åj
+* @brief      è¤‡æ•°ã®ç‚¹ã‚’æãï¼ˆdoubleç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x[] Še“_‚ÌxÀ•W
-* @param[in]  y[] Še“_‚ÌyÀ•W
-* @param[in]  n “_‚Ì”
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x[] å„ç‚¹ã®xåº§æ¨™
+* @param[in]  y[] å„ç‚¹ã®yåº§æ¨™
+* @param[in]  n ç‚¹ã®æ•°
 * @section Notes
-*  nŒÂ‚Ì“_‚ğ•`‚­D
-*  xCy‚ÍnŒÂ‚ÌÀ”‚ÌˆêŸŒ³”z—ñ‚ÅCx[0]`x[n-1]Cy[0]`y[n-1]‚ÉŠe“_‚ÌÀ•W‚ğ“ü‚ê‚Ä‚¨‚­D
+*  nå€‹ã®ç‚¹ã‚’æãï¼
+*  xï¼Œyã¯nå€‹ã®å®Ÿæ•°ã®ä¸€æ¬¡å…ƒé…åˆ—ã§ï¼Œx[0]ï½x[n-1]ï¼Œy[0]ï½y[n-1]ã«å„ç‚¹ã®åº§æ¨™ã‚’å…¥ã‚Œã¦ãŠãï¼
 */
 void drawpts(int wn, const double x[], const double y[], int n);
 
 /**
-* @brief      •¡”‚Ì“_‚ğ•`‚­ifloat”Åj
+* @brief      è¤‡æ•°ã®ç‚¹ã‚’æãï¼ˆfloatç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x[] Še“_‚ÌxÀ•W
-* @param[in]  y[] Še“_‚ÌyÀ•W
-* @param[in]  n “_‚Ì”
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x[] å„ç‚¹ã®xåº§æ¨™
+* @param[in]  y[] å„ç‚¹ã®yåº§æ¨™
+* @param[in]  n ç‚¹ã®æ•°
 * @section Notes
-*  nŒÂ‚Ì“_‚ğ•`‚­D
-*  xCy‚ÍnŒÂ‚ÌÀ”‚ÌˆêŸŒ³”z—ñ‚ÅCx[0]`x[n-1]Cy[0]`y[n-1]‚ÉŠe“_‚ÌÀ•W‚ğ“ü‚ê‚Ä‚¨‚­D
+*  nå€‹ã®ç‚¹ã‚’æãï¼
+*  xï¼Œyã¯nå€‹ã®å®Ÿæ•°ã®ä¸€æ¬¡å…ƒé…åˆ—ã§ï¼Œx[0]ï½x[n-1]ï¼Œy[0]ï½y[n-1]ã«å„ç‚¹ã®åº§æ¨™ã‚’å…¥ã‚Œã¦ãŠãï¼
 */
 void drawpts(int wn, const float x[], const float y[], int n);
 
 /**
-* @brief      Ü‚êü‚ğ•`‚­idouble”Åj
+* @brief      æŠ˜ã‚Œç·šã‚’æãï¼ˆdoubleç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x[] Ü‚êü‚ÌŠe“_‚ÌxÀ•W
-* @param[in]  y[] Ü‚êü‚ÌŠe“_‚ÌyÀ•W
-* @param[in]  n “_‚Ì”
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x[] æŠ˜ã‚Œç·šã®å„ç‚¹ã®xåº§æ¨™
+* @param[in]  y[] æŠ˜ã‚Œç·šã®å„ç‚¹ã®yåº§æ¨™
+* @param[in]  n ç‚¹ã®æ•°
 * @section Notes
-*  wn‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÅCÜ‚êü‚ğ•`‚­D
-*  xCy‚ÍnŒÂ‚ÌÀ”‚ÌˆêŸŒ³”z—ñ‚ÅCx[0]`x[n-1]Cy[0]`y[n-1]‚ÉÜ‚êü‚Ì
-*  Še“_‚ÌÀ•W‚ğ“ü‚ê‚Ä‚¨‚­D
+*  wnã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ï¼ŒæŠ˜ã‚Œç·šã‚’æãï¼
+*  xï¼Œyã¯nå€‹ã®å®Ÿæ•°ã®ä¸€æ¬¡å…ƒé…åˆ—ã§ï¼Œx[0]ï½x[n-1]ï¼Œy[0]ï½y[n-1]ã«æŠ˜ã‚Œç·šã®
+*  å„ç‚¹ã®åº§æ¨™ã‚’å…¥ã‚Œã¦ãŠãï¼
 */
 void drawlines(int wn, const double x[], const double y[], int n);
 
 /**
-* @brief      Ü‚êü‚ğ•`‚­ifloat”Åj
+* @brief      æŠ˜ã‚Œç·šã‚’æãï¼ˆfloatç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x[] Ü‚êü‚ÌŠe“_‚ÌxÀ•W
-* @param[in]  y[] Ü‚êü‚ÌŠe“_‚ÌyÀ•W
-* @param[in]  n “_‚Ì”
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x[] æŠ˜ã‚Œç·šã®å„ç‚¹ã®xåº§æ¨™
+* @param[in]  y[] æŠ˜ã‚Œç·šã®å„ç‚¹ã®yåº§æ¨™
+* @param[in]  n ç‚¹ã®æ•°
 * @section Notes
-*  wn‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÅCÜ‚êü‚ğ•`‚­D
-*  xCy‚ÍnŒÂ‚ÌÀ”‚ÌˆêŸŒ³”z—ñ‚ÅCx[0]`x[n-1]Cy[0]`y[n-1]‚ÉÜ‚êü‚Ì
-*  Še“_‚ÌÀ•W‚ğ“ü‚ê‚Ä‚¨‚­D
+*  wnã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ï¼ŒæŠ˜ã‚Œç·šã‚’æãï¼
+*  xï¼Œyã¯nå€‹ã®å®Ÿæ•°ã®ä¸€æ¬¡å…ƒé…åˆ—ã§ï¼Œx[0]ï½x[n-1]ï¼Œy[0]ï½y[n-1]ã«æŠ˜ã‚Œç·šã®
+*  å„ç‚¹ã®åº§æ¨™ã‚’å…¥ã‚Œã¦ãŠãï¼
 */
 void drawlines(int wn, const float x[], const float y[], int n);
 
 /**
-* @brief      ‘½ŠpŒ`‚ğ•`‚­idouble”Åj
+* @brief      å¤šè§’å½¢ã‚’æãï¼ˆdoubleç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x[] ‘½ŠpŒ`‚ÌŠe“_‚ÌxÀ•W
-* @param[in]  y[] ‘½ŠpŒ`‚ÌŠe“_‚ÌyÀ•W
-* @param[in]  n “_‚Ì”
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x[] å¤šè§’å½¢ã®å„ç‚¹ã®xåº§æ¨™
+* @param[in]  y[] å¤šè§’å½¢ã®å„ç‚¹ã®yåº§æ¨™
+* @param[in]  n ç‚¹ã®æ•°
 * @section Notes
-*  wn‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÅC‘½ŠpŒ`‚ğ•`‚­D
-*  xCy‚ÍnŒÂ‚ÌÀ”‚ÌˆêŸŒ³”z—ñ‚ÅCx[0]`x[n-1]Cy[0]`y[n-1]‚ÉÜ‚êü‚Ì
-*  Še“_‚ÌÀ•W‚ğ“ü‚ê‚Ä‚¨‚­D
+*  wnã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ï¼Œå¤šè§’å½¢ã‚’æãï¼
+*  xï¼Œyã¯nå€‹ã®å®Ÿæ•°ã®ä¸€æ¬¡å…ƒé…åˆ—ã§ï¼Œx[0]ï½x[n-1]ï¼Œy[0]ï½y[n-1]ã«æŠ˜ã‚Œç·šã®
+*  å„ç‚¹ã®åº§æ¨™ã‚’å…¥ã‚Œã¦ãŠãï¼
 */
 void drawpoly(int wn, const double x[], const double y[], int n);
 
 /**
-* @brief      ‘½ŠpŒ`‚ğ•`‚­ifloat”Åj
+* @brief      å¤šè§’å½¢ã‚’æãï¼ˆfloatç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x[] ‘½ŠpŒ`‚ÌŠe“_‚ÌxÀ•W
-* @param[in]  y[] ‘½ŠpŒ`‚ÌŠe“_‚ÌyÀ•W
-* @param[in]  n “_‚Ì”
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x[] å¤šè§’å½¢ã®å„ç‚¹ã®xåº§æ¨™
+* @param[in]  y[] å¤šè§’å½¢ã®å„ç‚¹ã®yåº§æ¨™
+* @param[in]  n ç‚¹ã®æ•°
 * @section Notes
-*  wn‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÅC‘½ŠpŒ`‚ğ•`‚­D
-*  xCy‚ÍnŒÂ‚ÌÀ”‚ÌˆêŸŒ³”z—ñ‚ÅCx[0]`x[n-1]Cy[0]`y[n-1]‚ÉÜ‚êü‚Ì
-*  Še“_‚ÌÀ•W‚ğ“ü‚ê‚Ä‚¨‚­D
+*  wnã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ï¼Œå¤šè§’å½¢ã‚’æãï¼
+*  xï¼Œyã¯nå€‹ã®å®Ÿæ•°ã®ä¸€æ¬¡å…ƒé…åˆ—ã§ï¼Œx[0]ï½x[n-1]ï¼Œy[0]ï½y[n-1]ã«æŠ˜ã‚Œç·šã®
+*  å„ç‚¹ã®åº§æ¨™ã‚’å…¥ã‚Œã¦ãŠãï¼
 */
 void drawpoly(int wn, const float x[], const float y[], int n);
 
 /**
-* @brief      ‘½ŠpŒ`‚ğ“h‚è’×‚·idouble”Åj
+* @brief      å¤šè§’å½¢ã‚’å¡—ã‚Šæ½°ã™ï¼ˆdoubleç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x[] ‘½ŠpŒ`‚ÌŠe“_‚ÌxÀ•W
-* @param[in]  y[] ‘½ŠpŒ`‚ÌŠe“_‚ÌyÀ•W
-* @param[in]  n “_‚Ì”
-* @param[in]  i “h‚è’×‚·‚ÌŒ`ó
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x[] å¤šè§’å½¢ã®å„ç‚¹ã®xåº§æ¨™
+* @param[in]  y[] å¤šè§’å½¢ã®å„ç‚¹ã®yåº§æ¨™
+* @param[in]  n ç‚¹ã®æ•°
+* @param[in]  i å¡—ã‚Šæ½°ã™æ™‚ã®å½¢çŠ¶
 * @section Notes
-*  wn‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÅC‘½ŠpŒ`‚Ì—Ìˆæ‚ğ“h‚è’×‚·D
-*  xCy‚ÍnŒÂ‚ÌÀ”‚ÌˆêŸŒ³”z—ñ‚ÅCx[0]`x[n-1]Cy[0]`y[n-1]‚ÉÜ‚êü‚Ì
-*  Še“_‚ÌÀ•W‚ğ“ü‚ê‚Ä‚¨‚­D
-*  i‚Í“h‚è’×‚·‚ÌŒ`ó‚Å’Êí‚Í0‚ğC“Ê‘½ŠpŒ`‚Ì‚Í1‚ğw’è‚·‚éD
+*  wnã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ï¼Œå¤šè§’å½¢ã®é ˜åŸŸã‚’å¡—ã‚Šæ½°ã™ï¼
+*  xï¼Œyã¯nå€‹ã®å®Ÿæ•°ã®ä¸€æ¬¡å…ƒé…åˆ—ã§ï¼Œx[0]ï½x[n-1]ï¼Œy[0]ï½y[n-1]ã«æŠ˜ã‚Œç·šã®
+*  å„ç‚¹ã®åº§æ¨™ã‚’å…¥ã‚Œã¦ãŠãï¼
+*  iã¯å¡—ã‚Šæ½°ã™æ™‚ã®å½¢çŠ¶ã§é€šå¸¸ã¯0ã‚’ï¼Œå‡¸å¤šè§’å½¢ã®æ™‚ã¯1ã‚’æŒ‡å®šã™ã‚‹ï¼
 */
 void fillpoly(int wn, const double x[], const double y[], int n, int i);
 
 /**
-* @brief      ‘½ŠpŒ`‚ğ“h‚è’×‚·ifloat”Åj
+* @brief      å¤šè§’å½¢ã‚’å¡—ã‚Šæ½°ã™ï¼ˆfloatç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x[] ‘½ŠpŒ`‚ÌŠe“_‚ÌxÀ•W
-* @param[in]  y[] ‘½ŠpŒ`‚ÌŠe“_‚ÌyÀ•W
-* @param[in]  n “_‚Ì”
-* @param[in]  i “h‚è’×‚·‚ÌŒ`ó
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x[] å¤šè§’å½¢ã®å„ç‚¹ã®xåº§æ¨™
+* @param[in]  y[] å¤šè§’å½¢ã®å„ç‚¹ã®yåº§æ¨™
+* @param[in]  n ç‚¹ã®æ•°
+* @param[in]  i å¡—ã‚Šæ½°ã™æ™‚ã®å½¢çŠ¶
 * @section Notes
-*  wn‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÅC‘½ŠpŒ`‚Ì—Ìˆæ‚ğ“h‚è’×‚·D
-*  xCy‚ÍnŒÂ‚ÌÀ”‚ÌˆêŸŒ³”z—ñ‚ÅCx[0]`x[n-1]Cy[0]`y[n-1]‚ÉÜ‚êü‚Ì
-*  Še“_‚ÌÀ•W‚ğ“ü‚ê‚Ä‚¨‚­D
-*  i‚Í“h‚è’×‚·‚ÌŒ`ó‚Å’Êí‚Í0‚ğC“Ê‘½ŠpŒ`‚Ì‚Í1‚ğw’è‚·‚éD
+*  wnã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ï¼Œå¤šè§’å½¢ã®é ˜åŸŸã‚’å¡—ã‚Šæ½°ã™ï¼
+*  xï¼Œyã¯nå€‹ã®å®Ÿæ•°ã®ä¸€æ¬¡å…ƒé…åˆ—ã§ï¼Œx[0]ï½x[n-1]ï¼Œy[0]ï½y[n-1]ã«æŠ˜ã‚Œç·šã®
+*  å„ç‚¹ã®åº§æ¨™ã‚’å…¥ã‚Œã¦ãŠãï¼
+*  iã¯å¡—ã‚Šæ½°ã™æ™‚ã®å½¢çŠ¶ã§é€šå¸¸ã¯0ã‚’ï¼Œå‡¸å¤šè§’å½¢ã®æ™‚ã¯1ã‚’æŒ‡å®šã™ã‚‹ï¼
 */
 void fillpoly(int wn, const float x[], const float y[], int n, int i);
 
 /**
-* @brief      ’·•ûŒ`‚Ì•`‰æ
+* @brief      é•·æ–¹å½¢ã®æç”»
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x,y  •`‰æÀ•Wi’·•ûŒ`‚Ì¶‰ºj
-* @param[in]  w    ’·•ûŒ`‚Ì‰¡•
-* @param[in]  h    ’·•ûŒ`‚Ìc•
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x,y  æç”»åº§æ¨™ï¼ˆé•·æ–¹å½¢ã®å·¦ä¸‹ï¼‰
+* @param[in]  w    é•·æ–¹å½¢ã®æ¨ªå¹…
+* @param[in]  h    é•·æ–¹å½¢ã®ç¸¦å¹…
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÉC’¸“_(x,y) ‚©‚ç³‚Ì•ûŒü‚É•wC
-*  ‚‚³h ‚Ì’·•ûŒ`‚ğ•`‚«‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã«ï¼Œé ‚ç‚¹(x,y) ã‹ã‚‰æ­£ã®æ–¹å‘ã«å¹…wï¼Œ
+*  é«˜ã•h ã®é•·æ–¹å½¢ã‚’æãã¾ã™ï¼
 */
 void drawrect(int wn, double x, double y, double w, double h);
 
 /**
-* @brief      ’·•ûŒ`‚Ì•`‰æi“h‚è‚Â‚Ô‚·j
+* @brief      é•·æ–¹å½¢ã®æç”»ï¼ˆå¡—ã‚Šã¤ã¶ã™ï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x,y  •`‰æÀ•Wi’·•ûŒ`‚Ì¶‰ºj
-* @param[in]  w    ’·•ûŒ`‚Ì‰¡•
-* @param[in]  h    ’·•ûŒ`‚Ìc•
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x,y  æç”»åº§æ¨™ï¼ˆé•·æ–¹å½¢ã®å·¦ä¸‹ï¼‰
+* @param[in]  w    é•·æ–¹å½¢ã®æ¨ªå¹…
+* @param[in]  h    é•·æ–¹å½¢ã®ç¸¦å¹…
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÉC’¸“_(x,y) ‚©‚ç³‚Ì•ûŒü‚É•wC
-*  ‚‚³h ‚Ì’·•ûŒ`‚ğ•`‚«‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã«ï¼Œé ‚ç‚¹(x,y) ã‹ã‚‰æ­£ã®æ–¹å‘ã«å¹…wï¼Œ
+*  é«˜ã•h ã®é•·æ–¹å½¢ã‚’æãã¾ã™ï¼
 */
 void fillrect(int wn, double x, double y, double w, double h);
 
 /**
-* @brief      ‰~‚Ì•`‰æicircle()‚Æ‘S‚­“¯‚¶j
+* @brief      å††ã®æç”»ï¼ˆcircle()ã¨å…¨ãåŒã˜ï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  xcen,ycen ‰~‚Ì’†SÀ•W
-* @param[in]  xrad X²•ûŒü‚Ì”¼Œa
-* @param[in]  yrad Y²•ûŒü‚Ì”¼Œa
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  xcen,ycen å††ã®ä¸­å¿ƒåº§æ¨™
+* @param[in]  xrad Xè»¸æ–¹å‘ã®åŠå¾„
+* @param[in]  yrad Yè»¸æ–¹å‘ã®åŠå¾„
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒE‚ÉC(xcen,ycen) ‚ğ’†S‚É
-*  ‰¡•ûŒü‚Ì”¼ŒaxradCc•ûŒü‚Ì”¼Œayrad ‚Ì‰~‚ğ•`‚«‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ï¼Œ(xcen,ycen) ã‚’ä¸­å¿ƒã«
+*  æ¨ªæ–¹å‘ã®åŠå¾„xradï¼Œç¸¦æ–¹å‘ã®åŠå¾„yrad ã®å††ã‚’æãã¾ã™ï¼
 */
 void drawcirc(int wn, double xcen, double ycen, double xrad, double yrad);
 
 /**
-* @brief      ‰~‚Ì•`‰æidrawcirc()‚Æ‘S‚­“¯‚¶j
+* @brief      å††ã®æç”»ï¼ˆdrawcirc()ã¨å…¨ãåŒã˜ï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  xcen,ycen ‰~‚Ì’†SÀ•W
-* @param[in]  xrad X²•ûŒü‚Ì”¼Œa
-* @param[in]  yrad Y²•ûŒü‚Ì”¼Œa
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  xcen,ycen å††ã®ä¸­å¿ƒåº§æ¨™
+* @param[in]  xrad Xè»¸æ–¹å‘ã®åŠå¾„
+* @param[in]  yrad Yè»¸æ–¹å‘ã®åŠå¾„
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒE‚ÉC(xcen,ycen) ‚ğ’†S‚É
-*  ‰¡•ûŒü‚Ì”¼ŒaxradCc•ûŒü‚Ì”¼Œayrad ‚Ì‰~‚ğ•`‚«‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ï¼Œ(xcen,ycen) ã‚’ä¸­å¿ƒã«
+*  æ¨ªæ–¹å‘ã®åŠå¾„xradï¼Œç¸¦æ–¹å‘ã®åŠå¾„yrad ã®å††ã‚’æãã¾ã™ï¼
 */
 void circle(int wn, double xcen, double ycen, double xrad, double yrad);
 
 /**
-* @brief      ’†SÀ•WC”¼Œa‚ğ—^‚¦‚Ä‰~‚ğ“h‚è’×‚·
+* @brief      ä¸­å¿ƒåº§æ¨™ï¼ŒåŠå¾„ã‚’ä¸ãˆã¦å††ã‚’å¡—ã‚Šæ½°ã™
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  xcen,ycen ‰~‚Ì’†SÀ•W
-* @param[in]  xrad X²•ûŒü‚Ì”¼Œa
-* @param[in]  yrad Y²•ûŒü‚Ì”¼Œa
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  xcen,ycen å††ã®ä¸­å¿ƒåº§æ¨™
+* @param[in]  xrad Xè»¸æ–¹å‘ã®åŠå¾„
+* @param[in]  yrad Yè»¸æ–¹å‘ã®åŠå¾„
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒE‚ÉC(xcen,ycen) ‚ğ’†S‚É
-*  ‰¡•ûŒü‚Ì”¼ŒaxradCc•ûŒü‚Ì”¼Œayrad ‚Ì‰~‚ğ“h‚è‚Â‚Ô‚µ‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã«ï¼Œ(xcen,ycen) ã‚’ä¸­å¿ƒã«
+*  æ¨ªæ–¹å‘ã®åŠå¾„xradï¼Œç¸¦æ–¹å‘ã®åŠå¾„yrad ã®å††ã‚’å¡—ã‚Šã¤ã¶ã—ã¾ã™ï¼
 */
 void fillcirc(int wn, double xcen, double ycen, double xrad, double yrad);
 
 /**
-* @brief      ‰~ŒÊ‚Ì•`‰æ
+* @brief      å††å¼§ã®æç”»
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  xcen,ycen ‰~‚Ì’†SÀ•W
-* @param[in]  xrad X²•ûŒü‚Ì”¼Œa
-* @param[in]  yrad Y²•ûŒü‚Ì”¼Œa
-* @param[in]  sang •`‰æŠJnŠp“x [degree]
-* @param[in]  eang •`‰æI—¹Šp“x [degree]
-* @param[in]  idir •`‰æ•ûŒü ( 1 ¶‰ñ‚è or -1 ‰E‰ñ‚è)
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  xcen,ycen å††ã®ä¸­å¿ƒåº§æ¨™
+* @param[in]  xrad Xè»¸æ–¹å‘ã®åŠå¾„
+* @param[in]  yrad Yè»¸æ–¹å‘ã®åŠå¾„
+* @param[in]  sang æç”»é–‹å§‹è§’åº¦ [degree]
+* @param[in]  eang æç”»çµ‚äº†è§’åº¦ [degree]
+* @param[in]  idir æç”»æ–¹å‘ ( 1 å·¦å›ã‚Š or -1 å³å›ã‚Š)
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÉC(xcen,ycen) ‚ğ’†S‚É‰¡•ûŒü‚Ì”¼ŒaxradC
-*  c•ûŒü‚Ì”¼Œayrad ‚Ì‰~ŒÊ‚ğ•`‚«‚Ü‚·Dsang ‚ÍŠJnŠpCeang ‚ÍI—¹Šp‚ÅC
-*  “x‚Å—^‚¦‚Ü‚·Didir ‚Í‰~ŒÊ‚ğ•`‚­•ûŒü‚Å1 ‚Å¶‰ô‚èC-1 ‚Å‰E‰ô‚è‚Æ‚È‚è‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã«ï¼Œ(xcen,ycen) ã‚’ä¸­å¿ƒã«æ¨ªæ–¹å‘ã®åŠå¾„xradï¼Œ
+*  ç¸¦æ–¹å‘ã®åŠå¾„yrad ã®å††å¼§ã‚’æãã¾ã™ï¼sang ã¯é–‹å§‹è§’ï¼Œeang ã¯çµ‚äº†è§’ã§ï¼Œ
+*  åº¦ã§ä¸ãˆã¾ã™ï¼idir ã¯å††å¼§ã‚’æãæ–¹å‘ã§1 ã§å·¦å»»ã‚Šï¼Œ-1 ã§å³å»»ã‚Šã¨ãªã‚Šã¾ã™ï¼
 */
 void drawarc(int wn, double xcen, double ycen, double xrad, double yrad, double sang, double eang, int idir);
 
 /**
-* @brief      ‰~ŒÊ‚Ì•`‰æ(“h‚è‚Â‚Ô‚·)
+* @brief      å††å¼§ã®æç”»(å¡—ã‚Šã¤ã¶ã™)
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  xcen,ycen ‰~‚Ì’†SÀ•W
-* @param[in]  xrad X²•ûŒü‚Ì”¼Œa
-* @param[in]  yrad Y²•ûŒü‚Ì”¼Œa
-* @param[in]  sang •`‰æŠJnŠp“x [degree]
-* @param[in]  eang •`‰æI—¹Šp“x [degree]
-* @param[in]  idir •`‰æ•ûŒü ( 1 ¶‰ñ‚è or -1 ‰E‰ñ‚è)
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  xcen,ycen å††ã®ä¸­å¿ƒåº§æ¨™
+* @param[in]  xrad Xè»¸æ–¹å‘ã®åŠå¾„
+* @param[in]  yrad Yè»¸æ–¹å‘ã®åŠå¾„
+* @param[in]  sang æç”»é–‹å§‹è§’åº¦ [degree]
+* @param[in]  eang æç”»çµ‚äº†è§’åº¦ [degree]
+* @param[in]  idir æç”»æ–¹å‘ ( 1 å·¦å›ã‚Š or -1 å³å›ã‚Š)
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÅC(xcen,ycen) ‚ğ’†S‚É‰¡•ûŒü‚Ì”¼ŒaxradC
-*  c•ûŒü‚Ì”¼Œayrad ‚Ì‰~ŒÊ‚ğ“h‚è’×‚µ‚Ü‚·Dsang ‚ÍŠJnŠpCeang ‚ÍI—¹Šp‚ÅC
-*  “x‚Å—^‚¦‚Ü‚·Didir ‚Í‰~ŒÊ‚ğ•`‚­•ûŒü‚Å1 ‚Å¶‰ô‚èC-1‚Å‰E‰ô‚è‚Æ‚È‚è‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã§ï¼Œ(xcen,ycen) ã‚’ä¸­å¿ƒã«æ¨ªæ–¹å‘ã®åŠå¾„xradï¼Œ
+*  ç¸¦æ–¹å‘ã®åŠå¾„yrad ã®å††å¼§ã‚’å¡—ã‚Šæ½°ã—ã¾ã™ï¼sang ã¯é–‹å§‹è§’ï¼Œeang ã¯çµ‚äº†è§’ã§ï¼Œ
+*  åº¦ã§ä¸ãˆã¾ã™ï¼idir ã¯å††å¼§ã‚’æãæ–¹å‘ã§1 ã§å·¦å»»ã‚Šï¼Œ-1ã§å³å»»ã‚Šã¨ãªã‚Šã¾ã™ï¼
 */
 void fillarc(int wn, double xcen, double ycen, double xrad, double yrad, double sang, double eang, int idir);
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //void drawsym(int wn, int x, int y, int size, int symtype);
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //void drawsyms(int wn, const double x[], const double y[], int n, int size, int symtype);
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //void drawarrow(int wn, double xs, double ys, double xt, double yt, double s, double w, int 10 * i + j);
 
 /**
-* @brief      •`‰æƒtƒHƒ“ƒg‚Ìİ’èigsetfontset()‚Æ‘S‚­“¯‚¶j
+* @brief      æç”»ãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®šï¼ˆgsetfontset()ã¨å…¨ãåŒã˜ï¼‰
 * @ingroup    wineggx
-* @param[in]  wn    •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  argsformat, ... ƒtƒHƒ“ƒgƒZƒbƒg‚Ì–¼‘O \n ƒkƒ‹•¶š‚ğŠÜ‚ß‚Ä32ByteˆÈ‰º‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢D
-* @retval     -1 ƒGƒ‰[
-* @retval     0  æ“¾¬Œ÷
-* @retval     1  ‘ã‘ÖƒtƒHƒ“ƒg‚Ìæ“¾¬Œ÷
+* @param[in]  wn    å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  argsformat, ... ãƒ•ã‚©ãƒ³ãƒˆã‚»ãƒƒãƒˆã®åå‰ \n ãƒŒãƒ«æ–‡å­—ã‚’å«ã‚ã¦32Byteä»¥ä¸‹ã§ãªã‘ã‚Œã°ãªã‚‰ãªã„ï¼
+* @retval     -1 ã‚¨ãƒ©ãƒ¼
+* @retval     0  å–å¾—æˆåŠŸ
+* @retval     1  ä»£æ›¿ãƒ•ã‚©ãƒ³ãƒˆã®å–å¾—æˆåŠŸ
 */
 int newfontset(int wn, const char *argsformat, ...);
 
 /**
-* @brief      ywineggx“Æ©z•`‰æƒtƒHƒ“ƒg‚Ìİ’èigsetfontset()‚Æ‘S‚­“¯‚¶jistring”Åj
+* @brief      ã€wineggxç‹¬è‡ªã€‘æç”»ãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®šï¼ˆgsetfontset()ã¨å…¨ãåŒã˜ï¼‰ï¼ˆstringç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn    •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  argsformat, ... ƒtƒHƒ“ƒgƒZƒbƒg‚Ì–¼‘O \n ƒkƒ‹•¶š‚ğŠÜ‚ß‚Ä32ByteˆÈ‰º‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢D
-* @retval     -1 ƒGƒ‰[
-* @retval     0  æ“¾¬Œ÷
-* @retval     1  ‘ã‘ÖƒtƒHƒ“ƒg‚Ìæ“¾¬Œ÷
+* @param[in]  wn    å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  argsformat, ... ãƒ•ã‚©ãƒ³ãƒˆã‚»ãƒƒãƒˆã®åå‰ \n ãƒŒãƒ«æ–‡å­—ã‚’å«ã‚ã¦32Byteä»¥ä¸‹ã§ãªã‘ã‚Œã°ãªã‚‰ãªã„ï¼
+* @retval     -1 ã‚¨ãƒ©ãƒ¼
+* @retval     0  å–å¾—æˆåŠŸ
+* @retval     1  ä»£æ›¿ãƒ•ã‚©ãƒ³ãƒˆã®å–å¾—æˆåŠŸ
 */
 int newfontset(int wn, const std::string argsformat, ...);
 
 /**
-* @brief      •`‰æƒtƒHƒ“ƒg‚Ìİ’èinewfontset()‚Æ‘S‚­“¯‚¶j
+* @brief      æç”»ãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®šï¼ˆnewfontset()ã¨å…¨ãåŒã˜ï¼‰
 * @ingroup    wineggx
-* @param[in]  wn    •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  argsformat, ... ƒtƒHƒ“ƒgƒZƒbƒg‚Ì–¼‘O \n ƒkƒ‹•¶š‚ğŠÜ‚ß‚Ä32ByteˆÈ‰º‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢D
-* @retval     -1 ƒGƒ‰[
-* @retval     0  æ“¾¬Œ÷
-* @retval     1  ‘ã‘ÖƒtƒHƒ“ƒg‚Ìæ“¾¬Œ÷
+* @param[in]  wn    å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  argsformat, ... ãƒ•ã‚©ãƒ³ãƒˆã‚»ãƒƒãƒˆã®åå‰ \n ãƒŒãƒ«æ–‡å­—ã‚’å«ã‚ã¦32Byteä»¥ä¸‹ã§ãªã‘ã‚Œã°ãªã‚‰ãªã„ï¼
+* @retval     -1 ã‚¨ãƒ©ãƒ¼
+* @retval     0  å–å¾—æˆåŠŸ
+* @retval     1  ä»£æ›¿ãƒ•ã‚©ãƒ³ãƒˆã®å–å¾—æˆåŠŸ
 */
 int gsetfontset(int wn, const char *argsformat, ...);
 
 /**
-* @brief      ywineggx“Æ©z•`‰æƒtƒHƒ“ƒg‚Ìİ’èinewfontset()‚Æ‘S‚­“¯‚¶jistring”Åj
+* @brief      ã€wineggxç‹¬è‡ªã€‘æç”»ãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®šï¼ˆnewfontset()ã¨å…¨ãåŒã˜ï¼‰ï¼ˆstringç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn    •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  argsformat, ... ƒtƒHƒ“ƒgƒZƒbƒg‚Ì–¼‘O \n ƒkƒ‹•¶š‚ğŠÜ‚ß‚Ä32ByteˆÈ‰º‚Å‚È‚¯‚ê‚Î‚È‚ç‚È‚¢D
-* @retval     -1 ƒGƒ‰[
-* @retval     0  æ“¾¬Œ÷
-* @retval     1  ‘ã‘ÖƒtƒHƒ“ƒg‚Ìæ“¾¬Œ÷
+* @param[in]  wn    å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  argsformat, ... ãƒ•ã‚©ãƒ³ãƒˆã‚»ãƒƒãƒˆã®åå‰ \n ãƒŒãƒ«æ–‡å­—ã‚’å«ã‚ã¦32Byteä»¥ä¸‹ã§ãªã‘ã‚Œã°ãªã‚‰ãªã„ï¼
+* @retval     -1 ã‚¨ãƒ©ãƒ¼
+* @retval     0  å–å¾—æˆåŠŸ
+* @retval     1  ä»£æ›¿ãƒ•ã‚©ãƒ³ãƒˆã®å–å¾—æˆåŠŸ
 */
 int gsetfontset(int wn, const std::string argsformat, ...);
 
 /**
-* @brief      •¶š—ñ‚Ì•`‰æ
+* @brief      æ–‡å­—åˆ—ã®æç”»
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x,y   •`‰ææÀ•Wi•¶š—ñ‚ğ•`‰æ‚·‚éˆÊ’u‚Ì¶‰º‚ÌÀ•Wj
-* @param[in]  size  •`‰æ‚·‚é•¶š‚Ì‘å‚«‚³
-* @param[in]  theta •¶š—ñ‚Ì‰ñ“]Šp“x [degree] ( * Œ»İ‚Í–³Œø )
-* @param[in]  argsformat, ... •¶š—ñ
-* @return     ÀÛ‚É•`‰æ‚µ‚½•¶š—ñ‚Ì’·‚³
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x,y   æç”»å…ˆåº§æ¨™ï¼ˆæ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹ä½ç½®ã®å·¦ä¸‹ã®åº§æ¨™ï¼‰
+* @param[in]  size  æç”»ã™ã‚‹æ–‡å­—ã®å¤§ãã•
+* @param[in]  theta æ–‡å­—åˆ—ã®å›è»¢è§’åº¦ [degree] ( * ç¾åœ¨ã¯ç„¡åŠ¹ )
+* @param[in]  argsformat, ... æ–‡å­—åˆ—
+* @return     å®Ÿéš›ã«æç”»ã—ãŸæ–‡å­—åˆ—ã®é•·ã•
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÉC•¶š—ñ‚ğÀ•W(x,y) ‚©‚ç•`‚«‚Ü‚·D
-*  size ‚Í•¶š‚Ì‘å‚«‚³‚ÅCƒhƒbƒg’PˆÊ‚Åw’è‚µ‚Ü‚·D
-*  theta ‚Í•¶š—ñ‚Ì‰ñ“]‚ğw’è‚·‚éˆø”‚Å‚·‚ªCŒ»ƒo[ƒWƒ‡ƒ“‚Å‚Í‹@”\‚µ‚Ü‚¹‚ñD
-*  •¶š—ñ‚Íargsformat ‚É—^‚¦‚Ü‚·‚ªC‚±‚Ìˆø”ˆÈ~‚Íprintf() ŠÖ”‚Ìˆø”‚Æ“¯—l‚Ì
-*  ƒtƒH[ƒ}ƒbƒg‚É‚È‚Á‚Ä‚¢‚Ü‚·‚Ì‚ÅCg—p—á‚Ì‚æ‚¤‚É•Ï”‚Ì’l‚È‚Ç‚ğ•`‚­–‚à‚Å‚«‚Ü‚·D
-*  •¶š‚ÌƒTƒCƒYsize ‚Í1`24 ‚Ì”ÍˆÍ‚Åw’è‚Å‚«‚Ü‚·D
-*  size ‚ÆÀÛ‚ÌƒtƒHƒ“ƒg‚Æ‚ÌŠÖŒW‚ÍˆÈ‰º‚Ì•\‚Ì‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·D
-*  ‚±‚Ìê‡C•¶š‚Í”¼Šp‰p”š‚Ì‚İ•`‰æ‚Å‚«‚Ü‚·D2 ƒoƒCƒg•¶š(Š¿š)
-*  ‚ğ•`‰æ‚·‚éê‡‚ÍCsize ‚É‚ÍFONTSET ‚ğw’è‚µ‚Ü‚·D
-*  ‚±‚Ìê‡‚ÌƒtƒHƒ“ƒg‚Ìw’è‚ÍCgsetfontset() ŠÖ”‚ğ—˜—p‚µ‚Ü‚·D
-*  gsetfontset() ‚Å‚ÌƒtƒHƒ“ƒgw’è‚ª‚È‚¢ê‡‚ÍCƒfƒtƒHƒ‹ƒg‚Ì14 ƒhƒbƒg‚ÌƒtƒHƒ“ƒgƒZƒbƒg‚Å•`‰æ‚³‚ê‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã«ï¼Œæ–‡å­—åˆ—ã‚’åº§æ¨™(x,y) ã‹ã‚‰æãã¾ã™ï¼
+*  size ã¯æ–‡å­—ã®å¤§ãã•ã§ï¼Œãƒ‰ãƒƒãƒˆå˜ä½ã§æŒ‡å®šã—ã¾ã™ï¼
+*  theta ã¯æ–‡å­—åˆ—ã®å›è»¢ã‚’æŒ‡å®šã™ã‚‹å¼•æ•°ã§ã™ãŒï¼Œç¾ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã¯æ©Ÿèƒ½ã—ã¾ã›ã‚“ï¼
+*  æ–‡å­—åˆ—ã¯argsformat ã«ä¸ãˆã¾ã™ãŒï¼Œã“ã®å¼•æ•°ä»¥é™ã¯printf() é–¢æ•°ã®å¼•æ•°ã¨åŒæ§˜ã®
+*  ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«ãªã£ã¦ã„ã¾ã™ã®ã§ï¼Œä½¿ç”¨ä¾‹ã®ã‚ˆã†ã«å¤‰æ•°ã®å€¤ãªã©ã‚’æãäº‹ã‚‚ã§ãã¾ã™ï¼
+*  æ–‡å­—ã®ã‚µã‚¤ã‚ºsize ã¯1ï½24 ã®ç¯„å›²ã§æŒ‡å®šã§ãã¾ã™ï¼
+*  size ã¨å®Ÿéš›ã®ãƒ•ã‚©ãƒ³ãƒˆã¨ã®é–¢ä¿‚ã¯ä»¥ä¸‹ã®è¡¨ã®ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ï¼
+*  ã“ã®å ´åˆï¼Œæ–‡å­—ã¯åŠè§’è‹±æ•°å­—ã®ã¿æç”»ã§ãã¾ã™ï¼2 ãƒã‚¤ãƒˆæ–‡å­—(æ¼¢å­—)
+*  ã‚’æç”»ã™ã‚‹å ´åˆã¯ï¼Œsize ã«ã¯FONTSET ã‚’æŒ‡å®šã—ã¾ã™ï¼
+*  ã“ã®å ´åˆã®ãƒ•ã‚©ãƒ³ãƒˆã®æŒ‡å®šã¯ï¼Œgsetfontset() é–¢æ•°ã‚’åˆ©ç”¨ã—ã¾ã™ï¼
+*  gsetfontset() ã§ã®ãƒ•ã‚©ãƒ³ãƒˆæŒ‡å®šãŒãªã„å ´åˆã¯ï¼Œãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®14 ãƒ‰ãƒƒãƒˆã®ãƒ•ã‚©ãƒ³ãƒˆã‚»ãƒƒãƒˆã§æç”»ã•ã‚Œã¾ã™ï¼
 */
 int drawstr(int wn, double x, double y, int size, double theta, const char *argsformat, ...);
 
 /**
-* @brief      ywineggx“Æ©z•¶š—ñ‚Ì•`‰æistring”Åj
+* @brief      ã€wineggxç‹¬è‡ªã€‘æ–‡å­—åˆ—ã®æç”»ï¼ˆstringç‰ˆï¼‰
 * @ingroup    wineggx
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x,y   •`‰ææÀ•Wi•¶š—ñ‚ğ•`‰æ‚·‚éˆÊ’u‚Ì¶‰º‚ÌÀ•Wj
-* @param[in]  size  •`‰æ‚·‚é•¶š‚Ì‘å‚«‚³
-* @param[in]  theta •¶š—ñ‚Ì‰ñ“]Šp“x [degree] ( * Œ»İ‚Í–³Œø )
-* @param[in]  argsformat, ... •¶š—ñ
-* @return     ÀÛ‚É•`‰æ‚µ‚½•¶š—ñ‚Ì’·‚³
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x,y   æç”»å…ˆåº§æ¨™ï¼ˆæ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹ä½ç½®ã®å·¦ä¸‹ã®åº§æ¨™ï¼‰
+* @param[in]  size  æç”»ã™ã‚‹æ–‡å­—ã®å¤§ãã•
+* @param[in]  theta æ–‡å­—åˆ—ã®å›è»¢è§’åº¦ [degree] ( * ç¾åœ¨ã¯ç„¡åŠ¹ )
+* @param[in]  argsformat, ... æ–‡å­—åˆ—
+* @return     å®Ÿéš›ã«æç”»ã—ãŸæ–‡å­—åˆ—ã®é•·ã•
 * @section Notes
-*  wn ‚Åw’è‚µ‚½ƒEƒBƒ“ƒhƒD‚ÉC•¶š—ñ‚ğÀ•W(x,y) ‚©‚ç•`‚«‚Ü‚·D
-*  size ‚Í•¶š‚Ì‘å‚«‚³‚ÅCƒhƒbƒg’PˆÊ‚Åw’è‚µ‚Ü‚·D
-*  theta ‚Í•¶š—ñ‚Ì‰ñ“]‚ğw’è‚·‚éˆø”‚Å‚·‚ªCŒ»ƒo[ƒWƒ‡ƒ“‚Å‚Í‹@”\‚µ‚Ü‚¹‚ñD
-*  •¶š—ñ‚Íargsformat ‚É—^‚¦‚Ü‚·‚ªC‚±‚Ìˆø”ˆÈ~‚Íprintf() ŠÖ”‚Ìˆø”‚Æ“¯—l‚Ì
-*  ƒtƒH[ƒ}ƒbƒg‚É‚È‚Á‚Ä‚¢‚Ü‚·‚Ì‚ÅCg—p—á‚Ì‚æ‚¤‚É•Ï”‚Ì’l‚È‚Ç‚ğ•`‚­–‚à‚Å‚«‚Ü‚·D
-*  •¶š‚ÌƒTƒCƒYsize ‚Í1`24 ‚Ì”ÍˆÍ‚Åw’è‚Å‚«‚Ü‚·D
-*  size ‚ÆÀÛ‚ÌƒtƒHƒ“ƒg‚Æ‚ÌŠÖŒW‚ÍˆÈ‰º‚Ì•\‚Ì‚æ‚¤‚É‚È‚Á‚Ä‚¢‚Ü‚·D
-*  ‚±‚Ìê‡C•¶š‚Í”¼Šp‰p”š‚Ì‚İ•`‰æ‚Å‚«‚Ü‚·D2 ƒoƒCƒg•¶š(Š¿š)
-*  ‚ğ•`‰æ‚·‚éê‡‚ÍCsize ‚É‚ÍFONTSET ‚ğw’è‚µ‚Ü‚·D
-*  ‚±‚Ìê‡‚ÌƒtƒHƒ“ƒg‚Ìw’è‚ÍCgsetfontset() ŠÖ”‚ğ—˜—p‚µ‚Ü‚·D
-*  gsetfontset() ‚Å‚ÌƒtƒHƒ“ƒgw’è‚ª‚È‚¢ê‡‚ÍCƒfƒtƒHƒ‹ƒg‚Ì14 ƒhƒbƒg‚ÌƒtƒHƒ“ƒgƒZƒbƒg‚Å•`‰æ‚³‚ê‚Ü‚·D
+*  wn ã§æŒ‡å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã«ï¼Œæ–‡å­—åˆ—ã‚’åº§æ¨™(x,y) ã‹ã‚‰æãã¾ã™ï¼
+*  size ã¯æ–‡å­—ã®å¤§ãã•ã§ï¼Œãƒ‰ãƒƒãƒˆå˜ä½ã§æŒ‡å®šã—ã¾ã™ï¼
+*  theta ã¯æ–‡å­—åˆ—ã®å›è»¢ã‚’æŒ‡å®šã™ã‚‹å¼•æ•°ã§ã™ãŒï¼Œç¾ãƒãƒ¼ã‚¸ãƒ§ãƒ³ã§ã¯æ©Ÿèƒ½ã—ã¾ã›ã‚“ï¼
+*  æ–‡å­—åˆ—ã¯argsformat ã«ä¸ãˆã¾ã™ãŒï¼Œã“ã®å¼•æ•°ä»¥é™ã¯printf() é–¢æ•°ã®å¼•æ•°ã¨åŒæ§˜ã®
+*  ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã«ãªã£ã¦ã„ã¾ã™ã®ã§ï¼Œä½¿ç”¨ä¾‹ã®ã‚ˆã†ã«å¤‰æ•°ã®å€¤ãªã©ã‚’æãäº‹ã‚‚ã§ãã¾ã™ï¼
+*  æ–‡å­—ã®ã‚µã‚¤ã‚ºsize ã¯1ï½24 ã®ç¯„å›²ã§æŒ‡å®šã§ãã¾ã™ï¼
+*  size ã¨å®Ÿéš›ã®ãƒ•ã‚©ãƒ³ãƒˆã¨ã®é–¢ä¿‚ã¯ä»¥ä¸‹ã®è¡¨ã®ã‚ˆã†ã«ãªã£ã¦ã„ã¾ã™ï¼
+*  ã“ã®å ´åˆï¼Œæ–‡å­—ã¯åŠè§’è‹±æ•°å­—ã®ã¿æç”»ã§ãã¾ã™ï¼2 ãƒã‚¤ãƒˆæ–‡å­—(æ¼¢å­—)
+*  ã‚’æç”»ã™ã‚‹å ´åˆã¯ï¼Œsize ã«ã¯FONTSET ã‚’æŒ‡å®šã—ã¾ã™ï¼
+*  ã“ã®å ´åˆã®ãƒ•ã‚©ãƒ³ãƒˆã®æŒ‡å®šã¯ï¼Œgsetfontset() é–¢æ•°ã‚’åˆ©ç”¨ã—ã¾ã™ï¼
+*  gsetfontset() ã§ã®ãƒ•ã‚©ãƒ³ãƒˆæŒ‡å®šãŒãªã„å ´åˆã¯ï¼Œãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®14 ãƒ‰ãƒƒãƒˆã®ãƒ•ã‚©ãƒ³ãƒˆã‚»ãƒƒãƒˆã§æç”»ã•ã‚Œã¾ã™ï¼
 */
 int drawstr(int wn, double x, double y, int size, double theta, const std::string argsformat, ...);
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //void gscroll(int wn, int incx, int incy, int clr);
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //void gputarea(int wn, double x, double y, int srcwn, int srcly, double srcxs, double srcys, double srcxe, double srcye);
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //int gputimage(int wn, double x, double y, unsigned char *buf, int width, int height, int msk);
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //unsigned char *ggetimage(int wn, int ly, double xs, double ys, double xe, double ye, int *rwidth, int *rheight);
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //int gsaveimage(int wn, int ly, double xs, double ys, double xe, double ye, const char *conv, int nd, const char *argsformat, ...);
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //unsigned char *readimage(const char *conv, const char *filename, int *rwidth, int *rheight, int *rmsk);
 
-//–¢À‘•
+//æœªå®Ÿè£…
 //int writeimage(const unsigned char *buf, int width, int height, int msk, const char *conv, int nd, const char *argsformat, ...);
 
 /**
-* @brief      ggetch()Cggetevent()Cggetxpress()‚Ì“®ìƒ‚[ƒh‚ğİ’è‚·‚é
+* @brief      ggetch()ï¼Œggetevent()ï¼Œggetxpress()ã®å‹•ä½œãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
 * @ingroup    wineggx
-* @param[in]  flag ENABLE ƒmƒ“ƒuƒƒbƒLƒ“ƒOƒ‚[ƒhCDISABLE ƒuƒƒbƒLƒ“ƒOƒ‚[ƒh
-* @retval     ‚È‚µ
+* @param[in]  flag ENABLE ãƒãƒ³ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ï¼ŒDISABLE ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰
+* @retval     ãªã—
 */
 void gsetnonblock(int flag);
 
 /**
-* @brief      ƒL[ƒ{[ƒh‚©‚ç“ü—Í‚³‚ê‚½•¶š‚ğ•Ô‚·
+* @brief      ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‹ã‚‰å…¥åŠ›ã•ã‚ŒãŸæ–‡å­—ã‚’è¿”ã™
 * @ingroup    wineggx
-* @param[in]  ‚È‚µ
-* @retval     <0 “ü—Í‚È‚µiƒmƒ“ƒuƒƒbƒLƒ“ƒOƒ‚[ƒh‚Ìê‡j
-* @retval     ‰Ÿ‚³‚ê‚½ƒL[‚Ì•¶šƒR[ƒh
+* @param[in]  ãªã—
+* @retval     <0 å…¥åŠ›ãªã—ï¼ˆãƒãƒ³ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆï¼‰
+* @retval     æŠ¼ã•ã‚ŒãŸã‚­ãƒ¼ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰
 */
 int ggetch();
 
 /**
-* @brief      ‘S‚Ä‚ÌƒEƒBƒ“ƒhƒE‚Ìƒ}ƒEƒX‚âƒL[ƒ{[ƒh‚Ì“ü—Íî•ñ‚ğ•Ô‚·idouble”ÅjD
+* @brief      å…¨ã¦ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒã‚¦ã‚¹ã‚„ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›æƒ…å ±ã‚’è¿”ã™ï¼ˆdoubleç‰ˆï¼‰ï¼
 * @ingroup    wineggx
-* @param[out]  type ƒCƒxƒ“ƒg‚Ìí—Ş
-* @param[out]  button ƒ{ƒ^ƒ“‚Ì”Ô†iƒ}ƒEƒX‚Ìê‡jCƒL[ƒR[ƒhiƒL[ƒ{[ƒh‚Ìê‡j
-* @param[out]  x ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌxÀ•WiƒAƒvƒŠƒP[ƒVƒ‡ƒ“À•WŒnj
-* @param[out]  y ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌyÀ•WiƒAƒvƒŠƒP[ƒVƒ‡ƒ“À•WŒnj
-* @retval      “ü—Í‚Ì‚ ‚Á‚½ƒEƒBƒ“ƒhƒE”Ô†
+* @param[out]  type ã‚¤ãƒ™ãƒ³ãƒˆã®ç¨®é¡
+* @param[out]  button ãƒœã‚¿ãƒ³ã®ç•ªå·ï¼ˆãƒã‚¦ã‚¹ã®å ´åˆï¼‰ï¼Œã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ï¼ˆã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å ´åˆï¼‰
+* @param[out]  x ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®xåº§æ¨™ï¼ˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ï¼‰
+* @param[out]  y ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®yåº§æ¨™ï¼ˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ï¼‰
+* @retval      å…¥åŠ›ã®ã‚ã£ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
 */
 int ggetevent(int *type, int *button, double *x, double *y);
 
 /**
-* @brief      ‘S‚Ä‚ÌƒEƒBƒ“ƒhƒE‚Ìƒ}ƒEƒX‚âƒL[ƒ{[ƒh‚Ì“ü—Íî•ñ‚ğ•Ô‚·ifloat”ÅjD
+* @brief      å…¨ã¦ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒã‚¦ã‚¹ã‚„ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›æƒ…å ±ã‚’è¿”ã™ï¼ˆfloatç‰ˆï¼‰ï¼
 * @ingroup    wineggx
-* @param[out]  type ƒCƒxƒ“ƒg‚Ìí—Ş
-* @param[out]  button ƒ{ƒ^ƒ“‚Ì”Ô†iƒ}ƒEƒX‚Ìê‡jCƒL[ƒR[ƒhiƒL[ƒ{[ƒh‚Ìê‡j
-* @param[out]  x ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌxÀ•WiƒAƒvƒŠƒP[ƒVƒ‡ƒ“À•WŒnj
-* @param[out]  y ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌyÀ•WiƒAƒvƒŠƒP[ƒVƒ‡ƒ“À•WŒnj
-* @retval      “ü—Í‚Ì‚ ‚Á‚½ƒEƒBƒ“ƒhƒE”Ô†
+* @param[out]  type ã‚¤ãƒ™ãƒ³ãƒˆã®ç¨®é¡
+* @param[out]  button ãƒœã‚¿ãƒ³ã®ç•ªå·ï¼ˆãƒã‚¦ã‚¹ã®å ´åˆï¼‰ï¼Œã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ï¼ˆã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å ´åˆï¼‰
+* @param[out]  x ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®xåº§æ¨™ï¼ˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ï¼‰
+* @param[out]  y ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®yåº§æ¨™ï¼ˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ï¼‰
+* @retval      å…¥åŠ›ã®ã‚ã£ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
 */
 int ggetevent(int *type, int *button, float *x, float *y);
 
 /**
-* @brief      ‘S‚Ä‚ÌƒEƒBƒ“ƒhƒE‚Ìƒ}ƒEƒX‚âƒL[ƒ{[ƒh‚Ì“ü—Íî•ñ‚ğ•Ô‚·iƒL[‚Æƒ{ƒ^ƒ“‚Ì‚İjidouble”ÅjD
+* @brief      å…¨ã¦ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒã‚¦ã‚¹ã‚„ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›æƒ…å ±ã‚’è¿”ã™ï¼ˆã‚­ãƒ¼ã¨ãƒœã‚¿ãƒ³ã®ã¿ï¼‰ï¼ˆdoubleç‰ˆï¼‰ï¼
 * @ingroup    wineggx
-* @param[out]  type ƒCƒxƒ“ƒg‚Ìí—Ş
-* @param[out]  button ƒ{ƒ^ƒ“‚Ì”Ô†iƒ}ƒEƒX‚Ìê‡jCƒL[ƒR[ƒhiƒL[ƒ{[ƒh‚Ìê‡j
-* @param[out]  x ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌxÀ•WiƒAƒvƒŠƒP[ƒVƒ‡ƒ“À•WŒnj
-* @param[out]  y ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌyÀ•WiƒAƒvƒŠƒP[ƒVƒ‡ƒ“À•WŒnj
-* @retval      “ü—Í‚Ì‚ ‚Á‚½ƒEƒBƒ“ƒhƒE”Ô†
+* @param[out]  type ã‚¤ãƒ™ãƒ³ãƒˆã®ç¨®é¡
+* @param[out]  button ãƒœã‚¿ãƒ³ã®ç•ªå·ï¼ˆãƒã‚¦ã‚¹ã®å ´åˆï¼‰ï¼Œã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ï¼ˆã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å ´åˆï¼‰
+* @param[out]  x ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®xåº§æ¨™ï¼ˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ï¼‰
+* @param[out]  y ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®yåº§æ¨™ï¼ˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ï¼‰
+* @retval      å…¥åŠ›ã®ã‚ã£ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
 */
 int ggetxpress(int *type, int *button, double *x, double *y);
 
 /**
-* @brief      ‘S‚Ä‚ÌƒEƒBƒ“ƒhƒE‚Ìƒ}ƒEƒX‚âƒL[ƒ{[ƒh‚Ì“ü—Íî•ñ‚ğ•Ô‚·iƒL[‚Æƒ{ƒ^ƒ“‚Ì‚İjifloat”ÅjD
+* @brief      å…¨ã¦ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒã‚¦ã‚¹ã‚„ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›æƒ…å ±ã‚’è¿”ã™ï¼ˆã‚­ãƒ¼ã¨ãƒœã‚¿ãƒ³ã®ã¿ï¼‰ï¼ˆfloatç‰ˆï¼‰ï¼
 * @ingroup    wineggx
-* @param[out]  type ƒCƒxƒ“ƒg‚Ìí—Ş
-* @param[out]  button ƒ{ƒ^ƒ“‚Ì”Ô†iƒ}ƒEƒX‚Ìê‡jCƒL[ƒR[ƒhiƒL[ƒ{[ƒh‚Ìê‡j
-* @param[out]  x ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌxÀ•WiƒAƒvƒŠƒP[ƒVƒ‡ƒ“À•WŒnj
-* @param[out]  y ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌyÀ•WiƒAƒvƒŠƒP[ƒVƒ‡ƒ“À•WŒnj
-* @retval      “ü—Í‚Ì‚ ‚Á‚½ƒEƒBƒ“ƒhƒE”Ô†
+* @param[out]  type ã‚¤ãƒ™ãƒ³ãƒˆã®ç¨®é¡
+* @param[out]  button ãƒœã‚¿ãƒ³ã®ç•ªå·ï¼ˆãƒã‚¦ã‚¹ã®å ´åˆï¼‰ï¼Œã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ï¼ˆã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å ´åˆï¼‰
+* @param[out]  x ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®xåº§æ¨™ï¼ˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ï¼‰
+* @param[out]  y ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®yåº§æ¨™ï¼ˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ï¼‰
+* @retval      å…¥åŠ›ã®ã‚ã£ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
 */
 int ggetxpress(int *type, int *button, float *x, float *y);
 
 /**
-* @brief      ƒ~ƒŠ•b’PˆÊ‚ÅÀs‚ğ‰„Šú‚·‚é
+* @brief      ãƒŸãƒªç§’å˜ä½ã§å®Ÿè¡Œã‚’å»¶æœŸã™ã‚‹
 * @ingroup    wineggx
-* @param[in]  msec ‰„ŠúŠÔ[msec]
-* @retval     ‚È‚µ
+* @param[in]  msec å»¶æœŸæ™‚é–“[msec]
+* @retval     ãªã—
 */
 void msleep(unsigned long msec);

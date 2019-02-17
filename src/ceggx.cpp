@@ -1,4 +1,4 @@
-#define CEGGX_MAIN
+ï»¿#define CEGGX_MAIN
 #define _USE_MATH_DEFINES
 #include <wineggx.h>
 #include "ceggx.h"
@@ -16,7 +16,7 @@ using namespace std;
 
 
 /**
- * @brief      ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+ * @brief      ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  * @ingroup    CEggX
 */
 CEggX::CEggX():
@@ -57,16 +57,16 @@ m_eventKey(-1)
   keytable[VK_BACK] = 0x08; //BackSpace
   keytable[VK_TAB] = 0x09;
   keytable[VK_RETURN] = 0x0d; //Enter
-  keytable[VK_RIGHT] = 0x1c;//¨
-  keytable[VK_LEFT] = 0x1d;//©
-  keytable[VK_UP] = 0x1e;//ª
-  keytable[VK_DOWN] = 0x1f;//«
+  keytable[VK_RIGHT] = 0x1c;//â†’
+  keytable[VK_LEFT] = 0x1d;//â†
+  keytable[VK_UP] = 0x1e;//â†‘
+  keytable[VK_DOWN] = 0x1f;//â†“
   keytable[VK_DELETE] = 0x7f;
 }
 
 
 /**
- * @brief      ƒfƒXƒgƒ‰ƒNƒ^
+ * @brief      ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
  * @ingroup    CEggX
 */
 CEggX::~CEggX()
@@ -110,19 +110,19 @@ CEggX::~CEggX()
 
 
 /**
- * @brief      Windows‚Åeggx‚Æ“¯‚¶‚±‚Æ‚ğ‚·‚é‚½‚ß‚Ì€”õ
+ * @brief      Windowsã§eggxã¨åŒã˜ã“ã¨ã‚’ã™ã‚‹ãŸã‚ã®æº–å‚™
  * @ingroup    CEggX
- * @param[in]  hInst ƒCƒ“ƒXƒ^ƒ“ƒXƒnƒ“ƒhƒ‹
- * @param[in]  AccessTableId ƒAƒNƒZƒXƒe[ƒuƒ‹‚ÌID”Ô†
- * @retval     1  ‚·‚Å‚É‰Šú‰»Š®—¹
- * @retval     -1 ƒGƒ‰[
- * @retval     0  ¬Œ÷
+ * @param[in]  hInst ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒãƒ³ãƒ‰ãƒ«
+ * @param[in]  AccessTableId ã‚¢ã‚¯ã‚»ã‚¹ãƒ†ãƒ¼ãƒ–ãƒ«ã®IDç•ªå·
+ * @retval     1  ã™ã§ã«åˆæœŸåŒ–å®Œäº†
+ * @retval     -1 ã‚¨ãƒ©ãƒ¼
+ * @retval     0  æˆåŠŸ
 */
 int CEggX::Initialize(HINSTANCE hInst,LONGLONG AccessTableId)
 {
   if(m_run)return 1;
 
-  //ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX“o˜^
+  //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ç™»éŒ²
   WNDCLASSEX wcex;
   wcex.cbSize        = sizeof(WNDCLASSEX); 
   wcex.style         = CS_HREDRAW | CS_VREDRAW;
@@ -141,23 +141,23 @@ int CEggX::Initialize(HINSTANCE hInst,LONGLONG AccessTableId)
   m_hInst       = hInst;
   m_accesstable = AccessTableId;
 
-  //ƒXƒŒƒbƒh‚ğì¬‚·‚é
+  //ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½œæˆã™ã‚‹
   return CreateThread();
 }
 
 
 /**
- * @brief      ƒXƒŒƒbƒh‚ğì¬‚·‚é
+ * @brief      ã‚¹ãƒ¬ãƒƒãƒ‰ã‚’ä½œæˆã™ã‚‹
  * @ingroup    CEggX
- * @retval     1  ‚·‚Å‚Éì¬Ï‚İ
- * @retval     -1 ƒGƒ‰[
- * @retval     0  ¬Œ÷
+ * @retval     1  ã™ã§ã«ä½œæˆæ¸ˆã¿
+ * @retval     -1 ã‚¨ãƒ©ãƒ¼
+ * @retval     0  æˆåŠŸ
 */
 int  CEggX::CreateThread()
 {
   if( m_run || m_Thread ) return 1;
 
-  // ƒXƒŒƒbƒhì¬
+  // ã‚¹ãƒ¬ãƒƒãƒ‰ä½œæˆ
   m_Thread = ::CreateThread(NULL,0,ThreadEntry,(DWORD*)this,0,NULL);
   if(!m_Thread)
   {
@@ -168,7 +168,7 @@ int  CEggX::CreateThread()
 
 
 /**
- * @brief      ‘S‚Ä‚ÌƒEƒBƒ“ƒhƒE‚ğ”j‰ó‚·‚é
+ * @brief      å…¨ã¦ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç ´å£Šã™ã‚‹
  * @ingroup    CEggX
 */
 void CEggX::Release()
@@ -184,7 +184,7 @@ void CEggX::Release()
 
 
 /**
- * @brief      ‘S‚Ä‚ÌƒEƒBƒ“ƒhƒE‚ğ”j‰ó‚·‚é
+ * @brief      å…¨ã¦ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç ´å£Šã™ã‚‹
  * @ingroup    CEggX
 */
 void CEggX::DestoroyAll()
@@ -197,9 +197,9 @@ void CEggX::DestoroyAll()
 
 
 /**
- * @brief      w’è‚ÌƒEƒBƒ“ƒhƒE‚ğ”j‰ó‚·‚é
+ * @brief      æŒ‡å®šã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ç ´å£Šã™ã‚‹
  * @ingroup    CEggX
- * @param[in]  wn ƒEƒBƒ“ƒhƒE”Ô†
+ * @param[in]  wn ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
 */
 void CEggX::Destoroy(int wn)
 {
@@ -265,11 +265,11 @@ void CEggX::Destoroy(int wn)
 
 
 /**
- * @brief      ƒEƒBƒ“ƒhƒE‚ğì¬‚·‚é
+ * @brief      ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã™ã‚‹
  * @ingroup    CEggX
- * @param[in]  xsize ƒEƒBƒ“ƒhƒE‚Ì‰¡•
- * @param[in]  ysize ƒEƒBƒ“ƒhƒE‚Ìc•
- * @retval     -1 ƒGƒ‰[
+ * @param[in]  xsize ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
+ * @param[in]  ysize ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
+ * @retval     -1 ã‚¨ãƒ©ãƒ¼
 */
 int CEggX::CreateEggXWindow(int xsize,int ysize)
 {
@@ -287,11 +287,11 @@ int CEggX::CreateEggXWindow(int xsize,int ysize)
   }
   if(num==-1)return -1;
 
-  //ƒEƒBƒ“ƒhƒEƒXƒ^ƒCƒ‹
+  //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«
   DWORD Style   = WS_CLIPCHILDREN | WS_CLIPSIBLINGS | WS_BORDER | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX;
   DWORD StyleEx = WS_EX_WINDOWEDGE;
 
-  //ƒEƒBƒ“ƒhƒE–¼
+  //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦å
   char windowname[64];
   sprintf_s(windowname, sizeof(windowname), "%s%d", "eggx window", num);
 
@@ -329,7 +329,7 @@ int CEggX::CreateEggXWindow(int xsize,int ysize)
   HDC hDC      = ::GetDC(hWnd);
   EggXWindow &wnd = m_Window.at(num);
   wnd.hWnd     = hWnd;
-  sprintf_s(wnd.fontName, sizeof(wnd.fontName), "‚l‚r ƒSƒVƒbƒN");
+  sprintf_s(wnd.fontName, sizeof(wnd.fontName), "ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯");
   wnd.cx       = xsize;
   wnd.cy       = ysize;
   wnd.xs       = 0;
@@ -381,10 +381,10 @@ int CEggX::CreateEggXWindow(int xsize,int ysize)
   pen.lopnWidth.y = 0;
   wnd.hPenF = ::CreatePenIndirect(&pen);
 
-  //ƒEƒBƒ“ƒhƒE‚ğÅ‘O–Ê‚É•\¦‚·‚é
+  //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’æœ€å‰é¢ã«è¡¨ç¤ºã™ã‚‹
   BringWindowToTop(FindWindow(EGGX_WINDOW_CLASS_NAME,windowname));
 
-  //ƒEƒBƒ“ƒhƒE‚ğí‚ÉÅ‘O–Ê‚É•\¦‚·‚é
+  //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’å¸¸ã«æœ€å‰é¢ã«è¡¨ç¤ºã™ã‚‹
   SetWindowPos(hWnd,HWND_TOPMOST,0,0,0,0,SWP_NOMOVE|SWP_NOSIZE);
 
   ShowWindow(hWnd, SW_SHOW);
@@ -399,12 +399,12 @@ int CEggX::CreateEggXWindow(int xsize,int ysize)
 
 
 /**
- * @brief      ”CˆÓ‚ÌƒTƒCƒY‚ÌƒOƒ‰ƒtƒBƒbƒNƒX‰æ–Ê‚ğŠJ‚­
+ * @brief      ä»»æ„ã®ã‚µã‚¤ã‚ºã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ç”»é¢ã‚’é–‹ã
  * @ingroup    CEggX
- * @param[in]  xsize ƒEƒBƒ“ƒhƒE‚Ì‰¡•
- * @param[in]  ysize ƒEƒBƒ“ƒhƒE‚Ìc•
- * @return     •Ô‚è’l‚É‚ÍEGGX‚Åg—p‚·‚éCƒEƒBƒ“ƒhƒE”Ô†‚ª•Ô‚Á‚Ä‚«‚Ü‚·D
- * @retval     -1 ƒGƒ‰[
+ * @param[in]  xsize ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
+ * @param[in]  ysize ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
+ * @return     è¿”ã‚Šå€¤ã«ã¯EGGXã§ä½¿ç”¨ã™ã‚‹ï¼Œã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·ãŒè¿”ã£ã¦ãã¾ã™ï¼
+ * @retval     -1 ã‚¨ãƒ©ãƒ¼
 */
 int  CEggX::gopen(int xsize,int ysize)
 {
@@ -429,9 +429,9 @@ int  CEggX::gopen(int xsize,int ysize)
 
 
 /**
- * @brief      ƒOƒ‰ƒtƒBƒbƒNƒXƒEƒBƒ“ƒhƒE‚ğ•Â‚¶‚é
+ * @brief      ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’é–‰ã˜ã‚‹
  * @ingroup    CEggX
- * @param[in]  wn ƒEƒBƒ“ƒhƒE”Ô†
+ * @param[in]  wn ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
 */
 void CEggX::gclose( unsigned wn )
 {
@@ -445,7 +445,7 @@ void CEggX::gclose( unsigned wn )
 
 
 /**
- * @brief      ‚·‚×‚Ä‚ÌƒOƒ‰ƒtƒBƒbƒNƒX—pƒEƒBƒ“ƒhƒD‚ğ•Â‚¶‚é
+ * @brief      ã™ã¹ã¦ã®ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹ç”¨ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã‚’é–‰ã˜ã‚‹
  * @ingroup    CEggX
 */
 void CEggX::gcloseall( void )
@@ -459,11 +459,11 @@ void CEggX::gcloseall( void )
 }
 
 /**
-* @brief      ƒOƒ‰ƒtƒBƒbƒNƒX•`‰æ—Ìˆæ‚ÌƒTƒCƒY•ÏX‚ğs‚È‚¤
+* @brief      ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã‚¹æç”»é ˜åŸŸã®ã‚µã‚¤ã‚ºå¤‰æ›´ã‚’è¡Œãªã†
 * @ingroup    CEggX
-* @param[in]  wn ƒEƒBƒ“ƒhƒE”Ô†
-* @param[in]  xsize ƒEƒBƒ“ƒhƒE‚Ì‰¡•
-* @param[in]  ysize ƒEƒBƒ“ƒhƒE‚Ìc•
+* @param[in]  wn ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
+* @param[in]  xsize ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ¨ªå¹…
+* @param[in]  ysize ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç¸¦å¹…
 */
 void CEggX::gresize(unsigned wn, int xsize, int ysize)
 {
@@ -489,11 +489,11 @@ void CEggX::gresize(unsigned wn, int xsize, int ysize)
 }
 
 /**
- * @brief      ƒEƒBƒ“ƒhƒD‚Ìƒ^ƒCƒgƒ‹‚ğ•ÏX‚·‚é
+ * @brief      ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®ã‚¿ã‚¤ãƒˆãƒ«ã‚’å¤‰æ›´ã™ã‚‹
  * @ingroup    CEggX
- * @param[in]  wn ƒ^ƒCƒgƒ‹‚ğ•ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  ... İ’è‚·‚éƒEƒBƒ“ƒhƒE‚Ì•¶š—ñ
- * @return     İ’è‚µ‚½ƒEƒBƒ“ƒhƒDƒ^ƒCƒgƒ‹‚Ì•¶š—ñ‚Ì’·‚³
+ * @param[in]  wn ã‚¿ã‚¤ãƒˆãƒ«ã‚’å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  ... è¨­å®šã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ–‡å­—åˆ—
+ * @return     è¨­å®šã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã‚¿ã‚¤ãƒˆãƒ«ã®æ–‡å­—åˆ—ã®é•·ã•
 */
 int  CEggX::winname(unsigned wn, const char *argsformat, va_list argptr)
 {
@@ -511,22 +511,46 @@ int  CEggX::winname(unsigned wn, const char *argsformat, va_list argptr)
   return (int)strlen(str);
 }
 
+/**
+* @brief      ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ã®å¤‰æ›´ï¼ˆå‚ç…§ç‚¹ã®åº§æ¨™ã¨ã‚¹ã‚±ãƒ¼ãƒ«ã‚’ä¸ãˆã‚‹ï¼‰
+* @ingroup    CEggX
+* @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  xw ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥åº§æ¨™ç³»ã«ãŠã‘ã‚‹å‚ç…§ç‚¹ã®xåº§æ¨™
+* @param[in]  yw ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥åº§æ¨™ç³»ã«ãŠã‘ã‚‹å‚ç…§ç‚¹ã®yåº§æ¨™
+* @param[in]  xa ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ã«ãŠã‘ã‚‹å‚ç…§ç‚¹ã®xåº§æ¨™
+* @param[in]  ya ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ã«ãŠã‘ã‚‹å‚ç…§ç‚¹ã®yåº§æ¨™
+* @param[in]  xscale xåº§æ¨™ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãƒ•ã‚¡ã‚¯ã‚¿ãƒ¼
+* @param[in]  yscale yåº§æ¨™ã®ã‚¹ã‚±ãƒ¼ãƒªãƒ³ã‚°ãƒ•ã‚¡ã‚¯ã‚¿ãƒ¼
+*/
+void CEggX::coordinate(unsigned wn, int xw, int yw, double xa, double ya, double xscale, double yscale)
+{
+  if (wn >= (unsigned)m_MaxWindow)return;
+
+  EggXWindow &wnd = m_Window.at(wn);
+  if (!wnd.hWnd)return;
+
+  wnd.xs = xa + (0-xw)/xscale;
+  wnd.ys = ya + (0-yw)/yscale;
+  wnd.xe = xa + (wnd.cx-1-xw)/xscale;
+  wnd.ye = ya + (wnd.cy-1-yw)/yscale;
+}
 
 /**
- * @brief      À•WŒn‚Ì•ÏX
+ * @brief      åº§æ¨™ç³»ã®å¤‰æ›´
  * @ingroup    CEggX
- * @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  xs ¶‰º‚ÌXÀ•W
- * @param[in]  ys ¶‰º‚ÌYÀ•W
- * @param[in]  xe ‰Eã‚ÌXÀ•W
- * @param[in]  ye ‰Eã‚ÌYÀ•W
+ * @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  xs å·¦ä¸‹ã®Xåº§æ¨™
+ * @param[in]  ys å·¦ä¸‹ã®Yåº§æ¨™
+ * @param[in]  xe å³ä¸Šã®Xåº§æ¨™
+ * @param[in]  ye å³ä¸Šã®Yåº§æ¨™
 */
-void CEggX::window( unsigned wn, double xs, double ys, double xe, double ye )
+void CEggX::window(unsigned wn, double xs, double ys, double xe, double ye)
 {
   if(wn>=(unsigned)m_MaxWindow)return;
 
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return;
+
   wnd.xs = xs;
   wnd.ys = ys;
   wnd.xe = xe;
@@ -535,11 +559,11 @@ void CEggX::window( unsigned wn, double xs, double ys, double xe, double ye )
 
 
 /**
- * @brief      ƒŒƒCƒ„‚Ìİ’è‚ğ‚·‚é
+ * @brief      ãƒ¬ã‚¤ãƒ¤ã®è¨­å®šã‚’ã™ã‚‹
  * @ingroup    CEggX
- * @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  lys •\¦ƒŒƒCƒ„[( 0 or 1 )
- * @param[in]  lyw ‘‚«‚İæƒŒƒCƒ„[( 0 or 1 )
+ * @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  lys è¡¨ç¤ºãƒ¬ã‚¤ãƒ¤ãƒ¼( 0 or 1 )
+ * @param[in]  lyw æ›¸ãè¾¼ã¿å…ˆãƒ¬ã‚¤ãƒ¤ãƒ¼( 0 or 1 )
 */
 void CEggX::layer( unsigned wn, int lys, int lyw )
 {
@@ -553,11 +577,11 @@ void CEggX::layer( unsigned wn, int lys, int lyw )
 
 
 /**
- * @brief      ƒŒƒCƒ„‚ÌƒRƒs[‚ğ‚·‚é
+ * @brief      ãƒ¬ã‚¤ãƒ¤ã®ã‚³ãƒ”ãƒ¼ã‚’ã™ã‚‹
  * @ingroup    CEggX
- * @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  lysrc  ƒRƒs[Œ³ƒŒƒCƒ„[”Ô†
- * @param[in]  lydest ƒRƒs[æƒŒƒCƒ„[”Ô†
+ * @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  lysrc  ã‚³ãƒ”ãƒ¼å…ƒãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
+ * @param[in]  lydest ã‚³ãƒ”ãƒ¼å…ˆãƒ¬ã‚¤ãƒ¤ãƒ¼ç•ªå·
 */
 void CEggX::copylayer( unsigned wn, int lysrc, int lydest )
 {
@@ -577,10 +601,10 @@ void CEggX::copylayer( unsigned wn, int lysrc, int lydest )
 }
 
 /**
- * @brief      •`‰æF‚Ì•ÏX
+ * @brief      æç”»è‰²ã®å¤‰æ›´
  * @ingroup    CEggX
- * @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  str F‚ğ•\‚·•¶š—ñ
+ * @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  str è‰²ã‚’è¡¨ã™æ–‡å­—åˆ—
 */
 void CEggX::newcolor( unsigned wn, const char *argsformat, va_list argptr)
 {
@@ -614,12 +638,12 @@ void CEggX::newcolor( unsigned wn, const char *argsformat, va_list argptr)
 }
 
 /**
- * @brief      •`‰æF‚Ì•ÏX
+ * @brief      æç”»è‰²ã®å¤‰æ›´
  * @ingroup    CEggX
- * @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  r  ÔF ( 0 to 255 )
- * @param[in]  g  —ÎF ( 0 to 255 )
- * @param[in]  b  ÂF ( 0 to 255 )
+ * @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  r  èµ¤è‰² ( 0 to 255 )
+ * @param[in]  g  ç·‘è‰² ( 0 to 255 )
+ * @param[in]  b  é’è‰² ( 0 to 255 )
 */
 void CEggX::newrgbcolor( unsigned wn, int r, int g, int b )
 {
@@ -656,12 +680,12 @@ void CEggX::newrgbcolor( unsigned wn, int r, int g, int b )
 }
 
 /**
- * @brief      •`‰æF‚Ì•ÏX
+ * @brief      æç”»è‰²ã®å¤‰æ›´
  * @ingroup    CEggX
- * @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  h  F‘Š ( 0 to 359 )
- * @param[in]  s  Ê“x ( 0 to 255 )
- * @param[in]  v  –¾“x ( 0 to 255 )
+ * @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  h  è‰²ç›¸ ( 0 to 359 )
+ * @param[in]  s  å½©åº¦ ( 0 to 255 )
+ * @param[in]  v  æ˜åº¦ ( 0 to 255 )
 */
 void CEggX::newhsvcolor( unsigned wn, int h, int s, int v )
 {
@@ -693,10 +717,10 @@ void CEggX::newhsvcolor( unsigned wn, int h, int s, int v )
 }
 
 /**
- * @brief      ƒEƒBƒ“ƒhƒD‚Ì”wŒiF‚Ì•ÏX
+ * @brief      ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®èƒŒæ™¯è‰²ã®å¤‰æ›´
  * @ingroup    CEggX
- * @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  str F‚ğ•\‚·•¶š—ñ
+ * @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  str è‰²ã‚’è¡¨ã™æ–‡å­—åˆ—
 */
 void CEggX::gsetbgcolor(unsigned wn, const char *argsformat, va_list argptr)
 {
@@ -730,12 +754,12 @@ void CEggX::gsetbgcolor(unsigned wn, const char *argsformat, va_list argptr)
 }
 
 /**
- * @brief      ƒEƒBƒ“ƒhƒD‚Ì”wŒiF‚Ì•ÏX
+ * @brief      ã‚¦ã‚£ãƒ³ãƒ‰ã‚¥ã®èƒŒæ™¯è‰²ã®å¤‰æ›´
  * @ingroup    CEggX
- * @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  r  ÔF ( 0 to 255 )
- * @param[in]  g  —ÎF ( 0 to 255 )
- * @param[in]  b  ÂF ( 0 to 255 )
+ * @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  r  èµ¤è‰² ( 0 to 255 )
+ * @param[in]  g  ç·‘è‰² ( 0 to 255 )
+ * @param[in]  b  é’è‰² ( 0 to 255 )
 */
 void CEggX::gsetbgcolorrgb( unsigned wn, int r, int g, int b )
 {
@@ -756,9 +780,9 @@ void CEggX::gsetbgcolorrgb( unsigned wn, int r, int g, int b )
   wnd.bB = b;
 }
 /**
- * @brief      •`‰æƒŒƒCƒ„‚Ì‘SÁ‹
+ * @brief      æç”»ãƒ¬ã‚¤ãƒ¤ã®å…¨æ¶ˆå»
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
 */
 void CEggX::gclr( unsigned wn )
 {
@@ -789,10 +813,10 @@ void CEggX::gclr( unsigned wn )
 }
 
 /**
- * @brief      ü•‚Ì•ÏX
+ * @brief      ç·šå¹…ã®å¤‰æ›´
  * @ingroup    CEggX
- * @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  width ü• 
+ * @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  width ç·šå¹… 
 */
 void CEggX::newlinewidth( unsigned wn, int width )
 {
@@ -813,10 +837,10 @@ void CEggX::newlinewidth( unsigned wn, int width )
 }
 
 /**
- * @brief      ü‚ÌƒXƒ^ƒCƒ‹‚Ì•ÏX
+ * @brief      ç·šã®ã‚¹ã‚¿ã‚¤ãƒ«ã®å¤‰æ›´
  * @ingroup    CEggX
- * @param[in]  wn •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  style ü‚ÌƒXƒ^ƒCƒ‹iLineSolidFÀüCLineOnOffDashF“_üj 
+ * @param[in]  wn å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  style ç·šã®ã‚¹ã‚¿ã‚¤ãƒ«ï¼ˆLineSolidï¼šå®Ÿç·šï¼ŒLineOnOffDashï¼šç‚¹ç·šï¼‰ 
 */
 void CEggX::newlinestyle( unsigned wn, int style )
 {
@@ -844,10 +868,10 @@ void CEggX::newlinestyle( unsigned wn, int style )
 }
 
 /**
- * @brief      “_‚Ì•`‰æ
+ * @brief      ç‚¹ã®æç”»
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  x,y •`‰ææÀ•W
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  x,y æç”»å…ˆåº§æ¨™
 */
 void CEggX::pset( unsigned wn,double x,double y )
 {
@@ -876,11 +900,11 @@ void CEggX::pset( unsigned wn,double x,double y )
 
 
 /**
- * @brief      ’¼ü‚Ì•`‰æ
+ * @brief      ç›´ç·šã®æç”»
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  x0,y0 ’[“_‚ÌÀ•W
- * @param[in]  x1,y1 ’[“_‚ÌÀ•W
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  x0,y0 ç«¯ç‚¹ã®åº§æ¨™
+ * @param[in]  x1,y1 ç«¯ç‚¹ã®åº§æ¨™
 */
 void CEggX::drawline( unsigned wn, double x0, double y0, double x1, double y1 )
 {
@@ -889,10 +913,10 @@ void CEggX::drawline( unsigned wn, double x0, double y0, double x1, double y1 )
 }
 
 /**
- * @brief      ’¼ü‚ğ•`‚½‚ß‚Ì‰ŠúˆÊ’u‚Ìİ’è
+ * @brief      ç›´ç·šã‚’æãŸã‚ã®åˆæœŸä½ç½®ã®è¨­å®š
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  x,y •`‰ææÀ•W
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  x,y æç”»å…ˆåº§æ¨™
 */
 void CEggX::moveto( unsigned wn, double x, double y )
 {
@@ -906,10 +930,10 @@ void CEggX::moveto( unsigned wn, double x, double y )
 }
 
 /**
- * @brief      ˜A‘±“I‚É’¼ü‚ğ•`‚­
+ * @brief      é€£ç¶šçš„ã«ç›´ç·šã‚’æã
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  x,y À•W
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  x,y åº§æ¨™
  * @section Notes
 */
 void CEggX::lineto( unsigned wn, double x, double y ){
@@ -946,11 +970,11 @@ void CEggX::lineto( unsigned wn, double x, double y ){
 }
 
 /**
- * @brief      ’¼ü‚Ì•`‰æ
+ * @brief      ç›´ç·šã®æç”»
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  x,y •`‰ææÀ•W
- * @param[in]  mode •`‰æƒ‚[ƒh (@ref PENDOWN @ref PENUP @ref PSET)
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  x,y æç”»å…ˆåº§æ¨™
+ * @param[in]  mode æç”»ãƒ¢ãƒ¼ãƒ‰ (@ref PENDOWN @ref PENUP @ref PSET)
 */
 void CEggX::line( unsigned wn,double x,double y,int mode )
 {
@@ -997,12 +1021,12 @@ void CEggX::line( unsigned wn,double x,double y,int mode )
 
 
 /**
- * @brief      ‰~‚Ì•`‰æ
+ * @brief      å††ã®æç”»
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  xcen,ycen ‰~‚Ì’†SÀ•W
- * @param[in]  xrad X²•ûŒü‚Ì”¼Œa
- * @param[in]  yrad Y²•ûŒü‚Ì”¼Œa
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  xcen,ycen å††ã®ä¸­å¿ƒåº§æ¨™
+ * @param[in]  xrad Xè»¸æ–¹å‘ã®åŠå¾„
+ * @param[in]  yrad Yè»¸æ–¹å‘ã®åŠå¾„
 */
 void CEggX::circle( unsigned wn, double xcen, double ycen, double xrad, double yrad )
 {
@@ -1048,12 +1072,12 @@ void CEggX::circle( unsigned wn, double xcen, double ycen, double xrad, double y
 }
 
 /**
- * @brief      ’†SÀ•WC”¼Œa‚ğ—^‚¦‚Ä‰~‚ğ“h‚è’×‚·
+ * @brief      ä¸­å¿ƒåº§æ¨™ï¼ŒåŠå¾„ã‚’ä¸ãˆã¦å††ã‚’å¡—ã‚Šæ½°ã™
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  xcen,ycen ‰~‚Ì’†SÀ•W
- * @param[in]  xrad X²•ûŒü‚Ì”¼Œa
- * @param[in]  yrad Y²•ûŒü‚Ì”¼Œa
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  xcen,ycen å††ã®ä¸­å¿ƒåº§æ¨™
+ * @param[in]  xrad Xè»¸æ–¹å‘ã®åŠå¾„
+ * @param[in]  yrad Yè»¸æ–¹å‘ã®åŠå¾„
 */
 void CEggX::fillcirc( unsigned wn, double xcen, double ycen, double xrad, double yrad )
 {
@@ -1095,15 +1119,15 @@ void CEggX::fillcirc( unsigned wn, double xcen, double ycen, double xrad, double
 }
 
 /**
- * @brief      ‰~ŒÊ‚Ì•`‰æ
+ * @brief      å††å¼§ã®æç”»
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  xcen,ycen ‰~‚Ì’†SÀ•W
- * @param[in]  xrad X²•ûŒü‚Ì”¼Œa
- * @param[in]  yrad Y²•ûŒü‚Ì”¼Œa
- * @param[in]  sang •`‰æŠJnŠp“x [degree]
- * @param[in]  eang •`‰æI—¹Šp“x [degree]
- * @param[in]  idir •`‰æ•ûŒü ( 1 ¶‰ñ‚è or -1 ‰E‰ñ‚è)
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  xcen,ycen å††ã®ä¸­å¿ƒåº§æ¨™
+ * @param[in]  xrad Xè»¸æ–¹å‘ã®åŠå¾„
+ * @param[in]  yrad Yè»¸æ–¹å‘ã®åŠå¾„
+ * @param[in]  sang æç”»é–‹å§‹è§’åº¦ [degree]
+ * @param[in]  eang æç”»çµ‚äº†è§’åº¦ [degree]
+ * @param[in]  idir æç”»æ–¹å‘ ( 1 å·¦å›ã‚Š or -1 å³å›ã‚Š)
 */
 void CEggX::drawarc( unsigned wn, double xcen, double ycen, double xrad, double yrad, double sang, double eang, int idir )
 {
@@ -1174,15 +1198,15 @@ void CEggX::drawarc( unsigned wn, double xcen, double ycen, double xrad, double 
 
 
 /**
- * @brief      ‰~ŒÊ‚Ì•`‰æ(“h‚è‚Â‚Ô‚·)
+ * @brief      å††å¼§ã®æç”»(å¡—ã‚Šã¤ã¶ã™)
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  xcen,ycen ‰~‚Ì’†SÀ•W
- * @param[in]  xrad X²•ûŒü‚Ì”¼Œa
- * @param[in]  yrad Y²•ûŒü‚Ì”¼Œa
- * @param[in]  sang •`‰æŠJnŠp“x [degree]
- * @param[in]  eang •`‰æI—¹Šp“x [degree]
- * @param[in]  idir •`‰æ•ûŒü ( 1 ¶‰ñ‚è or -1 ‰E‰ñ‚è)
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  xcen,ycen å††ã®ä¸­å¿ƒåº§æ¨™
+ * @param[in]  xrad Xè»¸æ–¹å‘ã®åŠå¾„
+ * @param[in]  yrad Yè»¸æ–¹å‘ã®åŠå¾„
+ * @param[in]  sang æç”»é–‹å§‹è§’åº¦ [degree]
+ * @param[in]  eang æç”»çµ‚äº†è§’åº¦ [degree]
+ * @param[in]  idir æç”»æ–¹å‘ ( 1 å·¦å›ã‚Š or -1 å³å›ã‚Š)
 */
 void CEggX::fillarc( unsigned wn, double xcen, double ycen, double xrad, double yrad, double sang, double eang, int idir )
 {
@@ -1253,12 +1277,12 @@ void CEggX::fillarc( unsigned wn, double xcen, double ycen, double xrad, double 
 
 
 /**
- * @brief      ’·•ûŒ`‚Ì•`‰æ
+ * @brief      é•·æ–¹å½¢ã®æç”»
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  x,y  •`‰æÀ•Wi’·•ûŒ`‚Ì¶‰ºj
- * @param[in]  w    ’·•ûŒ`‚Ì‰¡•
- * @param[in]  h    ’·•ûŒ`‚Ìc•
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  x,y  æç”»åº§æ¨™ï¼ˆé•·æ–¹å½¢ã®å·¦ä¸‹ï¼‰
+ * @param[in]  w    é•·æ–¹å½¢ã®æ¨ªå¹…
+ * @param[in]  h    é•·æ–¹å½¢ã®ç¸¦å¹…
 */
 void CEggX::drawrect( unsigned wn, double x, double y, double w, double h )
 {
@@ -1300,12 +1324,12 @@ void CEggX::drawrect( unsigned wn, double x, double y, double w, double h )
 
 
 /**
- * @brief      ’·•ûŒ`‚Ì•`‰æi“h‚è‚Â‚Ô‚·j
+ * @brief      é•·æ–¹å½¢ã®æç”»ï¼ˆå¡—ã‚Šã¤ã¶ã™ï¼‰
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  x,y  •`‰æÀ•Wi’·•ûŒ`‚Ì¶‰ºj
- * @param[in]  w    ’·•ûŒ`‚Ì‰¡•
- * @param[in]  h    ’·•ûŒ`‚Ìc•
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  x,y  æç”»åº§æ¨™ï¼ˆé•·æ–¹å½¢ã®å·¦ä¸‹ï¼‰
+ * @param[in]  w    é•·æ–¹å½¢ã®æ¨ªå¹…
+ * @param[in]  h    é•·æ–¹å½¢ã®ç¸¦å¹…
 */
 void CEggX::fillrect( unsigned wn, double x, double y, double w, double h )
 {
@@ -1342,14 +1366,14 @@ void CEggX::fillrect( unsigned wn, double x, double y, double w, double h )
 }
 
 /**
- * @brief      •¶š—ñ‚Ì•`‰æ
+ * @brief      æ–‡å­—åˆ—ã®æç”»
  * @ingroup    CEggX
- * @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  x,y   •`‰ææÀ•Wi•¶š—ñ‚ğ•`‰æ‚·‚éˆÊ’u‚Ì¶‰º‚ÌÀ•Wj
- * @param[in]  size  •`‰æ‚·‚é•¶š‚Ì‘å‚«‚³
- * @param[in]  theta •¶š—ñ‚Ì‰ñ“]Šp“x [degree] ( * Œ»İ‚Í–³Œø )
- * @param[in]  argsformat, ...   •¶š—ñ
- * @return     ÀÛ‚É•`‰æ‚µ‚½•¶š—ñ‚Ì’·‚³
+ * @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  x,y   æç”»å…ˆåº§æ¨™ï¼ˆæ–‡å­—åˆ—ã‚’æç”»ã™ã‚‹ä½ç½®ã®å·¦ä¸‹ã®åº§æ¨™ï¼‰
+ * @param[in]  size  æç”»ã™ã‚‹æ–‡å­—ã®å¤§ãã•
+ * @param[in]  theta æ–‡å­—åˆ—ã®å›è»¢è§’åº¦ [degree] ( * ç¾åœ¨ã¯ç„¡åŠ¹ )
+ * @param[in]  argsformat, ...   æ–‡å­—åˆ—
+ * @return     å®Ÿéš›ã«æç”»ã—ãŸæ–‡å­—åˆ—ã®é•·ã•
 */
 int  CEggX::drawstr(unsigned wn, double x, double y, int size, double theta, const char *argsformat, va_list argptr)
 {
@@ -1365,7 +1389,7 @@ int  CEggX::drawstr(unsigned wn, double x, double y, int size, double theta, con
 
   if (size <= 0)size = 14;
 
-  //ƒtƒHƒ“ƒgì¬
+  //ãƒ•ã‚©ãƒ³ãƒˆä½œæˆ
   if(!wnd.fontsize||size!=wnd.fontsize||!wnd.hFont)
   {
       bool find = false;
@@ -1409,11 +1433,11 @@ int  CEggX::drawstr(unsigned wn, double x, double y, int size, double theta, con
   if(wnd.showLayer==wnd.writeLayer)
   {
       ::SelectObject(hWDC,*wnd.hFont);
-      ::SetTextColor(hWDC,RGB(wnd.r,wnd.g,wnd.b));//•¶šFİ’èiNULL=Blackj
-      ::SetBkMode(hWDC,TRANSPARENT);              //•¶š”wŒi‚ğ“h‚è‚Â‚Ô‚³‚È‚¢
+      ::SetTextColor(hWDC,RGB(wnd.r,wnd.g,wnd.b));//æ–‡å­—è‰²è¨­å®šï¼ˆNULL=Blackï¼‰
+      ::SetBkMode(hWDC,TRANSPARENT);              //æ–‡å­—èƒŒæ™¯ã‚’å¡—ã‚Šã¤ã¶ã•ãªã„
 
       if(::GetTextExtentPoint32(hWDC,str,len,&psize))
-      { //ƒeƒLƒXƒgƒTƒCƒY•ª‚¾‚¯‚¸‚ç‚·
+      { //ãƒ†ã‚­ã‚¹ãƒˆã‚µã‚¤ã‚ºåˆ†ã ã‘ãšã‚‰ã™
           rect.top-=psize.cy;
       }
       ::DrawText(hWDC,str,len,&rect,DT_TOP|DT_LEFT);
@@ -1423,11 +1447,11 @@ int  CEggX::drawstr(unsigned wn, double x, double y, int size, double theta, con
       HDC hDC  = ::CreateCompatibleDC(hWDC);
       ::SelectObject(hDC,wnd.hBitmap[wnd.index]);
       ::SelectObject(hDC,*wnd.hFont);
-      ::SetTextColor(hDC,RGB(wnd.r,wnd.g,wnd.b));//•¶šFİ’èiNULL=Blackj
-      ::SetBkMode(hDC,TRANSPARENT);              //•¶š”wŒi‚ğ“h‚è‚Â‚Ô‚³‚È‚¢
+      ::SetTextColor(hDC,RGB(wnd.r,wnd.g,wnd.b));//æ–‡å­—è‰²è¨­å®šï¼ˆNULL=Blackï¼‰
+      ::SetBkMode(hDC,TRANSPARENT);              //æ–‡å­—èƒŒæ™¯ã‚’å¡—ã‚Šã¤ã¶ã•ãªã„
 
       if(::GetTextExtentPoint32(hDC,str,len,&psize))
-      { //ƒeƒLƒXƒgƒTƒCƒY•ª‚¾‚¯‚¸‚ç‚·
+      { //ãƒ†ã‚­ã‚¹ãƒˆã‚µã‚¤ã‚ºåˆ†ã ã‘ãšã‚‰ã™
           rect.top-=psize.cy;
       }
 
@@ -1440,13 +1464,13 @@ int  CEggX::drawstr(unsigned wn, double x, double y, int size, double theta, con
 }
 
 /**
- * @brief      •`‰æƒtƒHƒ“ƒg‚Ìİ’è
+ * @brief      æç”»ãƒ•ã‚©ãƒ³ãƒˆã®è¨­å®š
  * @ingroup    CEggX
- * @param[in]  wn    •ÏX‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
- * @param[in]  argsformat, ... ƒtƒHƒ“ƒgƒZƒbƒg‚Ì–¼‘O
- * @retval     -1 ƒGƒ‰[
- * @retval     0  æ“¾¬Œ÷
- * @retval     1  ‘ã‘ÖƒtƒHƒ“ƒg‚Ìæ“¾¬Œ÷
+ * @param[in]  wn    å¤‰æ›´ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+ * @param[in]  argsformat, ... ãƒ•ã‚©ãƒ³ãƒˆã‚»ãƒƒãƒˆã®åå‰
+ * @retval     -1 ã‚¨ãƒ©ãƒ¼
+ * @retval     0  å–å¾—æˆåŠŸ
+ * @retval     1  ä»£æ›¿ãƒ•ã‚©ãƒ³ãƒˆã®å–å¾—æˆåŠŸ
 */
 int  CEggX::gsetfontset( unsigned wn, const char *argsformat, va_list argptr)
 {
@@ -1467,13 +1491,13 @@ int  CEggX::gsetfontset( unsigned wn, const char *argsformat, va_list argptr)
 }
 
 /**
-* @brief Ü‚êü‚ğ•`‚­
+* @brief æŠ˜ã‚Œç·šã‚’æã
 * @ingroup    CEggX
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x[] Ü‚êü‚ÌŠe“_‚ÌxÀ•W
-* @param[in]  y[] Ü‚êü‚ÌŠe“_‚ÌyÀ•W
-* @param[in]  n “_‚Ì”
-* @retval      ‚È‚µ
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x[] æŠ˜ã‚Œç·šã®å„ç‚¹ã®xåº§æ¨™
+* @param[in]  y[] æŠ˜ã‚Œç·šã®å„ç‚¹ã®yåº§æ¨™
+* @param[in]  n ç‚¹ã®æ•°
+* @retval      ãªã—
 */
 void CEggX::drawlines(unsigned wn, const double x[], const double y[], int n)
 {
@@ -1514,13 +1538,13 @@ void CEggX::drawlines(unsigned wn, const double x[], const double y[], int n)
 }
 
 /**
-* @brief ‘½ŠpŒ`‚ğ•`‚­
+* @brief å¤šè§’å½¢ã‚’æã
 * @ingroup    CEggX
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x[] ‘½ŠpŒ`‚ÌŠe“_‚ÌxÀ•W
-* @param[in]  y[] ‘½ŠpŒ`‚ÌŠe“_‚ÌyÀ•W
-* @param[in]  n “_‚Ì”
-* @retval      ‚È‚µ
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x[] å¤šè§’å½¢ã®å„ç‚¹ã®xåº§æ¨™
+* @param[in]  y[] å¤šè§’å½¢ã®å„ç‚¹ã®yåº§æ¨™
+* @param[in]  n ç‚¹ã®æ•°
+* @retval      ãªã—
 */
 void CEggX::drawpoly(unsigned wn, const double x[], const double y[], int n)
 {
@@ -1561,14 +1585,14 @@ void CEggX::drawpoly(unsigned wn, const double x[], const double y[], int n)
 }
 
 /**
-* @brief ‘½ŠpŒ`‚ğ“h‚è’×‚·
+* @brief å¤šè§’å½¢ã‚’å¡—ã‚Šæ½°ã™
 * @ingroup    CEggX
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x[] ‘½ŠpŒ`‚ÌŠe“_‚ÌxÀ•W
-* @param[in]  y[] ‘½ŠpŒ`‚ÌŠe“_‚ÌyÀ•W
-* @param[in]  n “_‚Ì”
-* @param[in]  i “h‚è’×‚·‚ÌŒ`ó
-* @retval      ‚È‚µ
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x[] å¤šè§’å½¢ã®å„ç‚¹ã®xåº§æ¨™
+* @param[in]  y[] å¤šè§’å½¢ã®å„ç‚¹ã®yåº§æ¨™
+* @param[in]  n ç‚¹ã®æ•°
+* @param[in]  i å¡—ã‚Šæ½°ã™æ™‚ã®å½¢çŠ¶
+* @retval      ãªã—
 */
 void CEggX::fillpoly(unsigned wn, const double x[], const double y[], int n, int i)
 {
@@ -1616,13 +1640,13 @@ void CEggX::fillpoly(unsigned wn, const double x[], const double y[], int n, int
 }
 
 /**
-* @brief •¡”‚Ì“_‚ğ•`‚­
+* @brief è¤‡æ•°ã®ç‚¹ã‚’æã
 * @ingroup    CEggX
-* @param[in]  wn •`‰æ‚·‚éƒEƒBƒ“ƒhƒE‚Ì”Ô†
-* @param[in]  x[] Še“_‚ÌxÀ•W
-* @param[in]  y[] Še“_‚ÌyÀ•W
-* @param[in]  n “_‚Ì”
-* @retval      ‚È‚µ
+* @param[in]  wn æç”»ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ç•ªå·
+* @param[in]  x[] å„ç‚¹ã®xåº§æ¨™
+* @param[in]  y[] å„ç‚¹ã®yåº§æ¨™
+* @param[in]  n ç‚¹ã®æ•°
+* @retval      ãªã—
 */
 void CEggX::drawpts(unsigned wn, const double x[], const double y[], int n)
 {
@@ -1654,10 +1678,10 @@ void CEggX::drawpts(unsigned wn, const double x[], const double y[], int n)
 }
 
 /**
- * @brief      ƒL[ƒ{[ƒh‚©‚ç“ü—Í‚³‚ê‚½•¶š‚ğ•Ô‚·
+ * @brief      ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã‹ã‚‰å…¥åŠ›ã•ã‚ŒãŸæ–‡å­—ã‚’è¿”ã™
  * @ingroup    CEggX
- * @retval     <0 “ü—Í‚È‚µiƒmƒ“ƒuƒƒbƒLƒ“ƒOƒ‚[ƒh‚Ìê‡j
- * @retval     ‰Ÿ‚³‚ê‚½ƒL[‚Ì•¶šƒR[ƒh
+ * @retval     <0 å…¥åŠ›ãªã—ï¼ˆãƒãƒ³ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ã®å ´åˆï¼‰
+ * @retval     æŠ¼ã•ã‚ŒãŸã‚­ãƒ¼ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰
 */
 int CEggX::ggetch()
 {
@@ -1675,10 +1699,10 @@ int CEggX::ggetch()
 }
 
 /**
- * @brief      ƒCƒxƒ“ƒgæ“¾‚Ì“®ìƒ‚[ƒh‚ğİ’è‚·‚é
+ * @brief      ã‚¤ãƒ™ãƒ³ãƒˆå–å¾—ã®å‹•ä½œãƒ¢ãƒ¼ãƒ‰ã‚’è¨­å®šã™ã‚‹
  * @ingroup    CEggX
- * @param[in]  flag ENABLE ƒmƒ“ƒuƒƒbƒLƒ“ƒOƒ‚[ƒhCDISABLE ƒuƒƒbƒLƒ“ƒOƒ‚[ƒh
- * @retval     ‚È‚µ
+ * @param[in]  flag ENABLE ãƒãƒ³ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰ï¼ŒDISABLE ãƒ–ãƒ­ãƒƒã‚­ãƒ³ã‚°ãƒ¢ãƒ¼ãƒ‰
+ * @retval     ãªã—
 */
 void CEggX::gsetnonblock( int flag )
 {
@@ -1690,13 +1714,13 @@ void CEggX::gsetnonblock( int flag )
 }
 
 /**
-* @brief      ‘S‚Ä‚ÌƒEƒBƒ“ƒhƒE‚Ìƒ}ƒEƒX‚âƒL[ƒ{[ƒh‚Ì“ü—Íî•ñ‚ğ•Ô‚·D
+* @brief      å…¨ã¦ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒã‚¦ã‚¹ã‚„ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›æƒ…å ±ã‚’è¿”ã™ï¼
 * @ingroup    CEggX
-* @param[out]  type ƒCƒxƒ“ƒg‚Ìí—Ş
-* @param[out]  button ƒ{ƒ^ƒ“‚Ì”Ô†iƒ}ƒEƒX‚Ìê‡jCƒL[ƒR[ƒhiƒL[ƒ{[ƒh‚Ìê‡j
-* @param[out]  x ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌxÀ•WiƒAƒvƒŠƒP[ƒVƒ‡ƒ“À•WŒnj
-* @param[out]  y ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌyÀ•WiƒAƒvƒŠƒP[ƒVƒ‡ƒ“À•WŒnj
-* @retval      “ü—Í‚Ì‡‚Á‚½ƒEƒBƒ“ƒhƒE”Ô†
+* @param[out]  type ã‚¤ãƒ™ãƒ³ãƒˆã®ç¨®é¡
+* @param[out]  button ãƒœã‚¿ãƒ³ã®ç•ªå·ï¼ˆãƒã‚¦ã‚¹ã®å ´åˆï¼‰ï¼Œã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ï¼ˆã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å ´åˆï¼‰
+* @param[out]  x ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®xåº§æ¨™ï¼ˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ï¼‰
+* @param[out]  y ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®yåº§æ¨™ï¼ˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ï¼‰
+* @retval      å…¥åŠ›ã®åˆã£ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
 */
 int CEggX::ggetevent(int *type, int *button, double *x, double *y)
 {
@@ -1728,13 +1752,13 @@ int CEggX::ggetevent(int *type, int *button, double *x, double *y)
 }
 
 /**
-* @brief      ‘S‚Ä‚ÌƒEƒBƒ“ƒhƒE‚Ìƒ}ƒEƒX‚âƒL[ƒ{[ƒh‚Ì“ü—Íî•ñ‚ğ•Ô‚·iƒL[‚Æƒ{ƒ^ƒ“‚Ì‚İjD
+* @brief      å…¨ã¦ã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒã‚¦ã‚¹ã‚„ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›æƒ…å ±ã‚’è¿”ã™ï¼ˆã‚­ãƒ¼ã¨ãƒœã‚¿ãƒ³ã®ã¿ï¼‰ï¼
 * @ingroup    CEggX
-* @param[out]  type ƒCƒxƒ“ƒg‚Ìí—Ş
-* @param[out]  button ƒ{ƒ^ƒ“‚Ì”Ô†iƒ}ƒEƒX‚Ìê‡jCƒL[ƒR[ƒhiƒL[ƒ{[ƒh‚Ìê‡j
-* @param[out]  x ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌxÀ•WiƒAƒvƒŠƒP[ƒVƒ‡ƒ“À•WŒnj
-* @param[out]  y ƒ}ƒEƒXƒ|ƒCƒ“ƒ^‚ÌyÀ•WiƒAƒvƒŠƒP[ƒVƒ‡ƒ“À•WŒnj
-* @retval      “ü—Í‚Ì‡‚Á‚½ƒEƒBƒ“ƒhƒE”Ô†
+* @param[out]  type ã‚¤ãƒ™ãƒ³ãƒˆã®ç¨®é¡
+* @param[out]  button ãƒœã‚¿ãƒ³ã®ç•ªå·ï¼ˆãƒã‚¦ã‚¹ã®å ´åˆï¼‰ï¼Œã‚­ãƒ¼ã‚³ãƒ¼ãƒ‰ï¼ˆã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å ´åˆï¼‰
+* @param[out]  x ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®xåº§æ¨™ï¼ˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ï¼‰
+* @param[out]  y ãƒã‚¦ã‚¹ãƒã‚¤ãƒ³ã‚¿ã®yåº§æ¨™ï¼ˆã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åº§æ¨™ç³»ï¼‰
+* @retval      å…¥åŠ›ã®åˆã£ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç•ªå·
 */
 int CEggX::ggetxpress(int *type, int *button, double *x, double *y)
 {
@@ -1769,14 +1793,14 @@ int CEggX::ggetxpress(int *type, int *button, double *x, double *y)
 
 
 /**
-* @brief      ƒCƒxƒ“ƒg‚ÌŒ‹‰Ê‚ğ‘‚«‚Şæ‚Ìƒ|ƒCƒ“ƒ^‚ğİ’è‚·‚éD
+* @brief      ã‚¤ãƒ™ãƒ³ãƒˆã®çµæœã‚’æ›¸ãè¾¼ã‚€å…ˆã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¨­å®šã™ã‚‹ï¼
 * @ingroup    CEggX
-* @param[in]  pwin WindowId‚ğ‘‚«‚Şæ‚Ìƒ|ƒCƒ“ƒ^
-* @param[in]  px MouseX‚ğ‘‚«‚Şæ‚Ìƒ|ƒCƒ“ƒ^
-* @param[in]  py MouseY‚ğ‘‚«‚Şæ‚Ìƒ|ƒCƒ“ƒ^
-* @param[in]  pbutton MouseButton‚ğ‘‚«‚Şæ‚Ìƒ|ƒCƒ“ƒ^
-* @param[in]  ppressed MousePressed‚ğ‘‚«‚Şæ‚Ìƒ|ƒCƒ“ƒ^
-* @retval      ‚È‚µ
+* @param[in]  pwin WindowIdã‚’æ›¸ãè¾¼ã‚€å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+* @param[in]  px MouseXã‚’æ›¸ãè¾¼ã‚€å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+* @param[in]  py MouseYã‚’æ›¸ãè¾¼ã‚€å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+* @param[in]  pbutton MouseButtonã‚’æ›¸ãè¾¼ã‚€å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+* @param[in]  ppressed MousePressedã‚’æ›¸ãè¾¼ã‚€å…ˆã®ãƒã‚¤ãƒ³ã‚¿
+* @retval      ãªã—
 */
 void CEggX::setmouse(int *pwin, double *px, double *py, int *pbutton, bool *ppressed)
 {
@@ -1789,10 +1813,10 @@ void CEggX::setmouse(int *pwin, double *px, double *py, int *pbutton, bool *ppre
 
 
 /**
- * @brief      EggX‚ÌƒƒbƒZ[ƒWˆ—
+ * @brief      EggXã®ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
  * @ingroup    CEggX
- * @param[in]  msg ƒƒbƒZ[ƒW
- * @return     ƒXƒŒƒbƒhI—¹ƒpƒ‰ƒ[ƒ^
+ * @param[in]  msg ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸
+ * @return     ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 */
 void CEggX::EggMessage(LONGLONG msg)
 {
@@ -1813,10 +1837,10 @@ void CEggX::EggMessage(LONGLONG msg)
 
 
 /**
- * @brief      ƒXƒŒƒbƒh‚ÌƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
+ * @brief      ã‚¹ãƒ¬ãƒƒãƒ‰ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
  * @ingroup    CEggX
- * @param[in]  param ƒNƒ‰ƒX‚Ìƒ|ƒCƒ“ƒ^
- * @return     ƒXƒŒƒbƒhI—¹ƒpƒ‰ƒ[ƒ^
+ * @param[in]  param ã‚¯ãƒ©ã‚¹ã®ãƒã‚¤ãƒ³ã‚¿
+ * @return     ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 */
 DWORD CEggX::ThreadEntry(void *param)
 {
@@ -1826,15 +1850,15 @@ DWORD CEggX::ThreadEntry(void *param)
 
 
 /**
- * @brief      ƒXƒŒƒbƒh‚Ìˆ—
+ * @brief      ã‚¹ãƒ¬ãƒƒãƒ‰ã®å‡¦ç†
  * @ingroup    CEggX
- * @return     ƒXƒŒƒbƒhI—¹ƒpƒ‰ƒ[ƒ^
+ * @return     ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 */
 DWORD CEggX::ThreadProc()
 {
   m_run = true;
   MSG msg;
-  //ƒVƒ‡[ƒgƒJƒbƒgƒL[ˆ—
+  //ã‚·ãƒ§ãƒ¼ãƒˆã‚«ãƒƒãƒˆã‚­ãƒ¼å‡¦ç†
   HACCEL hAccelTable = LoadAccelerators(m_hInst, (LPCTSTR)m_accesstable);
 
   while(1)
@@ -1854,7 +1878,7 @@ DWORD CEggX::ThreadProc()
           if(!m_Window.at(i).hWnd)continue;
           num--;
           EggXWindow &wnd = m_Window.at(i);
-          // ƒƒCƒ“ ƒƒbƒZ[ƒW ƒ‹[ƒv :
+          // ãƒ¡ã‚¤ãƒ³ ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ ãƒ«ãƒ¼ãƒ— :
           while (::PeekMessage(&msg, wnd.hWnd, 0, 0, PM_REMOVE)) 
           {
               if(hAccelTable)
@@ -1879,7 +1903,7 @@ DWORD CEggX::ThreadProc()
 
 
 /**
- * @brief      ƒEƒBƒ“ƒhƒEƒƒbƒZ[ƒW‚ğó‚¯æ‚éŠÖ”
+ * @brief      ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’å—ã‘å–ã‚‹é–¢æ•°
  * @ingroup    CEggX
 */
 INT_PTR CEggX::WindowProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
@@ -1888,7 +1912,7 @@ INT_PTR CEggX::WindowProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 
   CEggX *This=(CEggX*)s_SelectWind.Serch(hWnd);
   if(uMsg==WM_CREATE)
-  {//ƒEƒBƒ“ƒhƒE‰Šú‰»
+  {//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦åˆæœŸåŒ–
       CREATESTRUCT *cre = (CREATESTRUCT*)(((CREATESTRUCT*)lParam)->lpCreateParams);
 
       s_SelectWind.Add(hWnd,(void*)cre->lpCreateParams);
@@ -1896,7 +1920,7 @@ INT_PTR CEggX::WindowProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       return 0;
   }
   else if(uMsg==WM_DESTROY)
-  {//ƒEƒBƒ“ƒhƒE‚ª”j‰ó‚³‚ê‚½‚Æ‚«
+  {//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒç ´å£Šã•ã‚ŒãŸã¨ã
       if(This)s_SelectWind.Delete(hWnd);
   }
   else if(uMsg==WM_USER_EXIT)
@@ -1912,7 +1936,7 @@ INT_PTR CEggX::WindowProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 
 
 /**
- * @brief      ƒEƒBƒ“ƒhƒEƒƒbƒZ[ƒWˆ—
+ * @brief      ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å‡¦ç†
  * @ingroup    CEggX
 */
 INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
@@ -2069,7 +2093,7 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 }
 
 /**
-* @brief      ƒXƒP[ƒ‹•ÏŠ·
+* @brief      ã‚¹ã‚±ãƒ¼ãƒ«å¤‰æ›
 * @ingroup    CEggX
 */
 inline int CEggX::scaleX(EggXWindow &wnd, double x)
@@ -2078,7 +2102,7 @@ inline int CEggX::scaleX(EggXWindow &wnd, double x)
 }
 
 /**
-* @brief      ƒXƒP[ƒ‹•ÏŠ·
+* @brief      ã‚¹ã‚±ãƒ¼ãƒ«å¤‰æ›
 * @ingroup    CEggX
 */
 inline int CEggX::scaleY(EggXWindow &wnd, double y)
@@ -2087,7 +2111,7 @@ inline int CEggX::scaleY(EggXWindow &wnd, double y)
 }
 
 /**
-* @brief      À•W•ÏŠ·
+* @brief      åº§æ¨™å¤‰æ›
 * @ingroup    CEggX
 */
 inline int CEggX::convertX(EggXWindow &wnd, double x)
@@ -2096,7 +2120,7 @@ inline int CEggX::convertX(EggXWindow &wnd, double x)
 }
 
 /**
-* @brief      À•W•ÏŠ·
+* @brief      åº§æ¨™å¤‰æ›
 * @ingroup    CEggX
 */
 inline int CEggX::convertY(EggXWindow &wnd, double y)
@@ -2105,7 +2129,7 @@ inline int CEggX::convertY(EggXWindow &wnd, double y)
 }
 
 /**
-* @brief      ‹tƒXƒP[ƒ‹•ÏŠ·
+* @brief      é€†ã‚¹ã‚±ãƒ¼ãƒ«å¤‰æ›
 * @ingroup    CEggX
 */
 inline double CEggX::inverseScaleX(EggXWindow &wnd, int x)
@@ -2114,7 +2138,7 @@ inline double CEggX::inverseScaleX(EggXWindow &wnd, int x)
 }
 
 /**
-* @brief      ‹tƒXƒP[ƒ‹•ÏŠ·
+* @brief      é€†ã‚¹ã‚±ãƒ¼ãƒ«å¤‰æ›
 * @ingroup    CEggX
 */
 inline double CEggX::inverseScaleY(EggXWindow &wnd, int y)
@@ -2123,7 +2147,7 @@ inline double CEggX::inverseScaleY(EggXWindow &wnd, int y)
 }
 
 /**
-* @brief      ‹tÀ•W•ÏŠ·
+* @brief      é€†åº§æ¨™å¤‰æ›
 * @ingroup    CEggX
 */
 inline double CEggX::invertX(EggXWindow &wnd, int x)
@@ -2132,7 +2156,7 @@ inline double CEggX::invertX(EggXWindow &wnd, int x)
 }
 
 /**
-* @brief      ‹t•W•ÏŠ·
+* @brief      é€†æ¨™å¤‰æ›
 * @ingroup    CEggX
 */
 inline double CEggX::invertY(EggXWindow &wnd, int y)
