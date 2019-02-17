@@ -143,7 +143,7 @@ void msleep(unsigned long msec);
 - Version 2.0
   - ggetch()の文字以外のキーにも対応するようにしました（カーソルキー等）．
   - マウスイベントに対応しました（ggetevent()，ggetxpress()）．
-  - 関数を追加しました．gresize(), coordinate(), tclr(), newpen(), drawpts(), drawlines(), drawpoly(), fillpoly(), newfontset();
+  - 関数を追加しました．gresize(), coordinate(), tclr(), newpen(), drawpts(), drawlines(), drawpoly(), fillpoly(), newfontset()
   - Processing風に大域変数でマウスの状態を取得できるようにしました（wineggx独自）．
   - Cスタイルの文字列（文字配列）の代わりにstd::stringも使えるようにしました（wineggx独自）．
 
