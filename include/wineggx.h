@@ -68,6 +68,15 @@ void gclose(int wn);
 void gcloseall(void);
 
 /**
+* @brief      グラフィックス描画領域のサイズ変更を行なう
+* @ingroup    wineggx
+* @param[in]  wn ウィンドウ番号
+* @param[in]  xsize ウィンドウの横幅
+* @param[in]  ysize ウィンドウの縦幅
+*/
+void gresize(int wn, int xsize, int ysize);
+
+/**
 * @brief      ウィンドゥのタイトルを変更する
 * @ingroup    wineggx
 * @param[in]  wn タイトルを変更するウィンドウの番号

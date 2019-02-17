@@ -100,6 +100,7 @@ public:
   int  gopen(int xsize, int ysize);
   void gclose(unsigned wn);
   void gcloseall(void);
+  void gresize(unsigned wn, int xsize, int ysize);
   int  winname(unsigned wn, const char *argsformat, va_list argptr);
   void window(unsigned wn, double xs, double ys, double xe, double ye);
   void layer(unsigned wn, int lys, int lyw);

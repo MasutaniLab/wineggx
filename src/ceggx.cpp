@@ -458,6 +458,35 @@ void CEggX::gcloseall( void )
   }
 }
 
+/**
+* @brief      グラフィックス描画領域のサイズ変更を行なう
+* @ingroup    CEggX
+* @param[in]  wn ウィンドウ番号
+* @param[in]  xsize ウィンドウの横幅
+* @param[in]  ysize ウィンドウの縦幅
+*/
+void CEggX::gresize(unsigned wn, int xsize, int ysize)
+{
+  if (wn >= (unsigned)m_MaxWindow)return;
+
+  EggXWindow &wnd = m_Window.at(wn);
+  if (!wnd.hWnd)return;
+
+  wnd.cx = xsize;
+  wnd.cy = ysize;
+
+  RECT       rc;
+  ::SetRect(&rc, 0, 0, xsize, ysize);
+  ::AdjustWindowRectEx(&rc, WS_OVERLAPPEDWINDOW, FALSE, 0);
+  ::SetWindowPos(wnd.hWnd, NULL, 0, 0, rc.right - rc.left, rc.bottom - rc.top, SWP_NOMOVE | SWP_NOZORDER);
+
+  HDC hDC = ::GetDC(wnd.hWnd);
+  for (int i = 0; i < (sizeof(wnd.hBitmap) / sizeof(HBITMAP)); i++) {
+    wnd.hBitmap[i] = ::CreateCompatibleBitmap(hDC, xsize, ysize);
+  }
+  ::ReleaseDC(wnd.hWnd, hDC);
+
+}
 
 /**
  * @brief      ウィンドゥのタイトルを変更する
