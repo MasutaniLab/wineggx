@@ -212,10 +212,16 @@ void gclr(int wn)
   return gEggX.gclr(wn);
 }
 
-//未実装
-//void tclr(void)
-//{
-//}
+/**
+* @brief      端末のクリア
+* @ingroup    wineggx
+* @section Notes
+*  端末をクリアし，カーソルの位置をホームポジションに戻す．
+*/
+void tclr(void)
+{
+  system("cls");
+}
 
 //未実装
 //void newpen(int wn, int cn)

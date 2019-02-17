@@ -9,7 +9,10 @@ int main()
     gsetbgcolorrgb(win, 255, 255, 255);
     gclr(win);
     newlinewidth(win, 3);
+    cout << "Hit any key on eggx window." << endl;
 
+    ggetch();
+    cout << "drawlines()" << endl;
     const int num = 8;
     double x[num] = { 0,100,100,  0,  0,100, 50,  0 };
     double y[num] = { 0,  0,100,100,  0,100,150,100 };
@@ -20,6 +23,8 @@ int main()
     newrgbcolor(win, 0, 0, 255);
     drawlines(win, xf, yf, num);
 
+    ggetch();
+    cout << "drawpoly()" << endl;
     const int num2 = 5;
     double x2[num2] = { 200, 100, 300, 100, 300 };
     double y2[num2] = { 300, 100, 200, 200, 100 };
@@ -30,6 +35,8 @@ int main()
     newrgbcolor(win, 0, 255, 255);
     drawpoly(win, xf2, yf2, num2);
 
+    ggetch();
+    cout << "fillpoly()" << endl;
     const int num3 = 5;
     double x3[num3] = { 200, 100, 300, 100, 300 };
     double y3[num3] = { -300, -100, -200, -200, -100 };
@@ -40,6 +47,8 @@ int main()
     newrgbcolor(win, 255, 0, 255);
     fillpoly(win, xf3, yf3, num3, 1);
 
+    ggetch();
+    cout << "drawpts()" << endl;
     const int num4 = 100;
     double x4[num4*num4];
     double y4[num4*num4];
@@ -65,6 +74,10 @@ int main()
     }
     newrgbcolor(win, 0, 0, 0);
     drawpts(win, xf4, yf4, num4*num4);
+
+    ggetch();
+    cout << "tclr()" << endl;
+    tclr();
 
     ggetch();
     gclose(win);

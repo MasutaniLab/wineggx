@@ -172,8 +172,13 @@ void gsetbgcolorrgb(int wn, int r, int g, int b);
 */
 void gclr(int wn);
 
-//未実装
-//void tclr(void);
+/**
+* @brief      端末のクリア
+* @ingroup    wineggx
+* @section Notes
+*  端末をクリアし，カーソルの位置をホームポジションに戻す．
+*/
+void tclr(void);
 
 //未実装
 //void newpen(int wn, int cn);
