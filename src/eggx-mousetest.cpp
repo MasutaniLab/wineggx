@@ -21,7 +21,7 @@ int main()
     int type;
     if (ggetxpress(&type, &b, &x, &y) == win) {
       if (type == ButtonPress) {
-        //newpen(win,b) ;
+        newpen(win,b) ;
         moveto(win, 0, y);
         lineto(win, 399, y);
         moveto(win, x, 0);

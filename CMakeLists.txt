@@ -57,8 +57,8 @@ target_link_libraries(eggx-mousetest2 ${PROJECT_NAME})
 add_executable(eggx-mousetest3 src/eggx-mousetest3.cpp)
 target_link_libraries(eggx-mousetest3 ${PROJECT_NAME})
 
-add_executable(lines-test src/lines-test.cpp)
-target_link_libraries(lines-test ${PROJECT_NAME})
+add_executable(ver2-test src/ver2-test.cpp)
+target_link_libraries(ver2-test ${PROJECT_NAME})
 
 set(INSTALL_PREFIX ${PROJECT_SOURCE_DIR}
     CACHE PATH "where to install")

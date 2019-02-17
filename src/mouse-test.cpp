@@ -19,7 +19,7 @@ int main()
     gsetbgcolorrgb(win3, 0, 0, 255);
     gclr(win3);
 
-    //gsetnonblock(ENABLE);
+    gsetnonblock(ENABLE);
     while (true) {
         int type, button;
         double x, y;

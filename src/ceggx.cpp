@@ -48,7 +48,8 @@ m_accesstable(NULL),
 m_Init(false),
 m_Close(false),
 m_Nonblock(false),
-m_eventKey(-1)
+m_eventKey(-1),
+m_eventWinNum(-1)
 {
   m_Event = ::CreateEvent(NULL,false,false,NULL);
   m_Ack   = ::CreateEvent(NULL,false,false,NULL);
@@ -1968,6 +1969,7 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
   }
   EggXWindow window;
   if (winNum != -1)  window = m_Window.at(winNum);
+  //cout << "uMsg: " << uMsg << endl;
   switch (uMsg)
   {
   case WM_USER_EXIT:
@@ -2083,6 +2085,7 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
   case WM_MBUTTONUP:
   case WM_RBUTTONUP:
       m_eventButton = 0;
+      m_eventWinNum = -1;
       *m_pMousePressed = false;
       break;
   case WM_MOUSEMOVE:
@@ -2099,11 +2102,20 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       //cout << "WM_MOUSEMOVE: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
       if (m_Nonblock == DISABLE) {
           SetEvent(m_eventHandle);
+      } else {
+        SetTimer(hWnd, 1, 1, NULL);
+        //cout << "SetTimer" << endl;
       }
+      break;
+  case WM_TIMER:
+      //cout << "WM_TIMER" << endl;
+      m_eventWinNum = -1;
+      KillTimer(hWnd, 1);
       break;
   default:
       return DefWindowProc(hWnd, uMsg, wParam, lParam);
   }
+
   return 0;
 }
 
@@ -2176,5 +2188,5 @@ inline double CEggX::invertX(EggXWindow &wnd, int x)
 */
 inline double CEggX::invertY(EggXWindow &wnd, int y)
 {
-    return inverseScaleX(wnd, wnd.cy - y) + wnd.ys;
+    return inverseScaleY(wnd, wnd.cy - y) + wnd.ys;
 }

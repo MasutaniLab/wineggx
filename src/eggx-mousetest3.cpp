@@ -34,7 +34,7 @@ int main()
     int type, b;	/* イベントのタイプ，ボタン */
     float r, x, y;
     win_ev = ggetevent(&type, &b, &x, &y);
-    cout << win_ev << " " << type << " " << b << " " << x << " " << y << endl;
+    //cout << win_ev << " " << type << " " << b << " " << x << " " << y << endl;
     if (win_ev == win) {
       if (type == MotionNotify) {
         x_cen = x;

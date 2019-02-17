@@ -43,7 +43,7 @@ int main()
           //gputimage(win, x - 10, y - 10,
           //  Xpm_image_rbomb, XPM_WIDTH_RBOMB, XPM_HEIGHT_RBOMB, 255);
         } else if (pentype == 1) {
-          //newpen(win, 7);
+          newpen(win, 7);
           pset(win, x, y);
         } else if (pentype == 2) {
           //gscroll(win, x - p_x, y - p_y, 0);
@@ -56,8 +56,8 @@ int main()
         printf("button=%d x=%g y=%g\n", b, x, y);
       } else if (type == KeyPress) {
         if (b == 'q') break;
-        //else if (b == '>') gresize(win, 600, 400);
-        //else if (b == '<') gresize(win, 400, 300);
+        else if (b == '>') gresize(win, 600, 400);
+        else if (b == '<') gresize(win, 400, 300);
         printf("key code = %d\n", b);
       }
     }
