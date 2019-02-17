@@ -1,16 +1,16 @@
 ﻿/**
 * @file wineggx.h
 * @brief Windows版EGGX
-* @section Notes
-*  Copyright (C) 2007-2014 Team ODENS \n\n
-* @date 更新日時 更新者\n
-* 2019/02/XX 升谷 保博 Version 2.0\n
-* 2014/10/16 升谷 保博「Windows版EGGX Version 1.0」を名乗る\n
-* 2014/03/12 升谷 保博\n
+* @par Copyright
+*  Copyright (C) 2007-2019 Team ODENS, Masutani Lab, Osaka Electro-Communication University
+* @par 履歴
+* -2019/02/XX 升谷 保博 Version 2.0
+* -2014/10/16 升谷 保博「Windows版EGGX Version 1.0」を名乗る
+* -2014/03/12 升谷 保博
 **/
 
 /**
-* @addtogroup wineggx wineggx-WinEggX
+* @addtogroup wineggx Windows版EGGX
 * @brief Windowsでeggxライブラリの代わりをする
 **/
 

@@ -1,4 +1,20 @@
-﻿#define _USE_MATH_DEFINES
+﻿/**
+* @file ceggx.h
+* @brief Windows版EGGXの裏方
+* @par Copyright
+*  Copyright (C) 2007-2019 Team ODENS, Masutani Lab, Osaka Electro-Communication University
+* @par 履歴
+* -2019/02/XX 升谷 保博 Version 2.0
+* -2014/10/16 升谷 保博「Windows版EGGX Version 1.0」を名乗る
+* -2014/03/12 升谷 保博
+*/
+
+/**
+* @addtogroup CEggX Windows版EGGXの裏方
+* @brief Windows版EGGXの中で使っているクラス
+**/
+
+#define _USE_MATH_DEFINES
 
 #include <windows.h>
 #include <winbase.h>
@@ -19,11 +35,10 @@
 #include <string>
 #include <cassert>
 
-
 /**
- * @ingroup wineggx_back
+ * @ingroup CEggX
  * @class CEggX
- * @brief Windows版EGGX
+ * @brief Windows版EGGXの中で使っているクラス
 */
 class CEggX{
   /**
@@ -66,7 +81,7 @@ class CEggX{
   /**
   * @struct  MyFont
   * @brief   フォント管理のための構造体
-  * @ingroup wineggx_back
+  * @ingroup CEggX
   * @section Notes
   *  hFont    フォントオブジェクト
   *  fontName フォント名
