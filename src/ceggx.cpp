@@ -1743,10 +1743,10 @@ int CEggX::ggetevent(int *type, int *button, double *x, double *y)
         }
     }
     if (x != NULL) {
-        *x = invertX(m_Window.at(m_eventWinNum), m_eventX);
+        *x = m_eventX;
     }
     if (y != NULL) {
-        *y = invertY(m_Window.at(m_eventWinNum), m_eventY);
+        *y = m_eventY;
     }
     return m_eventWinNum;
 }
@@ -1783,14 +1783,13 @@ int CEggX::ggetxpress(int *type, int *button, double *x, double *y)
         }
     }
     if (x != NULL) {
-        *x = invertX(m_Window.at(m_eventWinNum), m_eventX);
+        *x = m_eventX;
     }
     if (y != NULL) {
-        *y = invertY(m_Window.at(m_eventWinNum), m_eventY);
+        *y = m_eventY;
     }
     return m_eventWinNum;
 }
-
 
 /**
 * @brief      イベントの結果を書き込む先のポインタを設定する．
@@ -2014,14 +2013,14 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_eventType = ButtonPress;
       m_eventButton = 1;
       m_eventWinNum = winNum;
-      m_eventX = LOWORD(lParam);
-      m_eventY = HIWORD(lParam);
+      m_eventX = invertX(window, LOWORD(lParam));
+      m_eventY = invertY(window, HIWORD(lParam));
       if (winNum != -1) {
-          *m_pWindowId = winNum;
-          *m_pMouseX = invertX(window, m_eventX);
-          *m_pMouseY = invertY(window, m_eventY);
-          *m_pMouseButton = m_eventButton;
-          *m_pMousePressed = true;
+        *m_pWindowId = winNum;
+        *m_pMouseX = m_eventX;
+        *m_pMouseY = m_eventY;
+        *m_pMouseButton = m_eventButton;
+        *m_pMousePressed = true;
       }
       //cout << "WM_LBUTTONDOWN: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
       if (m_Nonblock == DISABLE) {
@@ -2032,14 +2031,14 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_eventType = ButtonPress;
       m_eventButton = 2;
       m_eventWinNum = winNum;
-      m_eventX = LOWORD(lParam);
-      m_eventY = HIWORD(lParam);
+      m_eventX = invertX(window, LOWORD(lParam));
+      m_eventY = invertY(window, HIWORD(lParam));
       if (winNum != -1) {
-          *m_pWindowId = winNum;
-          *m_pMouseX = invertX(window, m_eventX);
-          *m_pMouseY = invertY(window, m_eventY);
-          *m_pMouseButton = m_eventButton;
-          *m_pMousePressed = true;
+        *m_pWindowId = winNum;
+        *m_pMouseX = m_eventX;
+        *m_pMouseY = m_eventY;
+        *m_pMouseButton = m_eventButton;
+        *m_pMousePressed = true;
       }
       //cout << "WM_MBUTTONDOWN: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
       if (m_Nonblock == DISABLE) {
@@ -2050,14 +2049,14 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_eventType = ButtonPress;
       m_eventButton = 3;
       m_eventWinNum = winNum;
-      m_eventX = LOWORD(lParam);
-      m_eventY = HIWORD(lParam);
+      m_eventX = invertX(window, LOWORD(lParam));
+      m_eventY = invertY(window, HIWORD(lParam));
       if (winNum != -1) {
-          *m_pWindowId = winNum;
-          *m_pMouseX = invertX(window, m_eventX);
-          *m_pMouseY = invertY(window, m_eventY);
-          *m_pMouseButton = m_eventButton;
-          *m_pMousePressed = true;
+        *m_pWindowId = winNum;
+        *m_pMouseX = m_eventX;
+        *m_pMouseY = m_eventY;
+        *m_pMouseButton = m_eventButton;
+        *m_pMousePressed = true;
       }
       //cout << "WM_RBUTTONDOWN: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
       if (m_Nonblock == DISABLE) {
@@ -2074,12 +2073,12 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_eventType = MotionNotify;
       m_eventButton = 0;
       m_eventWinNum = winNum;
-      m_eventX = LOWORD(lParam);
-      m_eventY = HIWORD(lParam);
+      m_eventX = invertX(window, LOWORD(lParam));
+      m_eventY = invertY(window, HIWORD(lParam));
       if (winNum != -1) {
-          *m_pWindowId = winNum;
-          *m_pMouseX = invertX(window, m_eventX);
-          *m_pMouseY = invertY(window, m_eventY);
+        *m_pWindowId = winNum;
+        *m_pMouseX = m_eventX;
+        *m_pMouseY = m_eventY;
       }
       //cout << "WM_MOUSEMOVE: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
       if (m_Nonblock == DISABLE) {

@@ -160,8 +160,8 @@ protected:
   HANDLE    m_eventHandle;
   int       m_eventWinNum;
   int       m_eventType;
-  int       m_eventX;
-  int       m_eventY;
+  double    m_eventX;
+  double    m_eventY;
   int       m_eventButton;
   int       m_eventKey;
   int *m_pWindowId;
