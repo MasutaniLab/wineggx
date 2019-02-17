@@ -1587,6 +1587,44 @@ void CEggX::fillpoly(unsigned wn, const double x[], const double y[], int n, int
 }
 
 /**
+* @brief 複数の点を描く
+* @ingroup    CEggX
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 各点のx座標
+* @param[in]  y[] 各点のy座標
+* @param[in]  n 点の数
+* @retval      なし
+*/
+void CEggX::drawpts(unsigned wn, const double x[], const double y[], int n)
+{
+  if (wn >= (unsigned)m_MaxWindow)return;
+
+  EggXWindow &wnd = m_Window.at(wn);
+  if (!wnd.hWnd)return;
+
+  COLORREF rgb = RGB(wnd.r, wnd.g, wnd.b);
+  HDC hWDC = ::GetDC(wnd.hWnd);
+  if (wnd.showLayer == wnd.writeLayer)
+  {
+    for (int i = 0; i < n; i++) {
+      int xx = convertX(wnd, x[i]);
+      int yy = convertY(wnd, y[i]);
+      ::SetPixelV(hWDC, xx, yy, rgb);
+    }
+  } else {
+    HDC hDC = ::CreateCompatibleDC(hWDC);
+    ::SelectObject(hDC, wnd.hBitmap[wnd.index]);
+    for (int i = 0; i < n; i++) {
+      int xx = convertX(wnd, x[i]);
+      int yy = convertY(wnd, y[i]);
+      ::SetPixelV(hDC, xx, yy, rgb);
+    }
+    ::DeleteDC(hDC);
+  }
+  ::ReleaseDC(wnd.hWnd, hWDC);
+}
+
+/**
  * @brief      キーボードから入力された文字を返す
  * @ingroup    CEggX
  * @retval     <0 入力なし（ノンブロッキングモードの場合）

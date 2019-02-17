@@ -40,6 +40,32 @@ int main()
     newrgbcolor(win, 255, 0, 255);
     fillpoly(win, xf3, yf3, num3, 1);
 
+    const int num4 = 100;
+    double x4[num4*num4];
+    double y4[num4*num4];
+    for (int i = 0; i < num4; i++) {
+      double x = 300 * i / num4;
+      for (int j = 0; j < num4; j++) {
+        double y = 300 * j / num4;
+        x4[num4*i + j] = x;
+        y4[num4*i + j] = y;
+      }
+    }
+    newrgbcolor(win, 0, 0, 0);
+    drawpts(win, x4, y4, num4*num4);
+    float xf4[num4*num4];
+    float yf4[num4*num4];
+    for (int i = 0; i < num4; i++) {
+      float x = float(-300 * i / num4);
+      for (int j = 0; j < num4; j++) {
+        float y = float(-300 * j / num4);
+        xf4[num4*i + j] = x;
+        yf4[num4*i + j] = y;
+      }
+    }
+    newrgbcolor(win, 0, 0, 0);
+    drawpts(win, xf4, yf4, num4*num4);
+
     ggetch();
     gclose(win);
     return 0;

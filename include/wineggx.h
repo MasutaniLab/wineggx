@@ -316,8 +316,31 @@ void lineto(int wn, double x, double y);
 */
 void line(int wn, double x, double y, int mode);
 
-//未実装
-//void drawpts(int wn, const double x[], const double y[], int n);
+/**
+* @brief      複数の点を描く（double版）
+* @ingroup    wineggx
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 各点のx座標
+* @param[in]  y[] 各点のy座標
+* @param[in]  n 点の数
+* @section Notes
+*  n個の点を描く．
+*  x，yはn個の実数の一次元配列で，x[0]～x[n-1]，y[0]～y[n-1]に各点の座標を入れておく．
+*/
+void drawpts(int wn, const double x[], const double y[], int n);
+
+/**
+* @brief      複数の点を描く（float版）
+* @ingroup    wineggx
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 各点のx座標
+* @param[in]  y[] 各点のy座標
+* @param[in]  n 点の数
+* @section Notes
+*  n個の点を描く．
+*  x，yはn個の実数の一次元配列で，x[0]～x[n-1]，y[0]～y[n-1]に各点の座標を入れておく．
+*/
+void drawpts(int wn, const float x[], const float y[], int n);
 
 /**
 * @brief      折れ線を描く（double版）

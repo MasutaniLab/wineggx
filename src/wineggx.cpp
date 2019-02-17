@@ -405,10 +405,46 @@ void line(int wn, double x, double y, int mode)
   return gEggX.line(wn,x,y,mode);
 }
 
-//未実装
-//void drawpts(int wn, const double x[], const double y[], int n)
-//{
-//}
+/**
+* @brief      複数の点を描く（double版）
+* @ingroup    wineggx
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 各点のx座標
+* @param[in]  y[] 各点のy座標
+* @param[in]  n 点の数
+* @section Notes
+*  n個の点を描く．
+*  x，yはn個の実数の一次元配列で，x[0]～x[n-1]，y[0]～y[n-1]に各点の座標を入れておく．
+*/
+void drawpts(int wn, const double x[], const double y[], int n)
+{
+  gEggX.drawpts(wn, x, y, n);
+
+}
+
+/**
+* @brief      複数の点を描く（float版）
+* @ingroup    wineggx
+* @param[in]  wn 描画するウィンドウの番号
+* @param[in]  x[] 各点のx座標
+* @param[in]  y[] 各点のy座標
+* @param[in]  n 点の数
+* @section Notes
+*  n個の点を描く．
+*  x，yはn個の実数の一次元配列で，x[0]～x[n-1]，y[0]～y[n-1]に各点の座標を入れておく．
+*/
+void drawpts(int wn, const float x[], const float y[], int n)
+{
+  double *xd = new double[n];
+  double *yd = new double[n];
+  for (int i = 0; i < n; i++) {
+    xd[i] = x[i];
+    yd[i] = y[i];
+  }
+  gEggX.drawpts(wn, xd, yd, n);
+  delete xd;
+  delete yd;
+}
 
 /**
 * @brief      折れ線を描く（double版）
@@ -931,7 +967,7 @@ int ggetxpress(int *type, int *button, double *x, double *y)
 * @ingroup    wineggx
 * @param[out]  type イベントの種類
 * @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
-* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[outr]  x マウスポインタのx座標（アプリケーション座標系）
 * @param[out]  y マウスポインタのy座標（アプリケーション座標系）
 * @retval      入力のあったウィンドウ番号
 */

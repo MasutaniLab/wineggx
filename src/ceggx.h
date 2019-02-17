@@ -128,6 +128,7 @@ public:
   void drawlines(unsigned wn, const double x[], const double y[], int n);
   void drawpoly(unsigned wn, const double x[], const double y[], int n);
   void fillpoly(unsigned wn, const double x[], const double y[], int n, int i);
+  void drawpts(unsigned wn, const double x[], const double y[], int n);
 
   int ggetch();
   void gsetnonblock(int flag);
