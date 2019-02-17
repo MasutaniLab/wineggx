@@ -255,10 +255,25 @@ void tclr(void)
   system("cls");
 }
 
-//未実装
-//void newpen(int wn, int cn)
-//{
-//}
+/**
+* @brief      描画色の変更
+* @ingroup    wineggx
+* @param[in]  wn 変更するウィンドウの番号
+* @param[in]  cn 色を表す数値
+*  wnで指定したウィンドゥでの描画色を変更する．cnと色との関係は以下の通り．
+*  0:黒 1:白 2:赤 3:緑 4:青 5:シアン 6:マゼンタ 7:黄
+*  8:DimGray 9:Gray 10:red4 11:green4 12:blue4 13:cyan4 14:magenta4 15:yellow4
+*/
+void newpen(int wn, int cn)
+{
+  const int r[16] = { 0, 255, 255,   0,   0,   0, 255, 255, 105, 190, 139,   0,   0,   0, 139, 139 };
+  const int g[16] = { 0, 255,   0, 255,   0, 255,   0, 255, 105, 190,   0, 139,   0, 139,   0, 139 };
+  const int b[16] = { 0, 255,   0,   0, 255, 255, 255,   0, 105, 190,   0,   0, 139, 139, 139,   0 };
+  if (cn >= 0) {
+    cn = cn % 16;
+    newrgbcolor(wn, r[cn], g[cn], b[cn]);
+  }
+}
 
 /**
 * @brief      描画色の変更

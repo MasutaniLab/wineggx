@@ -27,11 +27,11 @@ int main()
       const int num = 8;
       double x[num] = { 0,100,100,  0,  0,100, 50,  0 };
       double y[num] = { 0,  0,100,100,  0,100,150,100 };
-      newrgbcolor(win, 255, 0, 0);
+      newpen(win, 2);
       drawlines(win, x, y, num);
       float xf[num] = { 0,-100,-100,  0,  0,-100, -50,  0 };
       float yf[num] = { 0,  0,-100,-100,  0,-100,-150,-100 };
-      newrgbcolor(win, 0, 0, 255);
+      newpen(win, 4);
       drawlines(win, xf, yf, num);
     }
 
@@ -41,11 +41,11 @@ int main()
       const int num = 5;
       double x[num] = { 200, 100, 300, 100, 300 };
       double y[num] = { 300, 100, 200, 200, 100 };
-      newrgbcolor(win, 255, 255, 0);
+      newpen(win, 7);
       drawpoly(win, x, y, num);
       float xf[num] = { -200, -100, -300, -100, -300 };
       float yf[num] = { -300, -100, -200, -200, -100 };
-      newrgbcolor(win, 0, 255, 255);
+      newpen(win, 5);
       drawpoly(win, xf, yf, num);
     }
 
@@ -55,11 +55,11 @@ int main()
       const int num = 5;
       double x[num] = { 200, 100, 300, 100, 300 };
       double y[num] = { -300, -100, -200, -200, -100 };
-      newrgbcolor(win, 0, 255, 0);
+      newpen(win, 3);
       fillpoly(win, x, y, num, 0);
       float xf[num] = { -200, -100, -300, -100, -300 };
       float yf[num] = { 300, 100, 200, 200, 100 };
-      newrgbcolor(win, 255, 0, 255);
+      newpen(win, 6);
       fillpoly(win, xf, yf, num, 1);
     }
 
@@ -77,7 +77,7 @@ int main()
           y[num*i + j] = yy;
         }
       }
-      newrgbcolor(win, 0, 0, 0);
+      newpen(win, 10);
       drawpts(win, x, y, num*num);
       float xf[num*num];
       float yf[num*num];
@@ -89,7 +89,7 @@ int main()
           yf[num*i + j] = yy;
         }
       }
-      newrgbcolor(win, 0, 0, 0);
+      newpen(win, 12);
       drawpts(win, xf, yf, num*num);
     }
 
