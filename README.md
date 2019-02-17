@@ -156,7 +156,7 @@ void msleep(unsigned long msec);
 - CMakeに対応しました（Version 1.1c）．
 
 - Version 2.0
-  - ggetch()の文字以外のキーにも対応するようにしました（カーソルキー等）．
+  - ggetch()で文字以外のキーにも対応するようにしました（カーソルキー等）．
   - マウスイベントに対応しました（ggetevent()，ggetxpress()）．
   - 関数を追加しました．gresize(), coordinate(), tclr(), newpen(), drawpts(), drawlines(), drawpoly(), fillpoly(), newfontset()
   - Processing風に大域変数でマウスの状態を取得できるようにしました（wineggx独自）．
