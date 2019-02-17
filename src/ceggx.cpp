@@ -293,7 +293,7 @@ int CEggX::CreateEggXWindow(int xsize,int ysize)
 
   //ウィンドウ名
   char windowname[64];
-  sprintf_s(windowname, sizeof(windowname), "%s%d", "eggx window", num);
+  sprintf_s(windowname, sizeof(windowname), "%s %d", "eggx window", num);
 
 
   CREATESTRUCT createstr;
@@ -2097,7 +2097,7 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 */
 inline int CEggX::scaleX(EggXWindow &wnd, double x)
 {
-    return roundInt(x / ((wnd.xe - wnd.xs) / wnd.cx));
+  return roundInt(x / ((wnd.xe - wnd.xs) / (wnd.cx - 1)));
 }
 
 /**
@@ -2106,7 +2106,7 @@ inline int CEggX::scaleX(EggXWindow &wnd, double x)
 */
 inline int CEggX::scaleY(EggXWindow &wnd, double y)
 {
-    return roundInt(y / ((wnd.ye - wnd.ys) / wnd.cy));
+  return roundInt(y / ((wnd.ye - wnd.ys) / (wnd.cy - 1)));
 }
 
 /**
@@ -2133,7 +2133,7 @@ inline int CEggX::convertY(EggXWindow &wnd, double y)
 */
 inline double CEggX::inverseScaleX(EggXWindow &wnd, int x)
 {
-    return x * ((wnd.xe - wnd.xs) / wnd.cx);
+  return x * ((wnd.xe - wnd.xs) / (wnd.cx - 1));
 }
 
 /**
@@ -2142,7 +2142,7 @@ inline double CEggX::inverseScaleX(EggXWindow &wnd, int x)
 */
 inline double CEggX::inverseScaleY(EggXWindow &wnd, int y)
 {
-    return y * ((wnd.ye - wnd.ys) / wnd.cy);
+  return y * ((wnd.ye - wnd.ys) / (wnd.cy - 1));
 }
 
 /**
