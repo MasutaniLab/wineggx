@@ -32,7 +32,7 @@ Visual Studioでソリューションをビルドすると，静的なライブ�
 変数`INSTALL_PREFIX`のデフォルト値は，この場所
 （`README.md`の置かれているディレクトリ）です．
 
-## 動作確認
+## 利用例のプロジェクト
 
 - example1
   - EGGXを利用する最低限のコードです．
@@ -44,6 +44,21 @@ Visual Studioでソリューションをビルドすると，静的なライブ�
   Processingを意識していますが，draw()が繰り返し実行されることはありません．
 - texample2
   - `t-pro1.h`を使ったボールアニメーション．
+
+## 機能確認のプロジェクト
+
+- ggetch-test
+  - ggetch()の動作確認．
+- mouse-test
+  - ggetevent()の動作確認．
+- mouse-test2
+  - ggetxpress()の動作確認．
+- mouse-test3
+  - 大域変数windowId, mouseX, mouseY, mousePressed, mouseButtonの動作確認．
+- string-test
+  - `char *`の代わりに`std::string`を使う関数の動作確認．
+- ver2-test
+  - Version 2.0で追加した関数の動作確認．
 
 ## 使い方
 
