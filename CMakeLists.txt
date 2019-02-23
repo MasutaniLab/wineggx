@@ -45,18 +45,6 @@ target_link_libraries(mouse-test2 ${PROJECT_NAME})
 add_executable(mouse-test3 src/mouse-test3.cpp)
 target_link_libraries(mouse-test3 ${PROJECT_NAME})
 
-add_executable(tmouse-test src/tmouse-test.cpp)
-target_link_libraries(tmouse-test ${PROJECT_NAME})
-
-add_executable(eggx-mousetest src/eggx-mousetest.cpp)
-target_link_libraries(eggx-mousetest ${PROJECT_NAME})
-
-add_executable(eggx-mousetest2 src/eggx-mousetest2.cpp)
-target_link_libraries(eggx-mousetest2 ${PROJECT_NAME})
-
-add_executable(eggx-mousetest3 src/eggx-mousetest3.cpp)
-target_link_libraries(eggx-mousetest3 ${PROJECT_NAME})
-
 add_executable(ver2-test src/ver2-test.cpp)
 target_link_libraries(ver2-test ${PROJECT_NAME})
 
