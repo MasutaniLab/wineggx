@@ -83,6 +83,8 @@ Visual Studioの場合，プロジェクトのプロパティに3ヶ所に設定
 
 - `#include <eggxlib.h>`を使う`eggx_`で始まる関数には対応していません．
 
+- ウィンドウの番号は1からではなく，0からです． 
+
 - 実装されているのは以下の関数だけです．
 
 ~~~
@@ -103,7 +105,7 @@ void gclr(int wn);
 void tclr(void);
 void newpen(int wn, int cn);
 void newcolor(int wn, const char *argsformat, ...);
-void newcolor(int wn, const std::string argsformat, ...);  //wineggx独自
+void newcolor(int wn, const std::string argsformat, ...); //wineggx独自
 void newrgbcolor(int wn, int r, int g, int b);
 void newhsvcolor(int wn, int h, int s, int v);
 void newlinewidth( int wn, int width );
@@ -138,8 +140,12 @@ void gsetnonblock(int flag);
 int ggetch();
 int ggetevent(int *type, int *button, double *x, double *y);
 int ggetevent(int *type, int *button, float *x, float *y);
+int ggetevent(int &type, int &button, double &x, double &y); //wineggx独自
+int ggetevent(int &type, int &button, float &x, float &y); //wineggx独自
 int ggetxpress(int *type, int *button, double *x, double *y);
 int ggetxpress(int *type, int *button, float *x, float *y);
+int ggetxpress(int &type, int &button, double &x, double &y); //wineggx独自
+int ggetxpress(int &type, int &button, float &x, float &y); //wineggx独自
 void msleep(unsigned long msec);
 ~~~
 
@@ -161,5 +167,46 @@ void msleep(unsigned long msec);
   - 関数を追加しました．gresize(), coordinate(), tclr(), newpen(), drawpts(), drawlines(), drawpoly(), fillpoly(), newfontset()
   - Processing風に大域変数でマウスの状態を取得できるようにしました（wineggx独自）．
   - Cスタイルの文字列（文字配列）の代わりにstd::stringも使えるようにしました（wineggx独自）．
+
+---
+## イベント処理に関する覚書
+
+### ブロック
+```
+gsetnonblock(DISABLE);
+win = ggetevent(&type, &button, &x, &y);
+```
+
+|動作|win|type|button|x|y|備考|
+|:--|:--|:--|:--|:--|:--|:--|
+|マウス移動                 |ウィンドウ番号|MotionNotify (6)|ボタン番号|x座標|y座標||
+|マウスがウィンドウへ入る    |入ったウィンドウ番号|EnterNotify (7)|ボタン番号|x座標|y座標||
+|マウスがウィンドウから出る  |出る前のウィンドウ番号|LeaveNotify (8)|ボタン番号|x座標|y座標||
+|マウスのボタンを押す        |ウィンドウ番号|ButtonPress (4)|ボタン番号|x座標|y座標||
+|キーボードのキーを押す      |ウィンドウ番号|KeyPress (2)|文字コード|0|0||
+
+### ノンブロック
+```
+gsetnonblock(ENABLE);
+win = ggetevent(&type, &button, &x, &y);
+```
+
+|動作|win|type|button|x|y|備考|
+|:--|:--|:--|:--|:--|:--|:--|
+|イベントなし|-1|不定|不定|不定|不定||
+|マウス移動                 |ウィンドウ番号|MotionNotify (6)|ボタン番号|x座標|y座標||
+|マウスがウィンドウへ入る    |入ったウィンドウ番号|EnterNotify (7)|ボタン番号|x座標|y座標||
+|マウスがウィンドウから出る  |出る前のウィンドウ番号|LeaveNotify (8)|ボタン番号|x座標|y座標||
+|マウスのボタンを押す        |ウィンドウ番号|ButtonPress (4)|ボタン番号|x座標|y座標||
+|キーボードのキーを押す      |ウィンドウ番号|KeyPress (2)|文字コード|0|0||
+
+### 大域変数（wineggx独自）
+
+|動作|windowId|mousePressed|mouseButton|mouseX|mouseY|
+|:--|:--|:--|:--|:--|:--|
+|マウスがウィンドウ外                    |-1|false|0|0|0|
+|マウスがウィンドウ内でボタン押していない  |ウィンドウ番号|false|0|x座標|y座標|
+|マウスがウィンドウ内でボタン押している    |ウィンドウ番号|true|ボタン番号|x座標|y座標|
+
 
 以上．

@@ -732,6 +732,28 @@ int ggetevent(int *type, int *button, double *x, double *y);
 int ggetevent(int *type, int *button, float *x, float *y);
 
 /**
+* @brief      【wineggx独自】全てのウィンドウのマウスやキーボードの入力情報を返す（参照引数double版）．
+* @ingroup    wineggx
+* @param[out]  type イベントの種類
+* @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
+* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[out]  y マウスポインタのy座標（アプリケーション座標系）
+* @retval      入力のあったウィンドウ番号
+*/
+int ggetevent(int &type, int &button, double &x, double &y);
+
+/**
+* @brief      【wineggx独自】全てのウィンドウのマウスやキーボードの入力情報を返す（参照引数float版）．
+* @ingroup    wineggx
+* @param[out]  type イベントの種類
+* @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
+* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[out]  y マウスポインタのy座標（アプリケーション座標系）
+* @retval      入力のあったウィンドウ番号
+*/
+int ggetevent(int &type, int &button, float &x, float &y);
+
+/**
 * @brief      全てのウィンドウのマウスやキーボードの入力情報を返す（キーとボタンのみ）（double版）．
 * @ingroup    wineggx
 * @param[out]  type イベントの種類
@@ -752,6 +774,28 @@ int ggetxpress(int *type, int *button, double *x, double *y);
 * @retval      入力のあったウィンドウ番号
 */
 int ggetxpress(int *type, int *button, float *x, float *y);
+
+/**
+* @brief      【wineggx独自】全てのウィンドウのマウスやキーボードの入力情報を返す（キーとボタンのみ）（参照引数double版）．
+* @ingroup    wineggx
+* @param[out]  type イベントの種類
+* @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
+* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[out]  y マウスポインタのy座標（アプリケーション座標系）
+* @retval      入力のあったウィンドウ番号
+*/
+int ggetxpress(int &type, int &button, double &x, double &y);
+
+/**
+* @brief      【wineggx独自】全てのウィンドウのマウスやキーボードの入力情報を返す（キーとボタンのみ）（参照引数float版）．
+* @ingroup    wineggx
+* @param[out]  type イベントの種類
+* @param[out]  button ボタンの番号（マウスの場合），キーコード（キーボードの場合）
+* @param[out]  x マウスポインタのx座標（アプリケーション座標系）
+* @param[out]  y マウスポインタのy座標（アプリケーション座標系）
+* @retval      入力のあったウィンドウ番号
+*/
+int ggetxpress(int &type, int &button, float &x, float &y);
 
 /**
 * @brief      ミリ秒単位で実行を延期する

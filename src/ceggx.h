@@ -179,6 +179,7 @@ protected:
   double    m_eventY;
   int       m_eventButton;
   int       m_eventKey;
+  int       m_prevWinNum;
   int *m_pWindowId;
   double *m_pMouseX;
   double *m_pMouseY;
