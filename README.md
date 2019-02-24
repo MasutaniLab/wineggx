@@ -45,7 +45,7 @@ Visual Studioでソリューションをビルドすると，静的なライブ�
 - texample2
   - `t-pro1.h`を使ったボールアニメーション．
 
-## 機能確認のプロジェクト
+## 動作確認のプロジェクト
 
 - ggetch-test
   - ggetch()の動作確認．
@@ -163,10 +163,10 @@ void msleep(unsigned long msec);
 
 - Version 2.0
   - ggetch()で文字以外のキーにも対応するようにしました（カーソルキー等）．
-  - マウスイベントに対応しました（ggetevent()，ggetxpress()）．
-  - 関数を追加しました．gresize(), coordinate(), tclr(), newpen(), drawpts(), drawlines(), drawpoly(), fillpoly(), newfontset()
+  - マウスイベントに対応しました（`ggetevent()，ggetxpress()`）．
+  - 関数を追加しました．`gresize(), coordinate(), tclr(), newpen(), drawpts(), drawlines(), drawpoly(), fillpoly(), newfontset()`
   - Processing風に大域変数でマウスの状態を取得できるようにしました（wineggx独自）．
-  - Cスタイルの文字列（文字配列）の代わりにstd::stringも使えるようにしました（wineggx独自）．
+  - Cスタイルの文字列（`char *`）の代わりに`std::string`も使えるようにしました（wineggx独自）．
 
 ---
 ## イベント処理に関する覚書
