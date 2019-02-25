@@ -28,7 +28,8 @@ int main()
   cout << "non block? (y/n): ";
   string ans;
   cin >> ans;
-  if (ans == "y") {
+  bool nonblock = (ans == "y");
+  if (nonblock) {
     gsetnonblock(ENABLE);
     cout << "skip if win == -1? (y/n): ";
     string ans2;
@@ -71,6 +72,10 @@ int main()
     }
 
     if (type == KeyPress && button == 0x1b) break;
+
+    if (nonblock) {
+      msleep(30);
+    }
   }
 
   gcloseall();

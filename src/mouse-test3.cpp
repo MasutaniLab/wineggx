@@ -40,9 +40,10 @@ int main()
       newrgbcolor(windowId, 0, 0, 0);
     }
     fillcirc(windowId, mouseX, mouseY, r, r);
-    msleep(30);
 
     if (mouseX > 90 && mouseY > 90) break;
+
+    msleep(30);
   }
 
   gcloseall();
