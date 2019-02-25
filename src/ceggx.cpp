@@ -1980,6 +1980,7 @@ INT_PTR CEggX::WindowProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
 
 #define TIMER_MOUSEMOVE (1)
 #define TIMER_MOUSEWHEEL (2)
+#define TIMER_MOUSEWHEEL_FOR_GV (3)
 
 /**
  * @brief      ウィンドウメッセージ処理
@@ -2165,6 +2166,8 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
           SetTimer(hWnd, TIMER_MOUSEWHEEL, 1, NULL);
           //cout << "SetTimer TIMER_MOUSEWHEEL" << endl;
       }
+      //大域変数用
+      SetTimer(hWnd, TIMER_MOUSEWHEEL_FOR_GV, 1, NULL);
   }
   break;
   case WM_MOUSEMOVE:
@@ -2225,14 +2228,16 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
           if (m_eventButton == 4 || m_eventButton == 5) {
               m_eventButton = 0;
               m_eventWinNum = -1;
-              if (winNum != -1) {
-                  *m_pWindowId = winNum;
-                  *m_pMousePressed = false;
-                  *m_pMouseButton = 0;
-              }
           }
           KillTimer(hWnd, TIMER_MOUSEWHEEL);
           //cout << "KillTimer TIMER_MOUSEWHEEL" << endl;
+      } else if (wParam == TIMER_MOUSEWHEEL_FOR_GV) {
+          if (winNum != -1) {
+              *m_pWindowId = winNum;
+              *m_pMousePressed = false;
+              *m_pMouseButton = 0;
+          }
+          KillTimer(hWnd, TIMER_MOUSEWHEEL_FOR_GV);
       }
       break;
   default:
