@@ -26,13 +26,20 @@ int main()
   while (true) {
     cout << "windowId: " << windowId << "CmousePressed: " << mousePressed << ", mouseButton: " << mouseButton
       << ", mouseX: " << mouseX << ", mouseY: " << mouseY << endl;
+    static double r = 1;
     if (mousePressed) {
-      int c = mouseButton * 80;
-      newrgbcolor(windowId, c, c, c);
+      if (1<= mouseButton && mouseButton <= 3) {
+        int c = mouseButton * 80;
+        newrgbcolor(windowId, c, c, c);
+      } else if (mouseButton == 4) {
+        r += 0.1;
+      } else if (mouseButton == 5) {
+        r -= 0.1;
+      }
     } else {
       newrgbcolor(windowId, 0, 0, 0);
     }
-    fillcirc(windowId, mouseX, mouseY, 1, 1);
+    fillcirc(windowId, mouseX, mouseY, r, r);
     msleep(30);
 
     if (mouseX > 90 && mouseY > 90) break;

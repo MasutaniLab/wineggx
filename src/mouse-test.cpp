@@ -61,7 +61,13 @@ int main()
       } else {
         newrgbcolor(win, 0, 0, 0);
       }
-      fillcirc(win, x, y, 1, 1);
+      static double r = 1;
+      if (button == 4) {
+          r += 0.1;
+      } else if (button == 5) {
+          r -= 0.1;
+      }
+      fillcirc(win, x, y, r, r);
     }
 
     if (type == KeyPress && button == 0x1b) break;

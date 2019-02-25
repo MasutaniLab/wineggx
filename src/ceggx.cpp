@@ -1762,6 +1762,9 @@ int CEggX::ggetevent(int *type, int *button, double *x, double *y)
             *button = m_eventButton;
         }
     }
+    if (m_eventType == ButtonPress && (m_eventButton == 4 || m_eventButton == 5)) {
+        m_eventButton = 0;
+    }
     if (x != NULL) {
         *x = m_eventX;
     }
@@ -1804,6 +1807,9 @@ int CEggX::ggetxpress(int *type, int *button, double *x, double *y)
             } else {
                 *button = m_eventButton;
             }
+        }
+        if (m_eventType == ButtonPress && (m_eventButton == 4 || m_eventButton == 5)) {
+            m_eventButton = 0;
         }
         if (x != NULL) {
             *x = m_eventX;
@@ -1972,6 +1978,8 @@ INT_PTR CEggX::WindowProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
   return This->MsgProc(hWnd, uMsg, wParam, lParam);
 }
 
+#define TIMER_MOUSEMOVE (1)
+#define TIMER_MOUSEWHEEL (2)
 
 /**
  * @brief      ウィンドウメッセージ処理
@@ -2060,8 +2068,8 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_eventButton = 1;
       m_eventWinNum = winNum;
       m_prevWinNum = winNum;
-      m_eventX = invertX(window, LOWORD(lParam));
-      m_eventY = invertY(window, HIWORD(lParam));
+      m_eventX = invertX(window, GET_X_LPARAM(lParam));
+      m_eventY = invertY(window, GET_Y_LPARAM(lParam));
       if (winNum != -1) {
         *m_pWindowId = winNum;
         *m_pMouseX = m_eventX;
@@ -2079,8 +2087,8 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_eventButton = 2;
       m_eventWinNum = winNum;
       m_prevWinNum = winNum;
-      m_eventX = invertX(window, LOWORD(lParam));
-      m_eventY = invertY(window, HIWORD(lParam));
+      m_eventX = invertX(window, GET_X_LPARAM(lParam));
+      m_eventY = invertY(window, GET_Y_LPARAM(lParam));
       if (winNum != -1) {
         *m_pWindowId = winNum;
         *m_pMouseX = m_eventX;
@@ -2098,8 +2106,8 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_eventButton = 3;
       m_eventWinNum = winNum;
       m_prevWinNum = winNum;
-      m_eventX = invertX(window, LOWORD(lParam));
-      m_eventY = invertY(window, HIWORD(lParam));
+      m_eventX = invertX(window, GET_X_LPARAM(lParam));
+      m_eventY = invertY(window, GET_Y_LPARAM(lParam));
       if (winNum != -1) {
         *m_pWindowId = winNum;
         *m_pMouseX = m_eventX;
@@ -2123,6 +2131,42 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
           *m_pMouseButton = 0;
       }
       break;
+  case WM_MOUSEWHEEL:
+  {
+      int z = GET_WHEEL_DELTA_WPARAM(wParam) / WHEEL_DELTA;
+      //cout << "WM_MOUSEWHEEL z: " << z << endl;
+      m_eventType = ButtonPress;
+      if (z > 0) {
+          m_eventButton = 4;
+      } else {
+          m_eventButton = 5;
+      }
+      m_eventWinNum = winNum;
+      m_prevWinNum = winNum;
+      //WM_MOUSEWHEELではlParamにクライアント座標ではなくスクリーン座標が入るので変換が必要．
+      //https://stackoverflow.com/questions/29915639/why-get-x-lparam-does-return-an-absolute-position-on-mouse-wheel
+      POINT pt;
+      pt.x = GET_X_LPARAM(lParam);
+      pt.y = GET_Y_LPARAM(lParam);
+      ScreenToClient(hWnd, &pt);
+      m_eventX = invertX(window, pt.x);
+      m_eventY = invertY(window, pt.y);
+      if (winNum != -1) {
+          *m_pWindowId = winNum;
+          *m_pMouseX = m_eventX;
+          *m_pMouseY = m_eventY;
+          *m_pMouseButton = m_eventButton;
+          *m_pMousePressed = true;
+      }
+      //cout << "WM_RBUTTONDOWN: " << winNum << ", " << LOWORD(lParam) << ", " << HIWORD(lParam) << endl;
+      if (m_Nonblock == DISABLE) {
+          SetEvent(m_eventHandle);
+      } else {
+          SetTimer(hWnd, TIMER_MOUSEWHEEL, 1, NULL);
+          //cout << "SetTimer TIMER_MOUSEWHEEL" << endl;
+      }
+  }
+  break;
   case WM_MOUSEMOVE:
   {
       if (winNum != m_prevWinNum) {
@@ -2132,8 +2176,8 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       }
       m_eventWinNum = winNum;
       m_prevWinNum = winNum;
-      m_eventX = invertX(window, LOWORD(lParam));
-      m_eventY = invertY(window, HIWORD(lParam));
+      m_eventX = invertX(window, GET_X_LPARAM(lParam));
+      m_eventY = invertY(window, GET_Y_LPARAM(lParam));
       if (winNum != -1) {
           *m_pWindowId = winNum;
           *m_pMouseX = m_eventX;
@@ -2143,7 +2187,7 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       if (m_Nonblock == DISABLE) {
           SetEvent(m_eventHandle);
       } else {
-          SetTimer(hWnd, 1, 1, NULL);
+          SetTimer(hWnd, TIMER_MOUSEMOVE, 1, NULL);
           //cout << "SetTimer" << endl;
       }
       //WM_MOUSELEAVEを発生させるための設定
@@ -2159,8 +2203,8 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_eventType = LeaveNotify;
       m_eventWinNum = winNum;
       m_prevWinNum = -1;
-      m_eventX = invertX(window, LOWORD(lParam));
-      m_eventY = invertY(window, HIWORD(lParam));
+      m_eventX = invertX(window, GET_X_LPARAM(lParam));
+      m_eventY = invertY(window, GET_Y_LPARAM(lParam));
       if (winNum != -1) {
           *m_pWindowId = -1;
           *m_pMousePressed = false;
@@ -2174,8 +2218,22 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       break;
   case WM_TIMER:
       //cout << "WM_TIMER" << endl;
-      m_eventWinNum = -1;
-      KillTimer(hWnd, 1);
+      if (wParam == TIMER_MOUSEMOVE) {
+          m_eventWinNum = -1;
+          KillTimer(hWnd, TIMER_MOUSEMOVE);
+      } else if (wParam == TIMER_MOUSEWHEEL) {
+          if (m_eventButton == 4 || m_eventButton == 5) {
+              m_eventButton = 0;
+              m_eventWinNum = -1;
+              if (winNum != -1) {
+                  *m_pWindowId = winNum;
+                  *m_pMousePressed = false;
+                  *m_pMouseButton = 0;
+              }
+          }
+          KillTimer(hWnd, TIMER_MOUSEWHEEL);
+          //cout << "KillTimer TIMER_MOUSEWHEEL" << endl;
+      }
       break;
   default:
       return DefWindowProc(hWnd, uMsg, wParam, lParam);
