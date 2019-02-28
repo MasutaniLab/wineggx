@@ -2280,7 +2280,7 @@ inline int CEggX::convertX(EggXWindow &wnd, double x)
 */
 inline int CEggX::convertY(EggXWindow &wnd, double y)
 {
-    return wnd.cy - scaleY(wnd, y - wnd.ys);
+    return wnd.cy - 1 - scaleY(wnd, y - wnd.ys);
 }
 
 /**
@@ -2316,5 +2316,5 @@ inline double CEggX::invertX(EggXWindow &wnd, int x)
 */
 inline double CEggX::invertY(EggXWindow &wnd, int y)
 {
-    return inverseScaleY(wnd, wnd.cy - y) + wnd.ys;
+    return inverseScaleY(wnd, wnd.cy - 1 - y) + wnd.ys;
 }
