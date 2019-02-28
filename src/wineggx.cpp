@@ -19,7 +19,6 @@
 #include "ceggx.h"
 
 using namespace std;
-bool first = true;
 
 /**
 * @brief      任意のサイズのグラフィックス画面を開く
@@ -31,8 +30,10 @@ bool first = true;
 */
 int gopen(int xsize, int ysize)
 {
+  static bool first = true;
   assert(xsize&&ysize&&"eggx set window size.");
   if (first) {
+    cout << "HOGE" << endl;
     gEggX.setmouse(&windowId, &mouseX, &mouseY, &mouseButton, &mousePressed);
     first = false;
   }
