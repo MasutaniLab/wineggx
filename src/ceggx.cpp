@@ -2033,8 +2033,8 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       m_Close = true;
       break;
   case WM_KEYDOWN:
-      if (keytable.find(wParam) != keytable.end()) {
-          m_eventKey = keytable[wParam];
+      if (keytable.find(int(wParam)) != keytable.end()) {
+          m_eventKey = keytable[int(wParam)];
           m_eventType = KeyPress;
           m_eventWinNum = winNum;
           m_prevWinNum = winNum;
@@ -2049,7 +2049,7 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       }
       break;
   case WM_CHAR:
-      m_eventKey = wParam;
+      m_eventKey = int(wParam);
       m_eventType = KeyPress;
       m_eventWinNum = winNum;
       m_prevWinNum = winNum;
