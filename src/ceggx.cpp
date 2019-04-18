@@ -1963,6 +1963,10 @@ INT_PTR CEggX::WindowProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
       This = (CEggX*)cre->lpCreateParams;
       return 0;
   }
+  else if (uMsg == WM_SYSCOMMAND && wParam == SC_CLOSE)
+  {//閉じるボタンを無視
+      return 0;
+  } 
   else if(uMsg==WM_DESTROY)
   {//ウィンドウが破壊されたとき
       if(This)s_SelectWind.Delete(hWnd);
