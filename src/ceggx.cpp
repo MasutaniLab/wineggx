@@ -1853,6 +1853,11 @@ void CEggX::setmouse(int *pwin, double *px, double *py, int *pbutton, bool *ppre
     m_pMouseY = py;
     m_pMouseButton = pbutton;
     m_pMousePressed = ppressed;
+    *m_pWindowId = -1;
+    *m_pMouseX = DBL_MAX;
+    *m_pMouseY = DBL_MAX;
+    *m_pMouseButton = 0;
+    *m_pMousePressed = false;
 }
 
 
@@ -2216,8 +2221,8 @@ INT_PTR CEggX::MsgProc(HWND hWnd,UINT uMsg,WPARAM wParam,LPARAM lParam)
           *m_pWindowId = -1;
           *m_pMousePressed = false;
           *m_pMouseButton = 0;
-          *m_pMouseX = 0;
-          *m_pMouseY = 0;
+          *m_pMouseX = DBL_MAX;
+          *m_pMouseY = DBL_MAX;
       }
       if (m_Nonblock == DISABLE) {
           SetEvent(m_eventHandle);
