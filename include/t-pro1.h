@@ -78,13 +78,7 @@ void gclrGrid(int win)
 //戻り値：なし
 void terminateDraw(void)
 {
-    gsetnonblock(ENABLE);
-    for (;;) {
-      if (ggetch() == -1) {
-        break;
-      }
-    }
-    gsetnonblock(DISABLE);
-    ggetch();
-    gclose(win);
+  gsetnonblock(DISABLE);
+  while (ggetch() != 27); //ESCキーで終了
+  gclose(win);
 }
