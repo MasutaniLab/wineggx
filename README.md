@@ -40,7 +40,7 @@ Visual Studioでソリューションをビルドすると，静的なライブ�
   - ボールアニメーション．
 - texample1
   - C++言語の初学者のために，色々な約束事を意識せずにグラフィックスのプログラムを作らせる
-  試みです．`include\t-pro1.h` を`#include`して，`draw()`関数の定義を描きます．
+  試みです．`include\t-pro1.h` を`#include`して，`draw()`関数の定義を書きます．
   Processingを意識していますが，draw()が繰り返し実行されることはありません．
 - texample2
   - `t-pro1.h`を使ったボールアニメーション．
@@ -204,7 +204,7 @@ win = ggetevent(&type, &button, &x, &y);
 
 |動作|windowId|mousePressed|mouseButton|mouseX|mouseY|
 |:--|:--|:--|:--|:--|:--|
-|マウスがウィンドウ外                    |-1|false|0|0|0|
+|マウスがウィンドウ外                    |-1|false|0|DBL_MAX|DBL_MAX|
 |マウスがウィンドウ内でボタン押していない  |ウィンドウ番号|false|0|x座標|y座標|
 |マウスがウィンドウ内でボタン押している    |ウィンドウ番号|true|ボタン番号|x座標|y座標|
 
