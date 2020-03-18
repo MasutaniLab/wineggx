@@ -15,16 +15,16 @@ const int YMIN = -100;
 const int YMAX = +100;
 
 //関数プロトタイプ
-void initializeDraw(void);
+void initializeDraw(std::string path = "");
 void drawGrid(int win, double xmin, double ymin, double xmax, double ymax, double grid);
 void terminateDraw(void);
 void draw();
 void gclrGrid(int win);
 
-int main()
+int main(int argc, char **argv)
 {
     srand((unsigned int)time(NULL));
-    initializeDraw();
+    initializeDraw(argv[0]);
     draw();
     terminateDraw();
     return 0;
@@ -33,10 +33,20 @@ int main()
 //概要：EGGXを初期化し，座標系を描く
 //引数：なし
 //戻り値：なし
-void initializeDraw(void)
+void initializeDraw(std::string path)
 {
     win = gopen(500, 500);
     window(win, XMIN, YMIN, XMAX, YMAX);
+
+    // aaa\bbb\ccc.ddd から ccc を取り出す．
+    string::size_type p = path.rfind('\\');
+    if (p != string::npos) path.erase(0, p + 1);
+    p = path.rfind('.');
+    if (p != string::npos) path.erase(p);
+    if (!path.empty()) {
+      winname(win, path);
+    }
+
     gsetbgcolorrgb(win, 255, 255, 255);
     gclrGrid(win);
 }
