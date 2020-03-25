@@ -1,6 +1,6 @@
 # Windows版EGGX
-Version 2.0 （マウスイベントに対応，関数追加）  
-2019年2月28日  
+Version 2.1 rc2  
+2020年3月XX日  
 升谷 保博  
 （大阪電気通信大学）  
 
@@ -21,7 +21,7 @@ http://www.ir.isas.jaxa.jp/~cyamauch/eggx_procall/index.ja.html
 
 ## インストール
 
-Visual Studio 2015で動作確認しています．
+Visual Studio 2019で動作確認しています．
 
 特別なライブラリは必要ありません．CMakeでソリューションを生成し，
 Visual Studioでソリューションをビルドすると，静的なライブラリと動作確認用の
@@ -167,6 +167,12 @@ void msleep(unsigned long msec);
   - 関数を追加しました．`gresize(), coordinate(), tclr(), newpen(), drawpts(), drawlines(), drawpoly(), fillpoly(), newfontset()`
   - Processing風に大域変数でマウスの状態を取得できるようにしました（wineggx独自）．
   - Cスタイルの文字列（`char *`）の代わりに`std::string`も使えるようにしました（wineggx独自）．
+
+- Version 2.1
+  - マウスカーソルがウィンドウ外にある場合のmouseX, mouseYの値を0,0からDBL_MAX,DBL_MAXへ変更しました．
+  - 閉じるボタンを効かないようにしました．
+  - `t-pro1.h`を変更しました（タイトルにプログラム名，終了待ちのキー入力はEscのみに）
+  - 開発環境をVisual Studio 2015から2019へ移行しました.
 
 ---
 ## イベント処理に関する覚書
