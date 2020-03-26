@@ -1,27 +1,27 @@
 # Windows版EGGX
-Version 2.1 rc2  
-2020年3月XX日  
+Version 2.1  
+2020年3月26日  
 升谷 保博  
 （大阪電気通信大学）  
 
 ## はじめに
 
-これは，Windows用のC（C++)言語用の2次元グラフィックスライブラリです．広
-く使われているX11グラフィックスライブラリ「EGGX/ProCALL」
-
-http://www.ir.isas.jaxa.jp/~cyamauch/eggx_procall/index.ja.html
-
+これは，WindowsのC++用の2次元グラフィックスライブラリです．
+広く使われているX11グラフィックスライブラリ
+[EGGX/ProCALL](http://www.ir.isas.jaxa.jp/~cyamauch/eggx_procall/index.ja.html)
 の仕様（の一部）と互換になるように作られています．EGGX/ProCALLの作者で
 ある山内氏（JAXA）から「Windows版EGGX」と名乗ることの許可を得ています．
 なお，仕様は互換になるようにしていますが，オリジナルのソースコードは利用
 していません．
+Version 2.0から参照引数やstd::string等のC++の仕様を使うようになりましたので，
+そのままでは純粋なCのプログラムでは使えなくなりました．
 
 このライブラリの特徴は，EGGX互換であることと，WinAPIを全く意識すること
-なく，main()関数で始まるCやC++のプログラムで使うことができることです．
+なく，main()関数で始まるC++のプログラムで使うことができることです．
 
 ## インストール
 
-Visual Studio 2019で動作確認しています．
+Visual Studio 2019のC++で動作確認しています．
 
 特別なライブラリは必要ありません．CMakeでソリューションを生成し，
 Visual Studioでソリューションをビルドすると，静的なライブラリと動作確認用の
