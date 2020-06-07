@@ -45,6 +45,9 @@ target_link_libraries(mouse-test2 ${PROJECT_NAME})
 add_executable(mouse-test3 src/mouse-test3.cpp)
 target_link_libraries(mouse-test3 ${PROJECT_NAME})
 
+add_executable(mouse-test4 src/mouse-test4.cpp)
+target_link_libraries(mouse-test4 ${PROJECT_NAME})
+
 add_executable(ver2-test src/ver2-test.cpp)
 target_link_libraries(ver2-test ${PROJECT_NAME})
 

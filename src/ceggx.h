@@ -34,6 +34,7 @@
 #include <map>
 #include <string>
 #include <cassert>
+#include <exception>
 
 /**
  * @ingroup CEggX
@@ -213,7 +214,11 @@ private:
   //四捨五入 double → int
   int roundInt(double d)
   {
-    return int(d+0.5-(d<0));
+      double dd = d + 0.5 - (d < 0);
+      if (dd > double(INT_MAX) + 1.0 || dd < double(INT_MIN) - 1.0) {
+          throw std::runtime_error("out of int range");
+      }
+      return int(dd);
   }
 
   std::map<std::string, rgb> rgbtable;

@@ -898,13 +898,18 @@ void CEggX::pset( unsigned wn,double x,double y )
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return;
 
-  int xx = convertX(wnd, x);
-  int yy = convertY(wnd, y);
+  int xx, yy;
+  try {
+      xx = convertX(wnd, x);
+      yy = convertY(wnd, y);
+  } catch (std::runtime_error e) {
+      return;
+  }
 
   HDC hWDC = ::GetDC(wnd.hWnd);
   if(wnd.showLayer==wnd.writeLayer)
   {
-	  ::SetPixelV(hWDC,xx,yy,RGB(wnd.r,wnd.g,wnd.b));
+      ::SetPixelV(hWDC, xx, yy, RGB(wnd.r, wnd.g, wnd.b));
   }
   else
   {
@@ -943,8 +948,12 @@ void CEggX::moveto( unsigned wn, double x, double y )
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return;
 
-  wnd.ly = convertY(wnd, y);
-  wnd.lx = convertX(wnd, x);
+  try {
+      wnd.ly = convertY(wnd, y);
+      wnd.lx = convertX(wnd, x);
+  } catch (std::runtime_error e) {
+      std::cerr << "runtime_error: " << e.what() << std::endl;
+  }
 }
 
 /**
@@ -960,8 +969,13 @@ void CEggX::lineto( unsigned wn, double x, double y ){
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return;
 
-  int yy = convertY(wnd, y);
-  int xx = convertX(wnd, x);
+  int yy, xx;
+  try {
+      yy = convertY(wnd, y);
+      xx = convertX(wnd, x);
+  } catch (std::runtime_error e) {
+      return;
+  }
 
   HDC hWDC = ::GetDC(wnd.hWnd);
   if(wnd.showLayer==wnd.writeLayer)
@@ -1001,8 +1015,13 @@ void CEggX::line( unsigned wn,double x,double y,int mode )
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return;
 
-  int yy = convertY(wnd, y);
-  int xx = convertX(wnd, x);
+  int yy, xx;
+  try {
+      yy = convertY(wnd, y);
+      xx = convertX(wnd, x);
+  } catch (std::runtime_error e) {
+      return;
+  }
 
   if(mode==PENUP||mode==PSET)
   {
@@ -1053,10 +1072,15 @@ void CEggX::circle( unsigned wn, double xcen, double ycen, double xrad, double y
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return;
 
-  int xx = convertX(wnd, xcen);
-  int yy = convertY(wnd, ycen);
-  int xxrad = scaleX(wnd, xrad);
-  int yyrad = scaleY(wnd, yrad);
+  int xx, yy, xxrad, yyrad;
+  try {
+      xx = convertX(wnd, xcen);
+      yy = convertY(wnd, ycen);
+      xxrad = scaleX(wnd, xrad);
+      yyrad = scaleY(wnd, yrad);
+  } catch (std::runtime_error e) {
+      return;
+  }
 
   int x1 = xx + xxrad;
   int x2 = xx - xxrad;
@@ -1104,10 +1128,15 @@ void CEggX::fillcirc( unsigned wn, double xcen, double ycen, double xrad, double
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return;
 
-  int xx = convertX(wnd, xcen);
-  int yy = convertY(wnd, ycen);
-  int xxrad = scaleX(wnd, xrad);
-  int yyrad = scaleY(wnd, yrad);
+  int xx, yy, xxrad, yyrad;
+  try {
+      xx = convertX(wnd, xcen);
+      yy = convertY(wnd, ycen);
+      xxrad = scaleX(wnd, xrad);
+      yyrad = scaleY(wnd, yrad);
+  } catch (std::runtime_error e) {
+      return;
+  }
 
   int x1 = xx + xxrad;
   int x2 = xx - xxrad;
@@ -1154,10 +1183,15 @@ void CEggX::drawarc( unsigned wn, double xcen, double ycen, double xrad, double 
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return;
 
-  int xx = convertX(wnd, xcen);
-  int yy = convertY(wnd, ycen);
-  int xxrad = scaleX(wnd, xrad);
-  int yyrad = scaleY(wnd, yrad);
+  int xx, yy, xxrad, yyrad;
+  try {
+      xx = convertX(wnd, xcen);
+      yy = convertY(wnd, ycen);
+      xxrad = scaleX(wnd, xrad);
+      yyrad = scaleY(wnd, yrad);
+  } catch (std::runtime_error e) {
+      return;
+  }
 
   int x1 = xx + xxrad;
   int x2 = xx - xxrad;
@@ -1233,10 +1267,15 @@ void CEggX::fillarc( unsigned wn, double xcen, double ycen, double xrad, double 
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return;
 
-  int xx = convertX(wnd, xcen);
-  int yy = convertY(wnd, ycen);
-  int xxrad = scaleX(wnd, xrad);
-  int yyrad = scaleY(wnd, yrad);
+  int xx, yy, xxrad, yyrad;
+  try {
+      xx = convertX(wnd, xcen);
+      yy = convertY(wnd, ycen);
+      xxrad = scaleX(wnd, xrad);
+      yyrad = scaleY(wnd, yrad);
+  } catch (std::runtime_error e) {
+      return;
+  }
 
   int x1 = xx + xxrad;
   int x2 = xx - xxrad;
@@ -1309,10 +1348,15 @@ void CEggX::drawrect( unsigned wn, double x, double y, double w, double h )
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return;
 
-  int xx = convertX(wnd, x);
-  int yy = convertY(wnd, y);
-  int ww = scaleX(wnd, w);
-  int hh = scaleY(wnd, h);
+  int xx, yy, ww, hh;
+  try {
+      xx = convertX(wnd, x);
+      yy = convertY(wnd, y);
+      ww = scaleX(wnd, w);
+      hh = scaleY(wnd, h);
+  } catch (std::runtime_error e) {
+      return;
+  }
 
   HBRUSH hBrushNull = (HBRUSH)::GetStockObject(NULL_BRUSH);
 
@@ -1356,10 +1400,15 @@ void CEggX::fillrect( unsigned wn, double x, double y, double w, double h )
   EggXWindow &wnd = m_Window.at(wn);
   if(!wnd.hWnd)return;
 
-  int xx = convertX(wnd, x);
-  int yy = convertY(wnd, y);
-  int ww = scaleX(wnd, w);
-  int hh = scaleY(wnd, h);
+  int xx, yy, ww, hh;
+  try {
+      xx = convertX(wnd, x);
+      yy = convertY(wnd, y);
+      ww = scaleX(wnd, w);
+      hh = scaleY(wnd, h);
+  } catch (std::runtime_error e) {
+      return;
+  }
 
   HDC hWDC = ::GetDC(wnd.hWnd);
   if(wnd.showLayer==wnd.writeLayer)
@@ -1441,10 +1490,15 @@ int  CEggX::drawstr(unsigned wn, double x, double y, int size, double theta, con
       }
   }
 
-  int xx = convertX(wnd, x);
-  int yy = convertY(wnd, y);
-  RECT rect = { xx, yy , wnd.cx, wnd.cy };
   int len = (int)strlen(str);
+  int xx, yy;
+  try {
+      xx = convertX(wnd, x);
+      yy = convertY(wnd, y);
+  } catch (std::runtime_error e) {
+      return len;
+  }
+  RECT rect = { xx, yy , wnd.cx, wnd.cy };
   SIZE psize = {0,0};
 
   HDC hWDC = ::GetDC(wnd.hWnd);
@@ -1525,11 +1579,15 @@ void CEggX::drawlines(unsigned wn, const double x[], const double y[], int n)
   if (!wnd.hWnd)return;
 
   POINT *p = new POINT[n];
-  for (int i = 0; i < n; i++) {
-    p[i].x = convertX(wnd, x[i]);
-    p[i].y = convertY(wnd, y[i]);
+  try {
+      for (int i = 0; i < n; i++) {
+          p[i].x = convertX(wnd, x[i]);
+          p[i].y = convertY(wnd, y[i]);
+      }
+  } catch (std::runtime_error e) {
+      delete p;
+      return;
   }
-
   HBRUSH hBrushNull = (HBRUSH)::GetStockObject(NULL_BRUSH);
 
   HDC hWDC = ::GetDC(wnd.hWnd);
@@ -1572,9 +1630,14 @@ void CEggX::drawpoly(unsigned wn, const double x[], const double y[], int n)
   if (!wnd.hWnd)return;
 
   POINT *p = new POINT[n];
-  for (int i = 0; i < n; i++) {
-    p[i].x = convertX(wnd, x[i]);
-    p[i].y = convertY(wnd, y[i]);
+  try {
+      for (int i = 0; i < n; i++) {
+          p[i].x = convertX(wnd, x[i]);
+          p[i].y = convertY(wnd, y[i]);
+      }
+  } catch (std::runtime_error e) {
+      delete p;
+      return;
   }
 
   HBRUSH hBrushNull = (HBRUSH)::GetStockObject(NULL_BRUSH);
@@ -1620,9 +1683,14 @@ void CEggX::fillpoly(unsigned wn, const double x[], const double y[], int n, int
   if (!wnd.hWnd)return;
 
   POINT *p = new POINT[n];
-  for (int i = 0; i < n; i++) {
-    p[i].x = convertX(wnd, x[i]);
-    p[i].y = convertY(wnd, y[i]);
+  try {
+      for (int i = 0; i < n; i++) {
+          p[i].x = convertX(wnd, x[i]);
+          p[i].y = convertY(wnd, y[i]);
+      }
+  } catch (std::runtime_error e) {
+      delete p;
+      return;
   }
 
   HBRUSH hBrushNull = (HBRUSH)::GetStockObject(NULL_BRUSH);
@@ -1677,20 +1745,26 @@ void CEggX::drawpts(unsigned wn, const double x[], const double y[], int n)
   HDC hWDC = ::GetDC(wnd.hWnd);
   if (wnd.showLayer == wnd.writeLayer)
   {
-    for (int i = 0; i < n; i++) {
-      int xx = convertX(wnd, x[i]);
-      int yy = convertY(wnd, y[i]);
-      ::SetPixelV(hWDC, xx, yy, rgb);
-    }
+      try {
+          for (int i = 0; i < n; i++) {
+              int xx = convertX(wnd, x[i]);
+              int yy = convertY(wnd, y[i]);
+              ::SetPixelV(hWDC, xx, yy, rgb);
+          }
+      } catch (std::runtime_error e) {
+      }
   } else {
-    HDC hDC = ::CreateCompatibleDC(hWDC);
-    ::SelectObject(hDC, wnd.hBitmap[wnd.index]);
-    for (int i = 0; i < n; i++) {
-      int xx = convertX(wnd, x[i]);
-      int yy = convertY(wnd, y[i]);
-      ::SetPixelV(hDC, xx, yy, rgb);
-    }
-    ::DeleteDC(hDC);
+      HDC hDC = ::CreateCompatibleDC(hWDC);
+      ::SelectObject(hDC, wnd.hBitmap[wnd.index]);
+      try {
+          for (int i = 0; i < n; i++) {
+              int xx = convertX(wnd, x[i]);
+              int yy = convertY(wnd, y[i]);
+              ::SetPixelV(hDC, xx, yy, rgb);
+          }
+      } catch (std::runtime_error e) {
+      }
+      ::DeleteDC(hDC);
   }
   ::ReleaseDC(wnd.hWnd, hWDC);
 }
