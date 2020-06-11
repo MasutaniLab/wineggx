@@ -41,7 +41,7 @@ int main()
     }
     fillcirc(windowId, mouseX, mouseY, r, r);
 
-    if (mouseX > 90 && mouseY > 90) break;
+    if (90 < mouseX && mouseX < 100 && 90 < mouseY && mouseY < 100) break;
 
     msleep(30);
   }
