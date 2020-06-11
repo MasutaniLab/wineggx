@@ -1,6 +1,6 @@
 # Windows版EGGX
-Version 2.1  
-2020年3月26日  
+Version 2.2  
+2020年6月11日  
 升谷 保博  
 （大阪電気通信大学）  
 
@@ -55,6 +55,8 @@ Visual Studioでソリューションをビルドすると，静的なライブ�
   - ggetxpress()の動作確認．
 - mouse-test3
   - 大域変数windowId, mouseX, mouseY, mousePressed, mouseButtonの動作確認．
+- mouse-test4
+  - マウスカーソルがウィンドウ外にある場合の図形描画確認．
 - string-test
   - `char *`の代わりに`std::string`を使う関数の動作確認．
 - ver2-test
@@ -173,6 +175,9 @@ void msleep(unsigned long msec);
   - 閉じるボタンを効かないようにしました．
   - `t-pro1.h`を変更しました（タイトルにプログラム名，終了待ちのキー入力はEscのみに）
   - 開発環境をVisual Studio 2015から2019へ移行しました.
+
+- Version 2.2
+  - マウスカーソルがウィンドウ外にある時のように座標値が極端に大きくなる（WinAPIに渡す場合にint型の範囲を超える）場合に，描画位置が正しくないので，描画しないようにしました．
 
 ---
 ## イベント処理に関する覚書
