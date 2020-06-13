@@ -9,10 +9,10 @@ using namespace std;
 
 //グローバル定数・変数
 int win;
-const int XMIN = -100;
-const int XMAX = +100;
-const int YMIN = -100;
-const int YMAX = +100;
+const double XMIN = -100;
+const double XMAX = +100;
+const double YMIN = -100;
+const double YMAX = +100;
 
 //関数プロトタイプ
 void initializeDraw(std::string path = "");
