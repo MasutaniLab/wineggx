@@ -1996,27 +1996,21 @@ DWORD CEggX::ThreadProc()
           EggMessage(data);
       }
       int num = m_NumWind;
-      for(int i=0;i<m_MaxWindow&&num;i++)
+      // メイン メッセージ ループ :
+      while (::PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) 
       {
-          if(!m_Window.at(i).hWnd)continue;
-          num--;
-          EggXWindow &wnd = m_Window.at(i);
-          // メイン メッセージ ループ :
-          while (::PeekMessage(&msg, wnd.hWnd, 0, 0, PM_REMOVE)) 
+          if(hAccelTable)
           {
-              if(hAccelTable)
-              {
-                  if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) 
-                  {
-                      TranslateMessage(&msg);
-                      DispatchMessage(&msg);
-                  }
-              }
-              else
+              if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg)) 
               {
                   TranslateMessage(&msg);
                   DispatchMessage(&msg);
               }
+          }
+          else
+          {
+              TranslateMessage(&msg);
+              DispatchMessage(&msg);
           }
       }
   }
